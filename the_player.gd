@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+#@export var sound: AudioStreamWAV = preload("res://static.wav")
 
 # Define movement speed
-var speed = 10
+@export var speed = 3
 var direction : int = 1
 
 func _process(delta):
@@ -33,4 +34,10 @@ func _process(delta):
 	if collision:
 		speed = 0
 	else:
-		speed = 10
+		speed = 3
+
+
+func _on_area_2d_body_entered(body):
+	print("Area entered")
+	#$AudioStreamPlayer2D.play(sound)
+	pass # Replace with function body.
