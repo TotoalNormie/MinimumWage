@@ -7,6 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Define movement speed
 @export var speed = 3
 var direction : int = 1
+@export var inventory: Dictionary = {}
 
 func _process(delta):
 	# Get user input
@@ -36,8 +37,13 @@ func _process(delta):
 	else:
 		speed = 3
 
+func addToInventory(itemId, itemData):
+	inventory[itemId] = itemData
+	
+func removeFromInventory(itemId):
+	inventory.erase(itemId)
 
-func _on_area_2d_body_entered(body):
-	print("Area entered")
-	#$AudioStreamPlayer2D.play(sound)
-	pass # Replace with function body.
+#func _on_area_2d_body_entered(body):
+	#print("Area entered")
+	##$AudioStreamPlayer2D.play(sound)
+	#pass # Replace with function body.
