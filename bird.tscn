@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd2rg4hom46gd"]
+
+[ext_resource type="Script" path="res://bird.gd" id="1_lq7es"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ewxta"]
+load_path = "res://.godot/imported/bird1.png-a83dadb1b9374dc95e0d1b7a95119b58.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p5njr"]
+load_path = "res://.godot/imported/bird2.png-a9c593802cedb50a9374c8dc66a9b92d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4pbst"]
+load_path = "res://.godot/imported/bird3.png-f9c6b58c0b79dca9a32430fbf9b734b9.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1uff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ewxta")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_p5njr")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_4pbst")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ve23o"]
+radius = 18.0
+height = 54.0
+
+[node name="bird" type="CharacterBody2D"]
+script = ExtResource("1_lq7es")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 16)
+sprite_frames = SubResource("SpriteFrames_a1uff")
+animation = &"flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ve23o")
