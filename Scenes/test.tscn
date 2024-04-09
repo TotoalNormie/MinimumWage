@@ -11,7 +11,6 @@
 [node name="PowerUp" parent="." instance=ExtResource("4_4iula")]
 texture_filter = 1
 position = Vector2(476, 336)
-mass = 0.01
 
 [node name="AreaAudio2" parent="." instance=ExtResource("1_wr6cs")]
 editor_description = "Dazas skanas var nedarboties ar so komponenti."

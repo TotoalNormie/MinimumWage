@@ -16,6 +16,7 @@ func  _ready():
 		return
 		rigidbody = get_node(".")
 	
+	
 
 #func _process(delta):
 	## Get user input
