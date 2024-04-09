@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="THE game"
+run/main_scene="res://Store/THEstore.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [rendering]
 
