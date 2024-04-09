@@ -1,22 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvoca7gygcwmk"]
+[gd_scene load_steps=5 format=3 uid="uid://bvoca7gygcwmk"]
 
-[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://the_player.tscn" id="1_udwat"]
-[ext_resource type="AudioStream" uid="uid://ctxbofe6xuq8g" path="res://Audio/spotted.wav" id="3_aj66j"]
+[ext_resource type="AudioStream" uid="uid://qlo5gswmxrne" path="res://Audio/static.wav" id="3_075tb"]
+[ext_resource type="PackedScene" uid="uid://cec8opis5itwl" path="res://CustomComponents/Player.tscn" id="4_wb7h8"]
+[ext_resource type="AudioStream" uid="uid://u0fjpddgggwx" path="res://Audio/powerup.wav" id="4_y6vht"]
 [ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="5_fb3or"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_udwat")]
-position = Vector2(140, 160)
 
 [node name="AreaAudio" parent="." instance=ExtResource("5_fb3or")]
 editor_description = "Dazas skanas var nedarboties ar so komponenti."
 position = Vector2(487, 514)
 scale = Vector2(0.944, 0.961927)
-sound = ExtResource("3_aj66j")
+sound = ExtResource("3_075tb")
 
 [node name="AreaAudio2" parent="." instance=ExtResource("5_fb3or")]
 editor_description = "Dazas skanas var nedarboties ar so komponenti."
 position = Vector2(471, 153)
 scale = Vector2(0.944, 0.961927)
-sound = ExtResource("3_aj66j")
+sound = ExtResource("4_y6vht")
+volume = 0.5
+
+[node name="Player" parent="." instance=ExtResource("4_wb7h8")]
