@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v72vx"]
 radius = 32.0
-height = 80.0
+height = 68.0
 
 [node name="thePlayer" type="CharacterBody2D"]
 script = ExtResource("1_qqbrt")

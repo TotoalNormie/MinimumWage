@@ -18,7 +18,6 @@ texture = SubResource("CompressedTexture2D_s8l0c")
 
 [node name="thePlayer" parent="game" instance=ExtResource("2_edccf")]
 position = Vector2(94, 234)
-scale = Vector2(1, 1)
 
 [node name="table" parent="game" instance=ExtResource("3_uougi")]
 position = Vector2(455, 310)
