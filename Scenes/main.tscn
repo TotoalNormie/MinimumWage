@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxk8gir42dk0k"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_we54h"]
-[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://the_player.tscn" id="2_edccf"]
-[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://table.tscn" id="3_uougi"]
+[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://Scenes/the_player.tscn" id="2_edccf"]
+[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://Scenes/table.tscn" id="3_uougi"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8l0c"]
 load_path = "res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.ctex"

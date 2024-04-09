@@ -1,7 +1,7 @@
 extends Area2D
 
 # Sound Goes here
-@export var sound = preload("res://static.wav")
+@export var sound = preload("res://Audio/static.wav")
 @export var volume: float = 1.0
 @export var cutoff: bool = true
 #@export vat node: Node
