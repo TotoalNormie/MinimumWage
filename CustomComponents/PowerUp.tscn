@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyv8b3eb4qd5q"]
+
+[ext_resource type="Script" path="res://Scripts/PowerUp.gd" id="1_ekm0y"]
+[ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="2_5h1td"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe56v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xc4n"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_ekm0y")
+icon = ExtResource("2_5h1td")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pe56v")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1xc4n")

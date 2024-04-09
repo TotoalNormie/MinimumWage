@@ -8,7 +8,7 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_j8rb5"]
 
 [node name="Area2D" type="Area2D"]
-scale = Vector2(0.944, 0.95)
+scale = Vector2(0.957102, 0.95)
 script = ExtResource("1_v0erq")
 sound = ExtResource("2_3m3x8")
 volume = 1.0
@@ -22,11 +22,11 @@ shape = SubResource("RectangleShape2D_qd7k6")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.501961)
-offset_left = -168.432
+offset_left = -169.492
 offset_top = -88.4211
-offset_right = -128.432
+offset_right = -129.492
 offset_bottom = -48.4211
-scale = Vector2(8.41525, 4.41053)
+scale = Vector2(8.46069, 4.41053)
 texture = SubResource("CanvasTexture_j8rb5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
