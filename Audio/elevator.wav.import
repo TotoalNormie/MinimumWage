@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c4ekeaqd27oke"
-path="res://.godot/imported/pickupCoin.wav-be680aecee3c783d1a9d6ac216aac9ba.sample"
+uid="uid://c8g1viaq42b2k"
+path="res://.godot/imported/elevator.wav-e27471a13eace86b4f6195f1145154f3.sample"
 
 [deps]
 
-source_file="res://pickupCoin.wav"
-dest_files=["res://.godot/imported/pickupCoin.wav-be680aecee3c783d1a9d6ac216aac9ba.sample"]
+source_file="res://Audio/elevator.wav"
+dest_files=["res://.godot/imported/elevator.wav-e27471a13eace86b4f6195f1145154f3.sample"]
 
 [params]
 

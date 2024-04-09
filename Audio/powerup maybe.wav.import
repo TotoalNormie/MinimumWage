@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cyvnghw3f4o04"
-path="res://.godot/imported/boss elevator.wav-860e5559e423497416b2b677be0875af.sample"
+uid="uid://444esudi03b2"
+path="res://.godot/imported/powerup maybe.wav-6df7ec6ff7073bcfbfa2855f05bf07b4.sample"
 
 [deps]
 
-source_file="res://boss elevator.wav"
-dest_files=["res://.godot/imported/boss elevator.wav-860e5559e423497416b2b677be0875af.sample"]
+source_file="res://Audio/powerup maybe.wav"
+dest_files=["res://.godot/imported/powerup maybe.wav-6df7ec6ff7073bcfbfa2855f05bf07b4.sample"]
 
 [params]
 

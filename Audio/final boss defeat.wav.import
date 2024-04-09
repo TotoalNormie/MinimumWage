@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bprf0f5xjpu5g"
-path="res://.godot/imported/final boss defeat.wav-812f6caab964618c3013b92e14f9de74.sample"
+path="res://.godot/imported/final boss defeat.wav-a57a7274dde117af73ca96b6873d9963.sample"
 
 [deps]
 
-source_file="res://final boss defeat.wav"
-dest_files=["res://.godot/imported/final boss defeat.wav-812f6caab964618c3013b92e14f9de74.sample"]
+source_file="res://Audio/final boss defeat.wav"
+dest_files=["res://.godot/imported/final boss defeat.wav-a57a7274dde117af73ca96b6873d9963.sample"]
 
 [params]
 
