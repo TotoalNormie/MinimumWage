@@ -1,45 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvoca7gygcwmk"]
+[gd_scene load_steps=4 format=3 uid="uid://bvoca7gygcwmk"]
 
 [ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://the_player.tscn" id="1_udwat"]
-[ext_resource type="Script" path="res://PlaySound.gd" id="2_1husp"]
-[ext_resource type="AudioStream" uid="uid://qlo5gswmxrne" path="res://static.wav" id="2_epdc1"]
-[ext_resource type="AudioStream" uid="uid://c8g1viaq42b2k" path="res://elevator.wav" id="3_tj3k6"]
-[ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomAssets/AreaAudio.tscn" id="5_fb3or"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8o3p7"]
-size = Vector2(337, 178)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_lfmu7"]
+[ext_resource type="AudioStream" uid="uid://ctxbofe6xuq8g" path="res://Audio/spotted.wav" id="3_aj66j"]
+[ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="5_fb3or"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_udwat")]
 position = Vector2(140, 160)
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(464, 226)
-scale = Vector2(0.993833, 1)
-script = ExtResource("2_1husp")
-sound = ExtResource("3_tj3k6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_8o3p7")
-
-[node name="TextureRect" type="TextureRect" parent="Area2D"]
-modulate = Color(1, 1, 1, 0.368627)
-offset_left = -168.0
-offset_top = -89.0
-offset_right = -128.0
-offset_bottom = -49.0
-scale = Vector2(8.41429, 4.42286)
-texture = SubResource("CanvasTexture_lfmu7")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D"]
-stream = ExtResource("2_epdc1")
-
 [node name="AreaAudio" parent="." instance=ExtResource("5_fb3or")]
 editor_description = "Dazas skanas var nedarboties ar so komponenti."
 position = Vector2(487, 514)
+scale = Vector2(0.944, 0.961927)
+sound = ExtResource("3_aj66j")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[node name="AreaAudio2" parent="." instance=ExtResource("5_fb3or")]
+editor_description = "Dazas skanas var nedarboties ar so komponenti."
+position = Vector2(471, 153)
+scale = Vector2(0.944, 0.961927)
+sound = ExtResource("3_aj66j")

@@ -3,6 +3,8 @@ extends Area2D
 # Sound Goes here
 @export var sound = preload("res://static.wav")
 @export var volume: float = 1.0
+@export var cutoff: bool = true
+#@export vat node: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,9 +29,10 @@ func playSound() -> void:
 		#$AudioStreamPlayer2D.play(sound)
 		
 func _on_body_entered(body):
-	$AudioStreamPlayer2D.stream = sound
-	$AudioStreamPlayer2D.play(volume)
+	$AudioStreamPlayer2D2.stream = sound
+	$AudioStreamPlayer2D2.play(volume)
 
 
 func _on_body_exited(body):
-	$AudioStreamPlayer2D.stop()
+	if cutoff:
+		$AudioStreamPlayer2D2.stop()
