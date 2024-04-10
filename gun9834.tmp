@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf4lxdda0v48"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_5oilo"]
+[ext_resource type="Texture2D" uid="uid://breha1wfpvhrv" path="res://glock.png" id="1_wdobg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo3xh"]
+size = Vector2(38, 13)
+
+[node name="gun" type="Area2D"]
+script = ExtResource("1_5oilo")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(-19, 0)
+shape = SubResource("RectangleShape2D_jo3xh")
+
+[node name="Sprite2D" type="Sprite2D" parent="shape"]
+position = Vector2(-11, -7.10543e-15)
+scale = Vector2(0.0352263, 0.0389281)
+texture = ExtResource("1_wdobg")

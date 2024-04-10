@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxk8gir42dk0k"]
+[gd_scene load_steps=6 format=3 uid="uid://bxk8gir42dk0k"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_we54h"]
 [ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://the_player.tscn" id="2_edccf"]
+[ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://enemy.tscn" id="3_cbqdt"]
 [ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://table.tscn" id="3_uougi"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8l0c"]
-load_path = "res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.ctex"
 
 [node name="main" type="Node2D"]
+position = Vector2(1, 0)
 
 [node name="game" type="Node2D" parent="."]
 script = ExtResource("1_we54h")
@@ -19,13 +20,21 @@ texture = SubResource("CompressedTexture2D_s8l0c")
 [node name="thePlayer" parent="game" instance=ExtResource("2_edccf")]
 position = Vector2(94, 234)
 
-[node name="table" parent="game" instance=ExtResource("3_uougi")]
-position = Vector2(455, 310)
+[node name="enemies" type="Node2D" parent="game"]
 
-[node name="table3" parent="game" instance=ExtResource("3_uougi")]
-position = Vector2(702, 314)
-scale = Vector2(1.00779, 1.28776)
+[node name="enemy" parent="game/enemies" instance=ExtResource("3_cbqdt")]
+position = Vector2(123, 95)
 
-[node name="table2" parent="game" instance=ExtResource("3_uougi")]
-position = Vector2(214, 308)
-scale = Vector2(1.00389, 1.13479)
+[node name="obstacles" type="Node2D" parent="game"]
+
+[node name="table4" parent="game/obstacles" instance=ExtResource("3_uougi")]
+position = Vector2(429, 213)
+
+[node name="table3" parent="game/obstacles" instance=ExtResource("3_uougi")]
+position = Vector2(221, 368)
+
+[node name="table2" parent="game/obstacles" instance=ExtResource("3_uougi")]
+position = Vector2(436, 370)
+
+[node name="table" parent="game/obstacles" instance=ExtResource("3_uougi")]
+position = Vector2(221, 212)
