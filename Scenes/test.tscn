@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvoca7gygcwmk"]
+[gd_scene load_steps=9 format=3 uid="uid://bvoca7gygcwmk"]
 
 [ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="1_wr6cs"]
 [ext_resource type="AudioStream" uid="uid://qlo5gswmxrne" path="res://Audio/static.wav" id="2_1oa3c"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dyv8b3eb4qd5q" path="res://CustomComponents/PowerUp.tscn" id="4_4iula"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Player.tscn" id="4_8jysj"]
 [ext_resource type="Texture2D" uid="uid://bxu7cfi0lb04k" path="res://Sprites/crate.png" id="6_r0blu"]
+[ext_resource type="PackedScene" uid="uid://d73xg2ctv6ps" path="res://CustomComponents/Item.tscn" id="7_jj0wj"]
+[ext_resource type="Texture2D" uid="uid://btgjq83640gqs" path="res://Sprites/icon24.png" id="8_qbrir"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -36,3 +38,8 @@ scale = Vector2(1, 0.986625)
 texture_filter = 1
 position = Vector2(143, 588)
 icon = ExtResource("6_r0blu")
+
+[node name="Item" parent="." instance=ExtResource("7_jj0wj")]
+icon = ExtResource("8_qbrir")
+id = "EXAMPLE_ITEM"
+description = "This is the description for the unob"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gli7xt3lm07o"
-path="res://.godot/imported/8-bit-coin-material-bloodstained-wiki-guide.webp-c2b2936c0ae9dbbb61a2b3343defa26b.ctex"
+uid="uid://btgjq83640gqs"
+path="res://.godot/imported/icon24.png-762756849d4051b20802ecf360413551.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/8-bit-coin-material-bloodstained-wiki-guide.webp"
-dest_files=["res://.godot/imported/8-bit-coin-material-bloodstained-wiki-guide.webp-c2b2936c0ae9dbbb61a2b3343defa26b.ctex"]
+source_file="res://Sprites/icon24.png"
+dest_files=["res://.godot/imported/icon24.png-762756849d4051b20802ecf360413551.ctex"]
 
 [params]
 

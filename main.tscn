@@ -1,27 +1,19 @@
-
 [gd_scene load_steps=5 format=3 uid="uid://bxk8gir42dk0k"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_we54h"]
-[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://Scenes/the_player.tscn" id="2_edccf"]
+[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Player.tscn" id="3_qeji6"]
 [ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://Scenes/table.tscn" id="3_uougi"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8l0c"]
-load_path = "res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.ctex"
 
 [node name="main" type="Node2D"]
 
 [node name="game" type="Node2D" parent="."]
-
-script = ExtResource("1_u6fp7")
 script = ExtResource("1_we54h")
 
 [node name="bg" type="Sprite2D" parent="game"]
 position = Vector2(432, 384)
 texture = SubResource("CompressedTexture2D_s8l0c")
-
-[node name="thePlayer" parent="game" instance=ExtResource("2_edccf")]
-position = Vector2(94, 234)
-scale = Vector2(1, 1)
 
 [node name="table" parent="game" instance=ExtResource("3_uougi")]
 position = Vector2(455, 310)
@@ -31,6 +23,7 @@ position = Vector2(702, 314)
 scale = Vector2(1.00779, 1.28776)
 
 [node name="table2" parent="game" instance=ExtResource("3_uougi")]
-
 position = Vector2(214, 308)
 scale = Vector2(1.00389, 1.13479)
+
+[node name="Player" parent="." instance=ExtResource("3_qeji6")]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d73xg2ctv6ps"]
+
+[ext_resource type="Script" path="res://CustomComponents/Item.gd" id="1_qxwdm"]
+[ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="2_3q1d4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe56v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xc4n"]
+
+[node name="Item" type="RigidBody2D" node_paths=PackedStringArray("AreaCollider")]
+gravity_scale = 0.0
+script = ExtResource("1_qxwdm")
+AreaCollider = NodePath("Area2D/AreaCollider")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_3q1d4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pe56v")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AreaCollider" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1xc4n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
