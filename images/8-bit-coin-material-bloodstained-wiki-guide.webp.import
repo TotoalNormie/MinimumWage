@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< Updated upstream:images/8-bit-coin-material-bloodstained-wiki-guide.webp.import
-uid="uid://bfer8g7vdxhu7"
+uid="uid://df52p642bg3nu"
 path="res://.godot/imported/8-bit-coin-material-bloodstained-wiki-guide.webp-c2b2936c0ae9dbbb61a2b3343defa26b.ctex"
-========
-uid="uid://c0wxmrg1n477g"
-path="res://.godot/imported/table.webp-3bb7d35e32879f5c2182c1ffafcde289.ctex"
->>>>>>>> Stashed changes:Props/table.webp.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< Updated upstream:images/8-bit-coin-material-bloodstained-wiki-guide.webp.import
 source_file="res://images/8-bit-coin-material-bloodstained-wiki-guide.webp"
 dest_files=["res://.godot/imported/8-bit-coin-material-bloodstained-wiki-guide.webp-c2b2936c0ae9dbbb61a2b3343defa26b.ctex"]
-========
-source_file="res://Props/table.webp"
-dest_files=["res://.godot/imported/table.webp-3bb7d35e32879f5c2182c1ffafcde289.ctex"]
->>>>>>>> Stashed changes:Props/table.webp.import
 
 [params]
 

@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< Updated upstream:images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png.import
-uid="uid://bi4t0eljeocvk"
-path="res://.godot/imported/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png-67657f8050a501226529d46ed701bf74.ctex"
-========
-uid="uid://cvm5f8uqitwhi"
+uid="uid://b2l7kjx7tv32o"
 path="res://.godot/imported/player.webp-df4fe46736c7195f76265b22039910c9.ctex"
->>>>>>>> Stashed changes:Characters/player.webp.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< Updated upstream:images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png.import
-source_file="res://images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png"
-dest_files=["res://.godot/imported/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png-67657f8050a501226529d46ed701bf74.ctex"]
-========
 source_file="res://Characters/player.webp"
 dest_files=["res://.godot/imported/player.webp-df4fe46736c7195f76265b22039910c9.ctex"]
->>>>>>>> Stashed changes:Characters/player.webp.import
 
 [params]
 
