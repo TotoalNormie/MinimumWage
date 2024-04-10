@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ibmn5sc5edpw"]
+
+[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://Characters/the_player.tscn" id="1_0d66g"]
+[ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="2_uid41"]
+[ext_resource type="AudioStream" uid="uid://ctxbofe6xuq8g" path="res://Audio/spotted.wav" id="3_1rpky"]
+[ext_resource type="AudioStream" uid="uid://qlo5gswmxrne" path="res://Audio/static.wav" id="4_0uiur"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_0d66g")]
+position = Vector2(140, 160)
+
+[node name="AreaAudio" parent="." instance=ExtResource("2_uid41")]
+editor_description = "Dazas skanas var nedarboties ar so komponenti."
+position = Vector2(487, 514)
+scale = Vector2(0.944, 0.961927)
+sound = ExtResource("3_1rpky")
+
+[node name="AreaAudio2" parent="." instance=ExtResource("2_uid41")]
+editor_description = "Dazas skanas var nedarboties ar so komponenti."
+position = Vector2(471, 153)
+scale = Vector2(0.944, 0.961927)
+sound = ExtResource("4_0uiur")
