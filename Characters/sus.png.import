@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csgyjayvwqlka"
-path="res://.godot/imported/table.webp-b301af3e035f8f9fe61af679acf2d49b.ctex"
+uid="uid://dcw3h7lyc6t17"
+path="res://.godot/imported/sus.png-3b3c3ddb07fdc3876adbb490e0826359.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://table.webp"
-dest_files=["res://.godot/imported/table.webp-b301af3e035f8f9fe61af679acf2d49b.ctex"]
+source_file="res://Characters/sus.png"
+dest_files=["res://.godot/imported/sus.png-3b3c3ddb07fdc3876adbb490e0826359.ctex"]
 
 [params]
 

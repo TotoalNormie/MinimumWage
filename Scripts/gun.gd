@@ -19,6 +19,5 @@ func _process(delta):
 	else:
 		$shape/Sprite2D.scale.y = abs($shape/Sprite2D.scale.y)
 
-
 func shoot():
 	pass

@@ -1,10 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://yhokpxo8oy01"]
+<<<<<<< HEAD:main.tscn
+[gd_scene load_steps=7 format=3 uid="uid://bxk8gir42dk0k"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_q82eo"]
+[ext_resource type="Script" path="res://game.gd" id="1_we54h"]
+[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://the_player.tscn" id="2_edccf"]
+[ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://enemy.tscn" id="3_cbqdt"]
+[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://table.tscn" id="3_uougi"]
+=======
+
+[gd_scene load_steps=5 format=3 uid="uid://bxk8gir42dk0k"]
+
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_we54h"]
-[ext_resource type="PackedScene" uid="uid://buk4a5jabenqb" path="res://the_player.tscn" id="2_edccf"]
-[ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://Characters/enemy.tscn" id="3_cbqdt"]
-[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://Props/table.tscn" id="3_uougi"]
+[ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://Scenes/the_player.tscn" id="2_edccf"]
+[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://Scenes/table.tscn" id="3_uougi"]
+>>>>>>> 5110a4f754daf76844997ec9d2775b67f3f28b63:Scenes/main.tscn
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8l0c"]
 
@@ -13,6 +22,8 @@ position = Vector2(1, 0)
 script = ExtResource("1_q82eo")
 
 [node name="game" type="Node2D" parent="."]
+
+script = ExtResource("1_u6fp7")
 script = ExtResource("1_we54h")
 
 [node name="bg" type="Sprite2D" parent="game"]
@@ -27,6 +38,7 @@ position = Vector2(94, 234)
 [node name="enemy" parent="game/enemies" instance=ExtResource("3_cbqdt")]
 position = Vector2(123, 95)
 
+<<<<<<< HEAD:main.tscn
 [node name="obstacles" type="Node2D" parent="game"]
 
 [node name="table4" parent="game/obstacles" instance=ExtResource("3_uougi")]
@@ -40,3 +52,9 @@ position = Vector2(436, 370)
 
 [node name="table" parent="game/obstacles" instance=ExtResource("3_uougi")]
 position = Vector2(221, 212)
+=======
+[node name="table2" parent="game" instance=ExtResource("3_uougi")]
+
+position = Vector2(214, 308)
+scale = Vector2(1.00389, 1.13479)
+>>>>>>> 5110a4f754daf76844997ec9d2775b67f3f28b63:Scenes/main.tscn

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvoca7gygcwmk"]
+
+[ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="1_wr6cs"]
+[ext_resource type="AudioStream" uid="uid://qlo5gswmxrne" path="res://Audio/static.wav" id="2_1oa3c"]
+[ext_resource type="AudioStream" uid="uid://u0fjpddgggwx" path="res://Audio/powerup.wav" id="3_671ul"]
+[ext_resource type="PackedScene" uid="uid://dyv8b3eb4qd5q" path="res://CustomComponents/PowerUp.tscn" id="4_4iula"]
+[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Player.tscn" id="4_8jysj"]
+[ext_resource type="Texture2D" uid="uid://bxu7cfi0lb04k" path="res://Sprites/crate.png" id="6_r0blu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AreaAudio2" parent="." instance=ExtResource("1_wr6cs")]
+editor_description = "Dazas skanas var nedarboties ar so komponenti."
+position = Vector2(691, 94)
+scale = Vector2(0.944, 0.961927)
+sound = ExtResource("3_671ul")
+volume = 0.5
+
+[node name="AreaAudio" parent="." instance=ExtResource("1_wr6cs")]
+editor_description = "Dazas skanas var nedarboties ar so komponenti."
+position = Vector2(219, 99.0001)
+scale = Vector2(0.944, 0.961927)
+sound = ExtResource("2_1oa3c")
+
+[node name="Player" parent="." instance=ExtResource("4_8jysj")]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(144, 306)
+
+[node name="PowerUp" parent="." instance=ExtResource("4_4iula")]
+texture_filter = 1
+position = Vector2(477, 336)
+scale = Vector2(1, 0.986625)
+
+[node name="PowerUp2" parent="." instance=ExtResource("4_4iula")]
+texture_filter = 1
+position = Vector2(143, 588)
+icon = ExtResource("6_r0blu")
