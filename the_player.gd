@@ -26,6 +26,7 @@ func _process(delta):
 	# Normalize input vector to prevent faster diagonal movement
 	input_vector = input_vector.normalized()
 
+
 	# Move the player
 	var collision = move_and_collide(input_vector * speed)
 	# Check for collision and stop movement if colliding

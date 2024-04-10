@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxk8gir42dk0k"]
+[gd_scene load_steps=7 format=3 uid="uid://bxk8gir42dk0k"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_q82eo"]
 [ext_resource type="Script" path="res://game.gd" id="1_we54h"]
 [ext_resource type="PackedScene" uid="uid://ckdbud8nshcjd" path="res://the_player.tscn" id="2_edccf"]
 [ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://enemy.tscn" id="3_cbqdt"]
@@ -9,6 +10,7 @@
 
 [node name="main" type="Node2D"]
 position = Vector2(1, 0)
+script = ExtResource("1_q82eo")
 
 [node name="game" type="Node2D" parent="."]
 script = ExtResource("1_we54h")
