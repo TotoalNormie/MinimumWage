@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://df76geq1ij5p5"]
 
 [ext_resource type="Script" path="res://Scenes/Store/StoreScripts/THEstoreUpgrades.gd" id="1_687oo"]
-[ext_resource type="Texture2D" path="res://images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png" id="1_nnrwe"]
-[ext_resource type="Texture2D" path="res://images/8-bit-coin-material-bloodstained-wiki-guide.webp" id="2_a7bgc"]
+[ext_resource type="Texture2D" uid="uid://d2s33dt2lntbp" path="res://images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png" id="1_nnrwe"]
+[ext_resource type="Texture2D" uid="uid://ctd2kj0mtjrpa" path="res://images/8-bit-coin-material-bloodstained-wiki-guide.webp" id="2_a7bgc"]
 
 [node name="ThEstore" type="Control"]
 layout_mode = 3
