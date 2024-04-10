@@ -11,14 +11,8 @@ config_version=5
 [application]
 
 config/name="THE game"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-<<<<<<<Updatedupstreamrun/main_scene="res://Store/THEstore.tscn"
-
-[display]
-
-window/size/viewport_width=864
-window/size/viewport_height=936
 
 [input]
 
