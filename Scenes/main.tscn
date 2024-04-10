@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=5 format=3 uid="uid://bxk8gir42dk0k"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_we54h"]
@@ -10,6 +11,8 @@ load_path = "res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.ctex"
 [node name="main" type="Node2D"]
 
 [node name="game" type="Node2D" parent="."]
+
+script = ExtResource("1_u6fp7")
 script = ExtResource("1_we54h")
 
 [node name="bg" type="Sprite2D" parent="game"]
@@ -28,5 +31,6 @@ position = Vector2(702, 314)
 scale = Vector2(1.00779, 1.28776)
 
 [node name="table2" parent="game" instance=ExtResource("3_uougi")]
+
 position = Vector2(214, 308)
 scale = Vector2(1.00389, 1.13479)

@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://030ve2a7gmou"]
+
+[ext_resource type="Script" path="res://Scenes/Store/StoreScripts/THEstore.gd" id="1_etmo2"]
+[ext_resource type="Texture2D" path="res://images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png" id="1_smkh7"]
+[ext_resource type="Material" uid="uid://tc8u1txtlmpc" path="res://Shaders/blur.tres" id="2_tk8hh"]
+[ext_resource type="Texture2D" path="res://images/8-bit-coin-material-bloodstained-wiki-guide.webp" id="2_tl7xl"]
+
+[node name="ThEstore" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_etmo2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_tk8hh")
+layout_mode = 0
+offset_right = 863.0
+offset_bottom = 933.0
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 132.0
+offset_bottom = 74.0
+text = "Close Store"
+
+[node name="UpgradesButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 11.0
+offset_right = 260.0
+offset_bottom = 74.0
+text = "Upgrades"
+
+[node name="SkinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 11.0
+offset_right = 388.0
+offset_bottom = 74.0
+action_mode = 0
+text = "Skins
+"
+
+[node name="CoffeeList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 715.0
+offset_top = 11.0
+offset_right = 847.0
+offset_bottom = 75.0
+
+[node name="Label" type="Label" parent="CoffeeList"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 11.0
+offset_right = 133.0
+offset_bottom = 56.0
+text = "0 Coffee"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoffeeHeals" type="Sprite2D" parent="CoffeeList"]
+position = Vector2(26, 32)
+scale = Vector2(0.110849, 0.0986395)
+texture = ExtResource("1_smkh7")
+
+[node name="StoreList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 87.0
+offset_right = 846.0
+offset_bottom = 917.0
+
+[node name="CoinList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 11.0
+offset_right = 703.0
+offset_bottom = 75.0
+
+[node name="Label" type="Label" parent="CoinList"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 11.0
+offset_right = 134.0
+offset_bottom = 56.0
+text = "0 Coins
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="8-bit-coin-material-bloodstained-wiki-guide" type="Sprite2D" parent="CoinList"]
+position = Vector2(31, 32)
+scale = Vector2(0.289063, 0.296875)
+texture = ExtResource("2_tl7xl")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="UpgradesButton" to="." method="_on_upgrades_button_pressed"]
+[connection signal="pressed" from="SkinButton" to="." method="_on_skin_button_pressed"]

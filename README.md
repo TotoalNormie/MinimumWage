@@ -10,12 +10,12 @@ Player skriptam ir ari inventory ar tipu `dictionary`. Izmanto `dictionary`, jo 
 ChatSkibiti piemers 
 ```
 var itemData = {
-    "name": "Assault Rifle",
-    "icon": preload("res://textures/rifle.png"),  # Replace with your icon path
-    "quantity": 1,  # Number of rifles in possession
-    "ammo": {  # Dictionary for ammo details
-        "bullets": 100,
-        "magazines": 3
-    }
+	"name": "Assault Rifle",
+	"icon": preload("res://textures/rifle.png"),  # Replace with your icon path
+	"quantity": 1,  # Number of rifles in possession
+	"ammo": {  # Dictionary for ammo details
+		"bullets": 100,
+		"magazines": 3
+	}
 }
 ```

@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+<<<<<<<< Updated upstream:images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png.import
+uid="uid://bi4t0eljeocvk"
+path="res://.godot/imported/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png-67657f8050a501226529d46ed701bf74.ctex"
+========
+uid="uid://cvm5f8uqitwhi"
+path="res://.godot/imported/player.webp-df4fe46736c7195f76265b22039910c9.ctex"
+>>>>>>>> Stashed changes:Characters/player.webp.import
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+<<<<<<<< Updated upstream:images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png.import
+source_file="res://images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png"
+dest_files=["res://.godot/imported/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png-67657f8050a501226529d46ed701bf74.ctex"]
+========
+source_file="res://Characters/player.webp"
+dest_files=["res://.godot/imported/player.webp-df4fe46736c7195f76265b22039910c9.ctex"]
+>>>>>>>> Stashed changes:Characters/player.webp.import
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
