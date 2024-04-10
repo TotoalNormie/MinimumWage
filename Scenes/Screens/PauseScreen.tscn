@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://42w3kcm5vb6a"]
+[gd_scene format=3 uid="uid://ckbr0h77ranrp"]
 
-[node name="PauseScreen" type="Control"]
+[node name="GameOver" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
