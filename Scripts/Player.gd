@@ -74,8 +74,10 @@ func _physics_process(delta):
 	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		input_vector.x = 1
+		direction = 1
 	elif Input.is_action_pressed("move_left"):
 		input_vector.x = -1
+		direction = -1
 
 	if Input.is_action_pressed("move_down"):
 		input_vector.y = 1
@@ -88,13 +90,16 @@ func _physics_process(delta):
 	# Apply force based on input and direction
 	if input_vector != Vector2.ZERO:
 		self.linear_velocity = input_vector * speed
+		$PlayerAnimation.play()
 		#self.apply_central_impulse(input_vector * speed)
 	else:
 		self.linear_velocity = Vector2.ZERO
+		$PlayerAnimation.stop()	
 
 	# Update direction based on input (optional for animation)
-	if input_vector.x != 0:
-		direction = input_vector.x
+	#if input_vector.x != 0:
+		#direction = input_vector.x
+	$PlayerAnimation.scale.x = direction * abs($PlayerAnimation.scale.x)
 
 
 func addToInventory(itemId, itemData):

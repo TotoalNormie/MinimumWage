@@ -1,23 +1,43 @@
 extends Area2D
 
-var gun
-var gunRotation = 0
+var bullet_scene = preload("res://CustomComponents/weapons/bullet.tscn")
+
+@export var damage: float = 0.5
+@export var speed = 1000
+@export var shootingDelay = 0.5
+var canShoot = true
+
+@onready var sprite = $shape/Sprite2D
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
-	gun = get_node(".")
-
-
-
+	$Timer.timeout.connect(_on_ShootingDelayTimeout)
 
 func _process(delta):
-	gun.look_at(get_global_mouse_position())
-	gun.rotation += PI
-	var deg = fmod(gun.rotation_degrees, 360)
+	look_at(get_global_mouse_position())
+	#$Area2D.rotation += PI
+	var deg = fmod(rotation_degrees, 360)
 	if(deg > 90 and deg < 270):
-		$shape/Sprite2D.scale.y = abs($shape/Sprite2D.scale.y) * -1
+		sprite.scale.y = abs(sprite.scale.y) * -1
 	else:
-		$shape/Sprite2D.scale.y = abs($shape/Sprite2D.scale.y)
+		sprite.scale.y = abs(sprite.scale.y)
+		
+	#print(sprite.scale)
+	
+	if (Input.is_action_pressed("shoot") and canShoot):
+		shoot()
+	
 
 func shoot():
-	pass
+	#print('works')
+	var bullet = bullet_scene.instantiate()
+	get_tree().get_root().get_node('main/game').add_child(bullet)
+	#add_child(bullet)
+	bullet.start($ShootFrom.global_position, rotation, speed, damage)
+	#print(self.position)
+	canShoot = false
+	$Timer.start(shootingDelay)
+	
+func _on_ShootingDelayTimeout():
+	canShoot = true
