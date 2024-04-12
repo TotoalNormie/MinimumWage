@@ -7,6 +7,7 @@
 size = Vector2(81.6667, 44)
 
 [node name="gun" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_3tdpw")
 
 [node name="Timer" type="Timer" parent="."]

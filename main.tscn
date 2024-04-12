@@ -15,14 +15,9 @@ script = ExtResource("1_we54h")
 
 [node name="enemies" type="Node2D" parent="game"]
 
-[node name="Enemy" parent="game/enemies" instance=ExtResource("3_cbqdt")]
+[node name="Enemy" parent="game/enemies" node_paths=PackedStringArray("player") instance=ExtResource("3_cbqdt")]
 position = Vector2(-17, 19)
-
-[node name="Enemy3" parent="game/enemies" instance=ExtResource("3_cbqdt")]
-position = Vector2(143, 28)
-
-[node name="Enemy2" parent="game/enemies" instance=ExtResource("3_cbqdt")]
-position = Vector2(287, 6)
+player = NodePath("../../Player")
 
 [node name="obstacles" type="Node2D" parent="game"]
 
@@ -39,4 +34,4 @@ position = Vector2(436, 370)
 position = Vector2(221, 212)
 
 [node name="Player" parent="game" instance=ExtResource("5_dxhqs")]
-position = Vector2(-71, 176)
+position = Vector2(-77, 334)

@@ -4,21 +4,39 @@
 [ext_resource type="Texture2D" uid="uid://cu4ujfiyvnct6" path="res://Characters/enemy.png" id="2_7pc8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnntm"]
-size = Vector2(38, 75)
+size = Vector2(28.6225, 72.7273)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_u6wxt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.28, 0.28)
-texture = ExtResource("2_7pc8i")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.44, 1.24)
+scale = Vector2(2.45784, 1.76)
 shape = SubResource("RectangleShape2D_vnntm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+scale = Vector2(0.39, 0.39)
+texture = ExtResource("2_7pc8i")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -10.0
 offset_top = -70.0
 offset_right = 11.0
 offset_bottom = -47.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 2
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.254902, 1, 1)
+debug_path_custom_point_size = 5.4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
