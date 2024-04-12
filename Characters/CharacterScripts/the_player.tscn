@@ -1,23 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckdbud8nshcjd"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qqbrt"]
-[ext_resource type="Texture2D" uid="uid://cvm5f8uqitwhi" path="res://Sprites/player.webp" id="2_ob8ke"]
-[ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/gun.tscn" id="3_6dt38"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_emyxt"]
+[ext_resource type="Texture2D" uid="uid://cvm5f8uqitwhi" path="res://Sprites/player.webp" id="2_34mi6"]
+[ext_resource type="PackedScene" path="res://CustomComponents/gun.tscn" id="3_uo0ag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcoj7"]
 size = Vector2(53, 67.5)
 
 [node name="thePlayer" type="CharacterBody2D"]
-script = ExtResource("1_qqbrt")
+script = ExtResource("1_emyxt")
 
 [node name="model" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
 rotation = 3.14159
 scale = Vector2(0.85656, -0.807931)
-texture = ExtResource("2_ob8ke")
+texture = ExtResource("2_34mi6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, -2.75)
 shape = SubResource("RectangleShape2D_tcoj7")
 
-[node name="gun" parent="." instance=ExtResource("3_6dt38")]
+[node name="gun" parent="." instance=ExtResource("3_uo0ag")]

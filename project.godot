@@ -13,6 +13,14 @@ config_version=5
 config/name="THE game"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+<<<<<<<Updatedupstreamrun/main_scene="res://Store/THEstore.tscn"
+
+[display]
+
+window/size/viewport_width=864
+window/size/viewport_height=936
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -43,5 +51,5 @@ move_right={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
