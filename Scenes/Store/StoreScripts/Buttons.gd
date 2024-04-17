@@ -11,7 +11,3 @@ func _on_skin_button_pressed():
 
 func _on_featured_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Store/THEstore.tscn")
-
-
-func _on_upgrade_button_pressed():
-	pass # Replace with function body.

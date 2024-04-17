@@ -66,9 +66,9 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "     Close     "
 
-[node name="UpgradeButton" type="Button" parent="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer"]
+[node name="UpgradesButton" type="Button" parent="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer"]
 layout_mode = 2
-text = "    Upgrade   "
+text = "    Upgrades   "
 
 [node name="FeaturedButton" type="Button" parent="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer"]
 layout_mode = 2
@@ -180,5 +180,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="pressed" from="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="ColorRect/MainContainer/ButtomAndCurrency/ButtonContainer/FeaturedButton" to="." method="_on_featured_button_pressed"]
