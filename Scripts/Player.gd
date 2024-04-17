@@ -2,21 +2,34 @@ extends RigidBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var joystick = $UI/mobile/joystick
 
 # Define movement speed
-@export var speed: float = 600
-@export var hp: int = 2
+@export var speed: float = 400
+@export var health: int = 2
 var direction : int = 1
 @export var inventory: Dictionary = {}
 var rigidbody: RigidBody2D
 
 func  _ready():
+	$UI/Label.text = str(health)
+	if OS.has_feature("touchscreen"):
+		$UI/mobile.visible = true
+	else:
+		$UI/mobile.visible = false
+
 	if not has_node("RigidBody2D"):
 		print("Warning: This script requires a RigidBody2D node as a child.")
 		return
 		rigidbody = get_node(".")
+
+func hit(amount):
+	health -= amount
+	$UI/Label.text = str(health)
 	
-	
+	if(health <= 0):
+		#self.queue_free()
+		print('dead')
 
 #func _process(delta):
 	## Get user input
@@ -70,22 +83,30 @@ func  _ready():
 		#direction = input_vector.x
 		
 func _physics_process(delta):
-	# Get user input
+	
 	var input_vector = Vector2.ZERO
-	if Input.is_action_pressed("move_right"):
-		input_vector.x = 1
-		direction = 1
-	elif Input.is_action_pressed("move_left"):
-		input_vector.x = -1
-		direction = -1
+	# Get user input
+	if(!$UI/mobile.visible):
+		if Input.is_action_pressed("move_right"):
+			input_vector.x = 1
+			direction = 1
+		elif Input.is_action_pressed("move_left"):
+			input_vector.x = -1
+			direction = -1
 
-	if Input.is_action_pressed("move_down"):
-		input_vector.y = 1
-	elif Input.is_action_pressed("move_up"):
-		input_vector.y = -1
+		if Input.is_action_pressed("move_down"):
+			input_vector.y = 1
+		elif Input.is_action_pressed("move_up"):
+			input_vector.y = -1
+	else:
+		if(joystick.posVector):
+			input_vector = joystick.posVector
+		else: 
+			input_vector = Vector2(0,0)
+		
+		input_vector = input_vector.normalized()
 
 	# Normalize input vector for smooth diagonal movement
-	input_vector = input_vector.normalized()
 
 	# Apply force based on input and direction
 	if input_vector != Vector2.ZERO:

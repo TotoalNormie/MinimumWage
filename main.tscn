@@ -1,37 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://yhokpxo8oy01"]
+[gd_scene load_steps=3 format=3 uid="uid://yhokpxo8oy01"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_q82eo"]
-[ext_resource type="Script" path="res://Scripts/game.gd" id="1_we54h"]
-[ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="3_cbqdt"]
-[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://Scenes/table.tscn" id="3_uougi"]
-[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="5_dxhqs"]
+[ext_resource type="PackedScene" uid="uid://4oeahh6fs03j" path="res://Scenes/game.tscn" id="2_jehrs"]
 
 [node name="main" type="Node2D"]
 position = Vector2(1, 0)
 script = ExtResource("1_q82eo")
 
-[node name="game" type="Node2D" parent="."]
-script = ExtResource("1_we54h")
-
-[node name="enemies" type="Node2D" parent="game"]
-
-[node name="Enemy" parent="game/enemies" node_paths=PackedStringArray("player") instance=ExtResource("3_cbqdt")]
-position = Vector2(-17, 19)
-player = NodePath("../../Player")
-
-[node name="obstacles" type="Node2D" parent="game"]
-
-[node name="table4" parent="game/obstacles" instance=ExtResource("3_uougi")]
-position = Vector2(429, 213)
-
-[node name="table3" parent="game/obstacles" instance=ExtResource("3_uougi")]
-position = Vector2(221, 368)
-
-[node name="table2" parent="game/obstacles" instance=ExtResource("3_uougi")]
-position = Vector2(436, 370)
-
-[node name="table" parent="game/obstacles" instance=ExtResource("3_uougi")]
-position = Vector2(221, 212)
-
-[node name="Player" parent="game" instance=ExtResource("5_dxhqs")]
-position = Vector2(-77, 334)
+[node name="game" parent="." instance=ExtResource("2_jehrs")]

@@ -4,24 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://bbhlg5rpnhn23" path="res://Sprites/weapons/glock/New_Piskel.png" id="2_aptvq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo3xh"]
-size = Vector2(81.6667, 44)
+size = Vector2(45, 16.1667)
 
-[node name="gun" type="Area2D"]
+[node name="weapon" type="Area2D"]
 collision_mask = 3
 script = ExtResource("1_3tdpw")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2(49, 0)
+z_index = 3
+position = Vector2(27, 0)
 scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_jo3xh")
 
 [node name="Sprite2D" type="Sprite2D" parent="shape"]
 texture_filter = 1
-position = Vector2(24, -4)
+position = Vector2(30.8333, -1.66667)
 scale = Vector2(2, 2)
 texture = ExtResource("2_aptvq")
 
 [node name="ShootFrom" type="Node2D" parent="."]
-position = Vector2(86, -11)
+position = Vector2(65, -9)
