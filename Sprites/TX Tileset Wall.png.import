@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkhptnn2d0nf"
-path="res://.godot/imported/crate.png-c387de9b883318ae36c9fd5a499c5602.ctex"
+uid="uid://crr32csb2bq0a"
+path="res://.godot/imported/TX Tileset Wall.png-bf194bddf8842b8f2ba1e47b061760c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/crate.png"
-dest_files=["res://.godot/imported/crate.png-c387de9b883318ae36c9fd5a499c5602.ctex"]
+source_file="res://Sprites/TX Tileset Wall.png"
+dest_files=["res://.godot/imported/TX Tileset Wall.png-bf194bddf8842b8f2ba1e47b061760c4.ctex"]
 
 [params]
 

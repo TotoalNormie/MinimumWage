@@ -1,22 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://d73xg2ctv6ps"]
+[gd_scene load_steps=8 format=3 uid="uid://j1700bl2r8cy"]
 
-[ext_resource type="Script" path="res://CustomComponents/Item.gd" id="1_qxwdm"]
-[ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="2_3q1d4"]
+[ext_resource type="Script" path="res://Scripts/ItemTest.gd" id="1_a2n64"]
+[ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="2_ej8vi"]
+[ext_resource type="Texture2D" uid="uid://btgjq83640gqs" path="res://Sprites/icon24.png" id="2_wfurt"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="3_e7x7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pe56v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xc4n"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6gm4"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.901961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
 [node name="Item" type="RigidBody2D" node_paths=PackedStringArray("AreaCollider")]
+texture_filter = 1
 gravity_scale = 0.0
-script = ExtResource("1_qxwdm")
+freeze = true
+script = ExtResource("1_a2n64")
+icon = ExtResource("2_wfurt")
 AreaCollider = NodePath("Area2D/AreaCollider")
+description = "This is an example item."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 use_parent_material = true
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("2_3q1d4")
+texture = ExtResource("2_ej8vi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pe56v")
@@ -26,4 +43,25 @@ shape = SubResource("RectangleShape2D_pe56v")
 [node name="AreaCollider" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1xc4n")
 
+[node name="Tooltip" type="RichTextLabel" parent="."]
+texture_filter = 1
+clip_contents = false
+custom_minimum_size = Vector2(180, 60)
+offset_left = 41.0
+offset_top = -104.0
+offset_right = 261.0
+offset_bottom = -44.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_fonts/normal_font = ExtResource("3_e7x7s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d6gm4")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 1
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
