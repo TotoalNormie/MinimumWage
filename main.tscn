@@ -1,27 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcfvihsi81mtf"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_q82eo"]
 [ext_resource type="PackedScene" uid="uid://4oeahh6fs03j" path="res://Scenes/game.tscn" id="2_jehrs"]
-[gd_scene load_steps=8 format=3 uid="uid://yhokpxo8oy01"]
-
-[ext_resource type="Script" path="res://main.gd" id="1_q82eo"]
-[ext_resource type="Script" path="res://Scripts/game.gd" id="1_we54h"]
-[ext_resource type="PackedScene" uid="uid://c6kw13mymrtbi" path="res://Scenes/Screens/StartScreen.tscn" id="2_qvmr2"]
-[ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="3_cbqdt"]
-[ext_resource type="PackedScene" uid="uid://bq38r3p77eius" path="res://Props/table.tscn" id="3_uougi"]
-[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="5_dxhqs"]
-[ext_resource type="PackedScene" uid="uid://ckbr0h77ranrp" path="res://Scenes/Screens/PauseScreen.tscn" id="6_oi5p2"]
 
 [node name="main" type="Node2D"]
-position = Vector2(0, 0)
-script = ExtResource("1_q82eo")
+
 [node name="game" parent="." instance=ExtResource("2_jehrs")]
-
-[node name="Pauselayer" type="CanvasLayer" parent="game"]
-
-[node name="GameOver" parent="game/Pauselayer" instance=ExtResource("6_oi5p2")]
-
-[node name="StartLayer" type="CanvasLayer" parent="game"]
-
-[node name="StartScreen" parent="game/StartLayer" instance=ExtResource("2_qvmr2")]
-offset_left = 1.0
-offset_right = 1.0
