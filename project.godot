@@ -22,6 +22,10 @@ window/size/viewport_height=936
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[display]
+
+window/size/resizable=false
+
 [input]
 
 move_up={
@@ -79,7 +83,12 @@ inv_up={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

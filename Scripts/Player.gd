@@ -2,10 +2,11 @@ extends RigidBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var joystick = $UI/mobile/joystick
 
 # Define movement speed
-@export var speed: float = 600
-@export var hp: int = 2
+@export var speed: float = 400
+@export var health: int = 2
 @export var maxHp: int = 2
 @export var itemSlots: int = 4
 var direction : int = 1
@@ -14,10 +15,12 @@ var rigidbody: RigidBody2D
 var activeSlot: int = 0
 
 func  _ready():
-	%HpBar.max_value = maxHp
-	%HpBar.value = hp
-	%HpVal.text = "[center]" + str(ceil((100/maxHp) * hp)) + "%[/center]"
-	rigidbody = get_node(".")
+	if OS.has_feature("touchscreen"):
+		$UI/mobile.visible = true
+	else:
+		$UI/mobile.visible = false
+
+  rigidbody = get_node(".")
 	var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
 	for i in range(itemSlots):
@@ -25,15 +28,19 @@ func  _ready():
 		slotUi.name = "Slot {int}".format({"int": i})
 		slotUi.set_size(Vector2(50, 50))
 		%InvDisplay.add_child(slotUi)
-			#changeActiveSlot(0)
 	#changeActiveSlot(0)
 
-func damage(dmg):
-	hp -= dmg
-	%HpBar.value = hp
+func hit(amount):
+	health -= amount
+	$UI/Label.text = str(health)
+	
+	if(health <= 0):
+		#self.queue_free()
+		print('dead'
+	%HpBar.max_value = maxHp
+	%HpBar.value = health
 	%HpVal.text = "[center]" + str(ceil((100/maxHp) * hp)) + "%[/center]"
-		
-		
+			
 func _physics_process(_delta):
 	#if Input.is_action_just_released("interact"):
 		#damage(1)
@@ -50,20 +57,28 @@ func _physics_process(_delta):
 			setInactiveSlot(activeSlot+1)
 			
 	var input_vector = Vector2.ZERO
-	if Input.is_action_pressed("move_right"):
-		input_vector.x = 1
-		direction = 1
-	elif Input.is_action_pressed("move_left"):
-		input_vector.x = -1
-		direction = -1
+	# Get user input
+	if(!$UI/mobile.visible):
+		if Input.is_action_pressed("move_right"):
+			input_vector.x = 1
+			direction = 1
+		elif Input.is_action_pressed("move_left"):
+			input_vector.x = -1
+			direction = -1
 
-	if Input.is_action_pressed("move_down"):
-		input_vector.y = 1
-	elif Input.is_action_pressed("move_up"):
-		input_vector.y = -1
+		if Input.is_action_pressed("move_down"):
+			input_vector.y = 1
+		elif Input.is_action_pressed("move_up"):
+			input_vector.y = -1
+	else:
+		if(joystick.posVector):
+			input_vector = joystick.posVector
+		else: 
+			input_vector = Vector2(0,0)
+		
+		input_vector = input_vector.normalized()
 
 	# Normalize input vector for smooth diagonal movement
-	input_vector = input_vector.normalized()
 
 	# Apply force based on input and direction
 	if input_vector != Vector2.ZERO:

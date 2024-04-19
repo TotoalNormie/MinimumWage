@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cokm876jbuad1"
-path="res://.godot/imported/bullet.webp-4243ed560e7c3749bd9a044e606c3b0c.ctex"
+uid="uid://cdwop1pixgsr6"
+path="res://.godot/imported/GINGER_4.png-70795b9d2e44007d7313be0d7b611f3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/player/bullet.webp"
-dest_files=["res://.godot/imported/bullet.webp-4243ed560e7c3749bd9a044e606c3b0c.ctex"]
+source_file="res://Sprites/enemy/guard/GINGER_4.png"
+dest_files=["res://.godot/imported/GINGER_4.png-70795b9d2e44007d7313be0d7b611f3d.ctex"]
 
 [params]
 

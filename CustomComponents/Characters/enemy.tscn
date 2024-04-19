@@ -1,24 +1,104 @@
-[gd_scene load_steps=4 format=3 uid="uid://k20fk0vqir3s"]
+[gd_scene load_steps=11 format=3 uid="uid://k20fk0vqir3s"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_u6wxt"]
-[ext_resource type="Texture2D" uid="uid://cu4ujfiyvnct6" path="res://Characters/enemy.png" id="2_7pc8i"]
+[ext_resource type="Texture2D" uid="uid://b2cw8ss8psrr5" path="res://Sprites/enemy/guard/GINGER.png" id="2_uhao4"]
+[ext_resource type="Script" path="res://Scripts/enemyWeapon.gd" id="3_3c7vx"]
+[ext_resource type="Texture2D" uid="uid://caqufbdfimvkq" path="res://Sprites/enemy/guard/GINGER_1.png" id="3_yr1mv"]
+[ext_resource type="Texture2D" uid="uid://dsn0muajs33ar" path="res://Sprites/enemy/guard/GINGER_2.png" id="4_7mjv2"]
+[ext_resource type="Texture2D" uid="uid://0phl3g1e4e82" path="res://Sprites/enemy/guard/GINGER_3.png" id="5_r7gmj"]
+[ext_resource type="Texture2D" uid="uid://cwwm4eraiolmq" path="res://Sprites/weapons/bat/BAT.png" id="7_vqir8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnntm"]
-size = Vector2(38, 75)
+size = Vector2(24.0759, 51.1364)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yjui"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uhao4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yr1mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7mjv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r7gmj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dvvgp"]
+b = Vector2(82.1861, 3.92978)
 
 [node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_u6wxt")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.28, 0.28)
-texture = ExtResource("2_7pc8i")
+speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.44, 1.24)
+position = Vector2(0, 3)
+scale = Vector2(2.45784, 1.76)
 shape = SubResource("RectangleShape2D_vnntm")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6yjui")
+speed_scale = 3.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = -10.0
 offset_top = -70.0
 offset_right = 11.0
 offset_bottom = -47.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.254902, 1, 1)
+debug_path_custom_point_size = 5.4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AttackTime" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_3c7vx")
+
+[node name="Area2D" type="Area2D" parent="Weapon"]
+position = Vector2(20, 0)
+rotation = -1.25838
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/Area2D"]
+shape = SubResource("SegmentShape2D_dvvgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon/Area2D/CollisionShape2D"]
+texture_filter = 1
+position = Vector2(41.6921, 2.06535)
+rotation = 2.35619
+scale = Vector2(2.2491, 2.34065)
+texture = ExtResource("7_vqir8")
+
+[node name="isCharging" type="Timer" parent="Weapon"]
+wait_time = 0.7
+
+[node name="isAttacking" type="Timer" parent="Weapon"]
+wait_time = 7.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]
+[connection signal="body_entered" from="Weapon/Area2D" to="Weapon" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Weapon/isCharging" to="Weapon" method="_on_is_charging_timeout"]
+[connection signal="timeout" from="Weapon/isAttacking" to="Weapon" method="_on_is_attacking_timeout"]

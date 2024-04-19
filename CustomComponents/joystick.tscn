@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bodumasxiqoqw"]
+
+[ext_resource type="Script" path="res://Scripts/joystick.gd" id="1_35q8m"]
+[ext_resource type="Texture2D" uid="uid://c2pc1xmsyag24" path="res://images/circle.png" id="2_ox6pl"]
+[ext_resource type="Script" path="res://Scripts/Knob.gd" id="3_85pb1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3yjn"]
+radius = 342.5
+
+[node name="joystick" type="Area2D"]
+z_index = 10
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_35q8m")
+
+[node name="BigCircle" type="Sprite2D" parent="."]
+texture = ExtResource("2_ox6pl")
+
+[node name="Knob" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_ox6pl")
+script = ExtResource("3_85pb1")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -341.0
+offset_top = -344.0
+offset_right = 347.0
+offset_bottom = 344.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d3yjn")
+
+[connection signal="button_down" from="Button" to="Knob" method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="Knob" method="_on_button_button_up"]
