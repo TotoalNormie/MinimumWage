@@ -19,29 +19,32 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	var dir = to_local(navAgent.get_next_path_position()).normalized()
 	#var dir = Vector2(0, -4).normalized()
-	#print(rad_to_deg(dir.angle()))aas
+	print(rad_to_deg(dir.angle()))
 	velocity = speed * dir
 	if global_position.distance_to(%Player.global_position) <= range:
+		velocity = Vector2.ZERO
 		if canAttack: 
 			$Weapon.attack(damage)
 			canAttack = false
-		$AttackTime.start()
-	else:
-		$AttackTime.stop()
+			$AttackTime.start()
+			
+	#else:
+		#$AttackTime.stop()
 	
-	if $Weapon.isAttacking:
+	if $Weapon.isAttacking or $Weapon.isCharging:
 		velocity = Vector2.ZERO
+	#print(velocity)
 
 	if velocity == Vector2.ZERO:
 		$AnimatedSprite2D.stop()
 	else:
 		$AnimatedSprite2D.play()
-	if rad_to_deg(dir.angle()) > 90 and rad_to_deg(dir.angle()) < 270:
+	if abs(rad_to_deg(dir.angle())) > 90 and abs(rad_to_deg(dir.angle())) < 270:
 		$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * 1
 	else:
 		$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * -1
 	#print(navAgent.get_next_path_position(), " ", navAgent.get_next_path_position() )
-	print(velocity)
+	#print(canAttack)
 	move_and_slide()
 
 	
