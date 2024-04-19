@@ -15,12 +15,13 @@ var rigidbody: RigidBody2D
 var activeSlot: int = 0
 
 func  _ready():
-	if OS.has_feature("touchscreen"):
+	#print(OS.has_feature('touchscreen'))
+	if OS.has_feature("mobile"):
 		$UI/mobile.visible = true
 	else:
 		$UI/mobile.visible = false
-
-  rigidbody = get_node(".")
+	
+	rigidbody = get_node(".")
 	var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
 	for i in range(itemSlots):
@@ -28,19 +29,18 @@ func  _ready():
 		slotUi.name = "Slot {int}".format({"int": i})
 		slotUi.set_size(Vector2(50, 50))
 		%InvDisplay.add_child(slotUi)
-	#changeActiveSlot(0)
+	changeActiveSlot(0)
 
 func hit(amount):
 	health -= amount
-	$UI/Label.text = str(health)
 	
 	if(health <= 0):
 		#self.queue_free()
-		print('dead'
+		print('dead')
 	%HpBar.max_value = maxHp
 	%HpBar.value = health
-	%HpVal.text = "[center]" + str(ceil((100/maxHp) * hp)) + "%[/center]"
-			
+	%HpVal.text = "[center]" + str(ceil((100/maxHp) * health)) + "%[/center]"
+
 func _physics_process(_delta):
 	#if Input.is_action_just_released("interact"):
 		#damage(1)

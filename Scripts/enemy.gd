@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var health: float = 4
 @export var speed = 100
 @export var damage = 1
-@export var range = 100
+@export var attackRange = 100
 @onready var player = %Player
 @onready var navAgent := $NavigationAgent2D
 
@@ -19,9 +19,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	var dir = to_local(navAgent.get_next_path_position()).normalized()
 	#var dir = Vector2(0, -4).normalized()
-	print(rad_to_deg(dir.angle()))
+	#print(rad_to_deg(dir.angle()))
 	velocity = speed * dir
-	if global_position.distance_to(%Player.global_position) <= range:
+	if global_position.distance_to(%Player.global_position) <= attackRange:
 		velocity = Vector2.ZERO
 		if canAttack: 
 			$Weapon.attack(damage)
