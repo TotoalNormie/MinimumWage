@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkhptnn2d0nf"
-path="res://.godot/imported/crate.png-c387de9b883318ae36c9fd5a499c5602.ctex"
+uid="uid://dqruo8q7cawuh"
+path="res://.godot/imported/bar-progress.png-7173a4f3f3b50995cd7325dff2d7260f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/crate.png"
-dest_files=["res://.godot/imported/crate.png-c387de9b883318ae36c9fd5a499c5602.ctex"]
+source_file="res://Sprites/bar-progress.png"
+dest_files=["res://.godot/imported/bar-progress.png-7173a4f3f3b50995cd7325dff2d7260f.ctex"]
 
 [params]
 

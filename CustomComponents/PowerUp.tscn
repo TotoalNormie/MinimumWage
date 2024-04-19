@@ -1,16 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyv8b3eb4qd5q"]
+[gd_scene load_steps=7 format=3 uid="uid://dyv8b3eb4qd5q"]
 
 [ext_resource type="Script" path="res://Scripts/PowerUp.gd" id="1_ekm0y"]
 [ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="2_5h1td"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="3_2mr2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pe56v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xc4n"]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sgnb"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.901961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="RigidBody2D" type="RigidBody2D" node_paths=PackedStringArray("AreaCollider")]
 gravity_scale = 0.0
+freeze = true
 script = ExtResource("1_ekm0y")
+description = "This is an example powerup."
 icon = ExtResource("2_5h1td")
+AreaCollider = NodePath("Area2D/AreaCollider")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -23,5 +38,31 @@ shape = SubResource("RectangleShape2D_pe56v")
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="AreaCollider" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1xc4n")
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+texture_filter = 1
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = -83.0
+offset_right = 267.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_2mr2a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1sgnb")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
