@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2eh0r7umsfin"]
+
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_3tdpw"]
+[ext_resource type="Texture2D" uid="uid://bbhlg5rpnhn23" path="res://Sprites/weapons/glock/New_Piskel.png" id="2_aptvq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo3xh"]
+size = Vector2(81.6667, 44)
+
+[node name="gun" type="Area2D"]
+script = ExtResource("1_3tdpw")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(49, 0)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("RectangleShape2D_jo3xh")
+
+[node name="Sprite2D" type="Sprite2D" parent="shape"]
+texture_filter = 1
+position = Vector2(24, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_aptvq")
+
+[node name="ShootFrom" type="Node2D" parent="."]
+position = Vector2(86, -11)
