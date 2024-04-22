@@ -14,7 +14,7 @@ var canShoot = true
 func _ready():
 	$Timer.timeout.connect(_on_ShootingDelayTimeout)
 
-func _process(delta):
+func _process(_delta):
 	look_at(get_global_mouse_position())
 	#$Area2D.rotation += PI
 	var deg = fmod(rotation_degrees, 360)

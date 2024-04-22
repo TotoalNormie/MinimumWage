@@ -15,8 +15,6 @@ func  _ready():
 		print("Warning: This script requires a RigidBody2D node as a child.")
 		return
 		rigidbody = get_node(".")
-	
-	
 
 #func _process(delta):
 	## Get user input
@@ -69,7 +67,7 @@ func  _ready():
 	#if input_vector.x != 0:
 		#direction = input_vector.x
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Get user input
 	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):

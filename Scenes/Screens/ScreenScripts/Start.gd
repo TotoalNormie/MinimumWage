@@ -1,9 +1,5 @@
 extends Control
 
-func _ready():
-	get_tree().paused = true
-	$AnimationPlayer.play("RESET")
-
 func start():
 	get_tree().paused = false
 	$AnimationPlayer.play("start")
