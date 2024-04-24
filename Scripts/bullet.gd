@@ -10,7 +10,7 @@ func _ready():
 func start(_position, _direction, _speed, _damage):
 	rotation = _direction
 	position = _position
-	print(position)
+	#print(position)
 	speed = _speed
 	damage = _damage
 	velocity = Vector2(speed, 0).rotated(_direction)
@@ -20,8 +20,8 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		#velocity = velocity.bounce(collision.get_normal())
-		if collision.get_collider().has_method("damage"):
-			collision.get_collider().damage(damage)
-			queue_free()
+		if collision.get_collider().has_method("hit"):
+			collision.get_collider().hit(damage)
+		queue_free()
 	
 

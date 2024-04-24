@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://fpmjf3jdoas0"]
+
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="1_bmssj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjxb8"]
+bg_color = Color(0.316869, 0.212735, 0.174374, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(70, 70)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sjxb8")
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Amount" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_bmssj")
+text = "0
+"

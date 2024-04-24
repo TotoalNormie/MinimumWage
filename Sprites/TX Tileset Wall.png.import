@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjbakxpjfic5t"
-path="res://.godot/imported/bullet.webp-4247981bd46793f58e92a9a66e97a174.ctex"
+uid="uid://crr32csb2bq0a"
+path="res://.godot/imported/TX Tileset Wall.png-bf194bddf8842b8f2ba1e47b061760c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/weapons/glock/bullet.webp"
-dest_files=["res://.godot/imported/bullet.webp-4247981bd46793f58e92a9a66e97a174.ctex"]
+source_file="res://Sprites/TX Tileset Wall.png"
+dest_files=["res://.godot/imported/TX Tileset Wall.png-bf194bddf8842b8f2ba1e47b061760c4.ctex"]
 
 [params]
 
