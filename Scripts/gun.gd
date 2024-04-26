@@ -24,7 +24,7 @@ func _ready():
 	print($"../UI/mobile")
 
 func _process(delta):
-	if $"..".name == "Player" and $"../UI/mobile".visible:
+	if $"..".name == "Player" and %UI/mobile.visible:
 		print(joystick.posVector.length())
 		var angle
 		# Calculate the angle based on the joystick's position vector

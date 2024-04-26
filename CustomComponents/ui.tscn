@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://daei83850vvxg"]
+
+[ext_resource type="Texture2D" uid="uid://dqruo8q7cawuh" path="res://Sprites/bar-progress.png" id="1_0gp3r"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="1_fsgsx"]
+[ext_resource type="Texture2D" uid="uid://d4htets74hhuc" path="res://Sprites/bar-over.png" id="2_73ir7"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="3_kn5wt"]
+[ext_resource type="PackedScene" uid="uid://bodumasxiqoqw" path="res://CustomComponents/joystick.tscn" id="4_hafmx"]
+[ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="5_mj0q0"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fsgsx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InvDisplay" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 25.5
+offset_top = -29.0
+offset_right = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_bottom = 29.0
+max_value = 4.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_0gp3r")
+texture_over = ExtResource("2_73ir7")
+texture_progress = ExtResource("1_0gp3r")
+tint_under = Color(0.4, 0.25098, 0.180392, 1)
+tint_over = Color(0.635294, 0.443137, 0.341176, 1)
+tint_progress = Color(0.705882, 0, 0, 1)
+
+[node name="HpVal" type="RichTextLabel" parent="HpBar"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.5002
+offset_top = -5.97292e-05
+offset_right = 33.5002
+offset_bottom = -25.0001
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_kn5wt")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+
+[node name="mobile" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="joystick" parent="HBoxContainer" instance=ExtResource("4_hafmx")]
+
+[node name="Button" parent="HBoxContainer" instance=ExtResource("5_mj0q0")]
+layout_mode = 2
