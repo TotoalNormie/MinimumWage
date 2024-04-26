@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://4oeahh6fs03j"]
+[gd_scene load_steps=10 format=3 uid="uid://uh4xphbmf21s"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
 [ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="3_j2obu"]
-[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Player.tscn" id="5_1km1c"]
+[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="5_1km1c"]
 [ext_resource type="Texture2D" uid="uid://dw3qulhalx2ks" path="res://Sprites/tilemaps/floorwall.png" id="5_hmw77"]
 [ext_resource type="Texture2D" uid="uid://bbm176m408l6x" path="res://Sprites/tablebobers_1.png" id="6_id6io"]
 
