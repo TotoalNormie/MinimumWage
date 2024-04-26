@@ -49,7 +49,7 @@ func _on_is_attacking_timeout():
 	
 
 func _on_area_2d_body_entered(body):
-	print(body)
+	#print(body)
 	if body.name == 'Player' and isAttacking:
 		body.hit(damage)
 

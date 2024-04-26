@@ -2,8 +2,8 @@ extends RigidBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var joystick = $UI/mobile/joystick
-
+@onready var joystick = %UI/mobile/joystick
+signal on_player_death
 # Define movement speed
 @export var speed: float = 400
 @export var health: int = 2
@@ -17,29 +17,29 @@ var activeSlot: int = 0
 func  _ready():
 	#print(OS.has_feature('touchscreen'))
 	if OS.has_feature("mobile"):
-		$UI/mobile.visible = true
+		%UI/mobile.visible = true
 	else:
-		$UI/mobile.visible = false
+		%UI/mobile.visible = false
 	
 	rigidbody = get_node(".")
-	var slot = preload("res://CustomComponents/InvSlot.tscn")
+	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
-	for i in range(itemSlots):
-		var slotUi = slot.instantiate()
-		slotUi.name = "Slot {int}".format({"int": i})
-		slotUi.set_size(Vector2(50, 50))
-		%InvDisplay.add_child(slotUi)
+	%UI.itemSlots = itemSlots
+	#for i in range(itemSlots):
+		#var slotUi = slot.instantiate()
+		#slotUi.name = "Slot {int}".format({"int": i})
+		#slotUi.set_size(Vector2(50, 50))
+		#%InvDisplay.add_child(slotUi)
 	changeActiveSlot(0)
 
 func hit(amount):
 	health -= amount
-	
+	#print('attacked')
 	if(health <= 0):
 		#self.queue_free()
 		print('dead')
-	%HpBar.max_value = maxHp
-	%HpBar.value = health
-	%HpVal.text = "[center]" + str(ceil((100/maxHp) * health)) + "%[/center]"
+		emit_signal("on_player_death")
+	%UI.hit(health, maxHp)
 
 func _physics_process(_delta):
 	#if Input.is_action_just_released("interact"):
@@ -58,7 +58,7 @@ func _physics_process(_delta):
 			
 	var input_vector = Vector2.ZERO
 	# Get user input
-	if(!$UI/mobile.visible):
+	if(!%UI/mobile.visible):
 		if Input.is_action_pressed("move_right"):
 			input_vector.x = 1
 			direction = 1
@@ -156,12 +156,14 @@ func setItemAmount(itemId, amount):
 		
 func changeActiveSlot(slotId):
 	#print(activeSlot)
-	var current = %InvDisplay.get_child(slotId)
-	current.set_size(current.size + Vector2(0, 10))
+	%UI.changeActiveSlot(slotId)
 	
 	
 func setInactiveSlot(slotId):
 	#print(activeSlot)
-	var current = %InvDisplay.get_child(slotId)
-	current.set_size(current.size - Vector2(0, 10))
-	
+	%UI.setInactiveSlot(slotId)
+
+
+
+#func _on_body_entered(body):
+	#print(body)
