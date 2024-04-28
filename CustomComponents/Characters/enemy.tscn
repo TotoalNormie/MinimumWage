@@ -62,7 +62,6 @@ offset_right = 11.0
 offset_bottom = -47.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.254902, 1, 1)
 debug_path_custom_point_size = 5.4

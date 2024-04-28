@@ -58,6 +58,7 @@ func _physics_process(_delta):
 			
 	var input_vector = Vector2.ZERO
 	# Get user input
+	
 	if(!%UI/mobile.visible):
 		if Input.is_action_pressed("move_right"):
 			input_vector.x = 1
@@ -162,8 +163,3 @@ func changeActiveSlot(slotId):
 func setInactiveSlot(slotId):
 	#print(activeSlot)
 	%UI.setInactiveSlot(slotId)
-
-
-
-#func _on_body_entered(body):
-	#print(body)

@@ -44,26 +44,29 @@ animations = [{
 }]
 
 [node name="Player" type="RigidBody2D"]
-position = Vector2(563, 362)
-scale = Vector2(0.85, 0.85)
 collision_mask = 3
+mass = 10.0
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_i68s3")
+speed = 500.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-4, 0)
+scale = Vector2(1.35, 1.35)
 shape = SubResource("RectangleShape2D_1miov")
 
 [node name="weapon" parent="." instance=ExtResource("3_6styo")]
+scale = Vector2(1.3, 1.3)
+speed = 2000
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ecmb1")
 frame_progress = 0.514365
 speed_scale = 1.5
@@ -72,10 +75,14 @@ speed_scale = 1.5
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+z_index = 20
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_sjdb6")
@@ -104,23 +111,15 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI"]
-visible = false
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="InvDisplay" type="HBoxContainer" parent="CanvasLayer/UI"]
 unique_name_in_owner = true
+z_index = 20
 layout_mode = 1
 offset_bottom = 29.0
 
 [node name="HpBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
 unique_name_in_owner = true
+z_index = 20
 texture_filter = 1
 layout_mode = 1
 offset_bottom = 29.0

@@ -22,7 +22,7 @@ expand_margin_bottom = 100.0
 radius = 342.536
 
 [node name="joystick" type="Area2D"]
-z_index = 10
+z_index = 20
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_35q8m")
 
