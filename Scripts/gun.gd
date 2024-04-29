@@ -7,6 +7,7 @@ var bullet_scene = preload("res://CustomComponents/weapons/bullet.tscn")
 @export var shootingDelay = 0.5
 @export_enum('gun', 'closeCombat') var weaponType = 'gun'
 var canShoot = true
+var tween: Tween
 
 @onready var sprite = $shape/Sprite2D
 @onready var joystick = $"../UI/mobile/joystick"
@@ -24,7 +25,7 @@ func _ready():
 	print($"../UI/mobile")
 
 func _process(delta):
-	if $"..".name == "Player" and %UI/mobile.visible:
+	if $"..".name == "Player" and OS.has_feature("mobile"):
 		print(joystick.posVector.length())
 		var angle
 		# Calculate the angle based on the joystick's position vector
@@ -46,9 +47,9 @@ func _process(delta):
 	# Adjust sprite orientation
 	var deg = fmod(rotation_degrees, 360)
 	if abs(deg) > 90 and abs(deg) < 270:
-		sprite.scale.y = abs(sprite.scale.y) * -1
+		scale.y = abs(scale.y) * -1
 	else:
-		sprite.scale.y = abs(sprite.scale.y)
+		scale.y = abs(scale.y)
 	if OS.has_feature('mobile'):
 		if Input.is_action_pressed('shoot_mobile'):
 			attack()
@@ -66,11 +67,21 @@ func attack():
 		get_tree().get_root().get_node('main/game').add_child(bullet)
 		#add_child(bullet)
 		bullet.start($ShootFrom.global_position, rotation, speed, damage)
+		%MuzzleFlash.emitting = true
 		#print(self.position)
 		canShoot = false
+		recoil()
 	else:
 		pass
 	$Timer.start(shootingDelay)
-	
+
+func recoil():
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property($shape, "rotation_degrees",  -50, shootingDelay * 0.1)	
+	tween.tween_interval(shootingDelay * 0.2)
+	tween.tween_property($shape, "rotation_degrees",  0, shootingDelay * 0.7)
+
 func _on_ShootingDelayTimeout():
 	canShoot = true
