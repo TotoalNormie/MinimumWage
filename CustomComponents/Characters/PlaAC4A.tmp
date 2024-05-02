@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://brh0dmdp0g0fc"]
+[gd_scene load_steps=16 format=3 uid="uid://brh0dmdp0g0fc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_i68s3"]
 [ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/weapons/gun.tscn" id="3_6styo"]
@@ -13,10 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://d4htets74hhuc" path="res://Sprites/bar-over.png" id="9_cp88e"]
 [ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
 [ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="10_adb7a"]
-[ext_resource type="Texture2D" uid="uid://byllisrdrv60a" path="res://styles/2d_lights_and_shadows_neutral_point_light.webp" id="14_uqo31"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ys4k5"]
-friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1miov"]
 size = Vector2(49, 86)
@@ -49,16 +45,10 @@ animations = [{
 
 [node name="Player" type="RigidBody2D"]
 collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_ys4k5")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_i68s3")
-speed = 250.0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-shadow_enabled = true
-texture = ExtResource("14_uqo31")
-texture_scale = 10.0
+speed = 300.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
@@ -159,3 +149,5 @@ size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("10_adb7a")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

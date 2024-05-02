@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8jacgvqreqn"]
+
+[ext_resource type="TileSet" uid="uid://bilm5jhmw22g2" path="res://styles/OfficeTileSet.tres" id="1_52d8k"]
+[ext_resource type="Script" path="res://CustomComponents/elavator_tile_map.gd" id="2_2i4f3"]
+
+[node name="ElevatorTileMap" type="TileMap"]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_set = ExtResource("1_52d8k")
+rendering_quadrant_size = 32
+format = 2
+layer_0/modulate = Color(0.729412, 0.729412, 0.729412, 1)
+layer_0/y_sort_origin = 1
+layer_0/z_index = 5
+layer_0/tile_data = PackedInt32Array(6, 7, 0, 65542, 7, 0, 131078, 7, 0, 196614, 7, 0, 262150, 7, 0, 7, 7, 0, 262151, 7, 0, 8, 7, 0, 9, 7, 0, 262153, 7, 0, 10, 7, 0, 65546, 7, 0, 131082, 7, 0, 196618, 7, 0, 262154, 7, 0)
+layer_1/modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array(6, 65543, 0, 65542, 65543, 0, 131078, 65543, 0, 196614, 65543, 0, 262150, 65543, 0, 7, 65543, 0, 65543, 65543, 0, 131079, 65543, 0, 196615, 65543, 0, 262151, 65543, 0, 8, 65543, 0, 65544, 65543, 0, 131080, 65543, 0, 196616, 65543, 0, 262152, 65543, 0, 9, 65543, 0, 65545, 65543, 0, 131081, 65543, 0, 196617, 65543, 0, 262153, 65543, 0, 10, 65543, 0, 65546, 65543, 0, 131082, 65543, 0, 196618, 65543, 0, 262154, 65543, 0)
+script = ExtResource("2_2i4f3")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)

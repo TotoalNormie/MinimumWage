@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1wpp87n5xkit"
-path="res://.godot/imported/PixelOfficeAssets.png-481d7fd8a361381bcc9b6c7c0930da9a.ctex"
+uid="uid://rnwnlg8m1dme"
+path="res://.godot/imported/tablebobers_3.png-b4f5a949cff8493d7981adc0f4e441a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tilemaps/PixelOfficeAssets.png"
-dest_files=["res://.godot/imported/PixelOfficeAssets.png-481d7fd8a361381bcc9b6c7c0930da9a.ctex"]
+source_file="res://Sprites/tilemaps/tablebobers_3.png"
+dest_files=["res://.godot/imported/tablebobers_3.png-b4f5a949cff8493d7981adc0f4e441a6.ctex"]
 
 [params]
 

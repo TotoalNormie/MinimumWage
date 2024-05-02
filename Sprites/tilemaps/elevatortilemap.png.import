@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw8tkh1w65lgd"
-path="res://.godot/imported/360_F_583384224_IRkG5LrTY1KNeDVWpCvDPGBVKefwfD97.jpg-6947ed261dcd880af0fad97d902e07f7.ctex"
+uid="uid://drqqf8jw15ki1"
+path="res://.godot/imported/elevatortilemap.png-ce687063af4fa68c097eaa17960e5383.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tilemaps/360_F_583384224_IRkG5LrTY1KNeDVWpCvDPGBVKefwfD97.jpg"
-dest_files=["res://.godot/imported/360_F_583384224_IRkG5LrTY1KNeDVWpCvDPGBVKefwfD97.jpg-6947ed261dcd880af0fad97d902e07f7.ctex"]
+source_file="res://Sprites/tilemaps/elevatortilemap.png"
+dest_files=["res://.godot/imported/elevatortilemap.png-ce687063af4fa68c097eaa17960e5383.ctex"]
 
 [params]
 

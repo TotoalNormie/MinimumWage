@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7fe5syy8t6f0"
-path="res://.godot/imported/floor.png-cf79ae9b515182809f9b632ce9072635.ctex"
+uid="uid://c1yikygde1f2d"
+path="res://.godot/imported/WATERCOOLER.png-b2036f16c0fe9a4d799fd73e9b39f23a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tilemaps/floor.png"
-dest_files=["res://.godot/imported/floor.png-cf79ae9b515182809f9b632ce9072635.ctex"]
+source_file="res://Sprites/tilemaps/WATERCOOLER.png"
+dest_files=["res://.godot/imported/WATERCOOLER.png-b2036f16c0fe9a4d799fd73e9b39f23a.ctex"]
 
 [params]
 

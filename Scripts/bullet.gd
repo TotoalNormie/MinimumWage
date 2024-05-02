@@ -22,6 +22,7 @@ func _process(delta):
 		#velocity = velocity.bounce(collision.get_normal())
 		if collision.get_collider().has_method("hit"):
 			collision.get_collider().hit(damage)
+			$Dust.emmiting = true
 		queue_free()
 	
 

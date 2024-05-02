@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpmqxxbphwlpr"]
+
+[ext_resource type="Script" path="res://CustomComponents/levelTest.gd" id="1_6hqhr"]
+[ext_resource type="PackedScene" uid="uid://d0kjr4q663teo" path="res://CustomComponents/office_tile_map.tscn" id="2_pxx7g"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6hqhr")
+
+[node name="OfficeTileMap" parent="." instance=ExtResource("2_pxx7g")]

@@ -10,7 +10,7 @@ var canShoot = true
 var tween: Tween
 
 @onready var sprite = $shape/Sprite2D
-@onready var joystick = $"../UI/mobile/joystick"
+@onready var joystick = $"../CanvasLayer/UI/mobile/HBoxContainer/joystick"
 var joystickAngle = 0
 
 @export_global_file('*.png','*.webp') var sprite_texture_path: String = 'res://Sprites/weapons/glock/New_Piskel.png'
@@ -22,7 +22,7 @@ func _ready():
 		var texture = load(sprite_texture_path)
 		if texture != null:
 			$shape/Sprite2D.texture = texture
-	print($"../UI/mobile")
+
 
 func _process(delta):
 	if $"..".name == "Player" and OS.has_feature("mobile"):

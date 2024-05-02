@@ -45,6 +45,7 @@ func _physics_process(_delta):
 	#if Input.is_action_just_released("interact"):
 		#damage(1)
 	# Get user input
+	
 	if Input.is_action_just_released("inv_down"):
 		if activeSlot < itemSlots-1:
 			activeSlot += 1
@@ -61,15 +62,22 @@ func _physics_process(_delta):
 	
 	if(!%UI/mobile.visible):
 		if Input.is_action_pressed("move_right"):
+			print("right")
 			input_vector.x = 1
 			direction = 1
 		elif Input.is_action_pressed("move_left"):
+			print("left")
+			
 			input_vector.x = -1
 			direction = -1
 
 		if Input.is_action_pressed("move_down"):
+			print("down")
+			
 			input_vector.y = 1
 		elif Input.is_action_pressed("move_up"):
+			print("up")
+			
 			input_vector.y = -1
 	else:
 		if(joystick.posVector):
@@ -77,18 +85,20 @@ func _physics_process(_delta):
 		else: 
 			input_vector = Vector2(0,0)
 		
-		input_vector = input_vector.normalized()
+	input_vector = input_vector.normalized()
 
 	# Normalize input vector for smooth diagonal movement
 
 	# Apply force based on input and direction
+	print(input_vector)
 	if input_vector != Vector2.ZERO:
-		self.linear_velocity = input_vector * speed
+		
+		linear_velocity = input_vector * speed
 		$PlayerAnimation.play()
 		#self.apply_central_impulse(input_vector * speed)
 	else:
-		self.linear_velocity = Vector2.ZERO
-		$PlayerAnimation.stop()	
+		linear_velocity = Vector2.ZERO
+		$PlayerAnimation.stop()
 
 	# Update direction based on input (optional for animation)
 	#if input_vector.x != 0:
