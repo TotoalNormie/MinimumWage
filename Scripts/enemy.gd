@@ -14,12 +14,13 @@ const type = 'enemy'
 
 func _ready():
 	$Label.text = str(health)
+	#player = get_parent().get_node("Player")
 	makePath()
 	
 func _physics_process(delta: float) -> void:
 	var dir = to_local(navAgent.get_next_path_position()).normalized()
 	#var dir = Vector2(0, -4).normalized()
-	print(rad_to_deg(dir.angle()))
+	#print(rad_to_deg(dir.angle()))
 	velocity = speed * dir
 	if global_position.distance_to(%Player.global_position) <= range:
 		velocity = Vector2.ZERO

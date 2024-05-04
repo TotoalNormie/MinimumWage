@@ -1,15 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://brh0dmdp0g0fc"]
+[gd_scene load_steps=21 format=3 uid="uid://brh0dmdp0g0fc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_i68s3"]
-[ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/weapons/gun.tscn" id="3_6styo"]
 [ext_resource type="Texture2D" uid="uid://b67plven37eh6" path="res://Sprites/player/stand.png" id="3_vq7hg"]
 [ext_resource type="Texture2D" uid="uid://cf7ov6v50rjwa" path="res://Sprites/player/walk1.png" id="4_j401o"]
 [ext_resource type="Texture2D" uid="uid://b5d8cj01dqdih" path="res://Sprites/player/walk1jump.png" id="5_65jus"]
 [ext_resource type="Texture2D" uid="uid://tdxgvmxygc0l" path="res://Sprites/player/walk2.png" id="6_lcy4h"]
 [ext_resource type="Texture2D" uid="uid://b2orj8v45goq6" path="res://Sprites/player/walk2jump.png" id="7_p1qvc"]
-[ext_resource type="PackedScene" uid="uid://bodumasxiqoqw" path="res://CustomComponents/joystick.tscn" id="8_nleq2"]
+[ext_resource type="PackedScene" path="res://CustomComponents/joystick.tscn" id="8_nleq2"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="8_sjdb6"]
-[ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
+[ext_resource type="PackedScene" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
+[ext_resource type="Shader" path="res://Shaders/Health.gdshader" id="11_bojpa"]
+[ext_resource type="Texture2D" uid="uid://dqruo8q7cawuh" path="res://Sprites/bar-progress.png" id="11_r1rle"]
+[ext_resource type="Texture2D" uid="uid://d4htets74hhuc" path="res://Sprites/bar-over.png" id="12_177k7"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="13_xqjho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1miov"]
 size = Vector2(54, 96)
@@ -40,6 +43,31 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gkdnr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nq3o2"]
+seamless = true
+noise = SubResource("FastNoiseLite_gkdnr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jmynh"]
+seed = 7
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0pgj4"]
+seamless = true
+noise = SubResource("FastNoiseLite_jmynh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38d2r"]
+shader = ExtResource("11_bojpa")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(-0.047, 0.05)
+shader_parameter/distortionStrength = 0.2
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/tone_color = Color(0.607843, 0.243137, 0.0117647, 1)
+shader_parameter/light_start = 0.435
+shader_parameter/light_end = 1.0
+shader_parameter/noise1 = SubResource("NoiseTexture2D_nq3o2")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_0pgj4")
+
 [node name="Player" type="RigidBody2D"]
 scale = Vector2(0.85, 0.85)
 collision_mask = 3
@@ -53,8 +81,6 @@ script = ExtResource("1_i68s3")
 position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_1miov")
 
-[node name="weapon" parent="." instance=ExtResource("3_6styo")]
-
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
@@ -64,6 +90,7 @@ frame_progress = 0.514365
 speed_scale = 1.5
 
 [node name="UI" type="Node2D" parent="."]
+visible = false
 z_index = 10
 script = ExtResource("8_sjdb6")
 
@@ -79,10 +106,69 @@ offset_top = 76.0
 offset_right = 519.0
 offset_bottom = 264.0
 
-[node name="Label" type="Label" parent="UI"]
-offset_left = 516.471
-offset_top = -314.118
-offset_right = 586.471
-offset_bottom = -270.118
-theme_override_font_sizes/font_size = 16
-text = "dsfbfv sd"
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -221.176
+offset_top = -330.588
+offset_right = 78.823
+offset_bottom = -280.588
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="InvDisplay" type="HBoxContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = 93.0004
+offset_right = -119.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HpBar" type="TextureProgressBar" parent="Control"]
+unique_name_in_owner = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_38d2r")
+layout_mode = 1
+offset_left = -120.0
+offset_top = -15.0
+offset_right = -70.0
+offset_bottom = 35.0
+scale = Vector2(2, 2)
+max_value = 4.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("11_r1rle")
+texture_over = ExtResource("12_177k7")
+texture_progress = ExtResource("11_r1rle")
+tint_under = Color(0.4, 0.25098, 0.180392, 1)
+tint_over = Color(0.635294, 0.443137, 0.341176, 1)
+tint_progress = Color(0.705882, 0, 0, 1)
+
+[node name="HpVal" type="RichTextLabel" parent="Control/HpBar"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.000240326
+offset_top = 16.3234
+offset_right = -0.000240326
+offset_bottom = -8.67661
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("13_xqjho")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+
+[node name="Score" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
