@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3jnln73onrd4"]
 
-[ext_resource type="Script" path="res://Scripts/Button.gd" id="1_5f6x6"]
+[ext_resource type="Texture2D" uid="uid://djvuotb2b40pc" path="res://Sprites/Untitled-1.png" id="1_o25f7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nugq1"]
-bg_color = Color(0.878431, 0.407843, 0.678431, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ljt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -12,15 +12,23 @@ corner_radius_top_left = 999
 corner_radius_top_right = 999
 corner_radius_bottom_right = 999
 corner_radius_bottom_left = 999
+expand_margin_left = 70.0
+expand_margin_top = 70.0
+expand_margin_right = 70.0
+expand_margin_bottom = 70.0
 
 [node name="Button" type="Button"]
-offset_left = -95.0
-offset_top = -96.0
-offset_right = 94.0
-offset_bottom = 92.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/outline_size = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_nugq1")
-text = "Shoot"
-script = ExtResource("1_5f6x6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_x4ljt")
 
-[connection signal="button_down" from="." to="." method="_on_button_down"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3, 3)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_o25f7")

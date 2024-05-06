@@ -1,0 +1,155 @@
+[gd_scene load_steps=16 format=3 uid="uid://brh0dmdp0g0fc"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_i68s3"]
+[ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/weapons/gun.tscn" id="3_6styo"]
+[ext_resource type="Texture2D" uid="uid://b67plven37eh6" path="res://Sprites/player/stand.png" id="3_vq7hg"]
+[ext_resource type="Texture2D" uid="uid://cf7ov6v50rjwa" path="res://Sprites/player/walk1.png" id="4_j401o"]
+[ext_resource type="Texture2D" uid="uid://b5d8cj01dqdih" path="res://Sprites/player/walk1jump.png" id="5_65jus"]
+[ext_resource type="Texture2D" uid="uid://tdxgvmxygc0l" path="res://Sprites/player/walk2.png" id="6_lcy4h"]
+[ext_resource type="Texture2D" uid="uid://b2orj8v45goq6" path="res://Sprites/player/walk2jump.png" id="7_p1qvc"]
+[ext_resource type="Texture2D" uid="uid://dqruo8q7cawuh" path="res://Sprites/bar-progress.png" id="8_888pk"]
+[ext_resource type="PackedScene" uid="uid://bodumasxiqoqw" path="res://CustomComponents/joystick.tscn" id="8_nleq2"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="8_sjdb6"]
+[ext_resource type="Texture2D" uid="uid://d4htets74hhuc" path="res://Sprites/bar-over.png" id="9_cp88e"]
+[ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="10_adb7a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1miov"]
+size = Vector2(54, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ecmb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vq7hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j401o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_65jus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vq7hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lcy4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p1qvc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2(563, 362)
+scale = Vector2(0.85, 0.85)
+collision_mask = 3
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_i68s3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_1miov")
+
+[node name="weapon" parent="." instance=ExtResource("3_6styo")]
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ecmb1")
+frame_progress = 0.514365
+speed_scale = 1.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_sjdb6")
+
+[node name="mobile" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 150
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/mobile"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="joystick" parent="CanvasLayer/UI/mobile/HBoxContainer" instance=ExtResource("8_nleq2")]
+
+[node name="Button" parent="CanvasLayer/UI/mobile/HBoxContainer" instance=ExtResource("9_t8vbf")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InvDisplay" type="HBoxContainer" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_bottom = 29.0
+
+[node name="HpBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+offset_bottom = 29.0
+max_value = 4.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_888pk")
+texture_over = ExtResource("9_cp88e")
+texture_progress = ExtResource("8_888pk")
+tint_under = Color(0.4, 0.25098, 0.180392, 1)
+tint_over = Color(0.635294, 0.443137, 0.341176, 1)
+tint_progress = Color(0.705882, 0, 0, 1)
+
+[node name="HpVal" type="RichTextLabel" parent="CanvasLayer/UI/HpBar"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.5002
+offset_top = -5.97292e-05
+offset_right = 33.5002
+offset_bottom = -25.0001
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("10_adb7a")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

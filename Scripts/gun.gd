@@ -21,10 +21,13 @@ func _ready():
 		var texture = load(sprite_texture_path)
 		if texture != null:
 			$shape/Sprite2D.texture = texture
+	print($"../UI/mobile")
 
 func _process(delta):
-	if $"..".name == "Player" and $"../UI/mobile".visible:
+	#if $"..".name == "Player" and $"../UI/mobile".visible:
 		#print(joystick.posVector.length())
+	if $"..".name == "Player" and %UI/mobile.visible:
+		print(joystick.posVector.length())
 		var angle
 		# Calculate the angle based on the joystick's position vector
 		if joystick.posVector.length() < 0.1 :
@@ -48,9 +51,13 @@ func _process(delta):
 		sprite.scale.y = abs(sprite.scale.y) * -1
 	else:
 		sprite.scale.y = abs(sprite.scale.y)
-
-	if Input.is_action_pressed("shoot") and canShoot:
-		attack()
+	if OS.has_feature('mobile'):
+		if Input.is_action_pressed('shoot_mobile'):
+			attack()
+	else:
+		if Input.is_action_pressed("shoot") and canShoot:
+			attack()
+		
 
 
 

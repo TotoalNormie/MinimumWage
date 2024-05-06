@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_button_down():
-	Input.action_press("shoot")
+	Input.action_press("shoot_mobile")
