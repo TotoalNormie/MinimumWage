@@ -2,16 +2,16 @@ extends RigidBody2D
 
 var sprite: Sprite2D
 @export var icon: CompressedTexture2D = load("res://Sprites/icon1.png")
-@export var size: float = 1
+@export var itemSize: float = 1
 @export var id: String = "EXAMPLE_ITEM"
 @export var itemName: String = "Example Item"
-@export var bg: Color = "2b2b2bfa"
+@export var itemColor: Color = "2b2b2bfa"
 @export var AreaCollider: CollisionShape2D
-#@export var descriptionSize: Vector2 = Vector2(180, 60)
 @export_multiline var description: String
-#@export var padding: Vector2
+@export_enum("ITEM", "POWERUP") var type: String = "ITEM"
+var touching: bool = false
+var player: Node
 var data: Dictionary = {}
-#var style = StyleBoxFlat.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,14 +19,18 @@ func _ready():
 	$Tooltip.visible = false
 	data["description"] = description
 	data["amount"] = 1
-	itemName = "[[color=#cf1137]" + itemName + "[/color]]"
-	#$Panel.color = bg
+	data["icon"] = icon
+	data["type"] = type
+	data["data"] = self
+	itemName = "[[color="+ itemColor.to_html() + "]" + itemName + "[/color]]"
 	
-	size *= 27
+	itemSize *= 27
 	sprite.texture = icon
  	# Adjust CollisionShape2D based on desired scaling behavior
-	$CollisionShape2D.shape.extents = Vector2(size, size)
-	AreaCollider.shape.extents = Vector2(size, size)
+	$CollisionShape2D.shape.extents = Vector2(itemSize, itemSize)
+	#AreaCollider.shape.extents = Vector2(itemSize+10, itemSize+10)
+	#var areaShape = itemSize+10
+	AreaCollider.shape.extents = Vector2(itemSize, itemSize)
 	var collider_size = $CollisionShape2D.shape.extents * 2  # Get current collision size
 	
 	# scale image to collider
@@ -41,46 +45,48 @@ func _ready():
 	# Set scale using a Vector2 object
 	sprite.scale = col_final_scale
 	
-	$Tooltip.text = itemName + "\n" + description
-	$Tooltip.text = "[center]%s[/center]" % $Tooltip.text
-	#$Panel.size = $Panel/Margin/Tooltip.size
-
-	# scale tooltip bg
-	# Calculate scaling factors based on desired fit behavior
-	#var scale_x = $Panel/Margin/Tooltip.get_size().x / $Panel.get_size().x
-	#var scale_y = $Panel/Margin/Tooltip.get_size().y / $Panel.get_size().y
-	#var scale = max(scale_x, scale_y)  # Use max() function
-	#$Panel.size = Vector2(scale, scale)
-
-	# Set scale using a Vector2 object
-	#sprite.scale = final_scale
+	$Tooltip.text = "[center]" + itemName + "\n" + description + "[/center]"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func use():
+	print("Using item:", id)
+	return "Using item:" + id
 	
 	
 
 # this function picks up item
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
-		if body.getItemAmount(id) == 0:
-			body.addToInventory(id, data)
-			print("Player Picked Up: ", id)
-			print(body.inventory)
-			self.queue_free()
-		elif body.getItemAmount(id) != 0:
-			body.setItemAmount(id, body.getItemAmount(id)+1)
-			print("Player Picked Up: ", id)
-			print(body.inventory)
-			self.queue_free()
+		$Tooltip.visible = true
+		touching = true
+		player = body
 
 
 func _on_area_2d_mouse_entered():
 	$Tooltip.visible = true
-	#$Tooltip/Margin/Panel.set_size($Tooltip.size + Vector2(10, 10))
 
 
 func _on_area_2d_mouse_exited():
 	$Tooltip.visible = false
+
+
+
+func _on_area_2d_body_exited(body):
+	$Tooltip.visible = false
+	touching = false
+	player = null
+
+
+func _input(event):
+	if event.is_action_pressed("interact") and touching and type == "ITEM":
+		if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots && player.getItems() < 4:
+			player.addToInventory(id, data)
+			#self.queue_free()
+		elif player.getItemAmount(id) != 0:
+			player.setItemAmount(id, player.getItemAmount(id)+1, self)
+			#self.queue_free()
+	#if event.is_action_pressed("drop"):
+		#if player.getItemAmount(id) > 0:
+			
+
