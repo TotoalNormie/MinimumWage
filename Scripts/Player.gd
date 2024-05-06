@@ -11,17 +11,17 @@ signal on_player_death
 @export var itemSlots: int = 4
 var direction : int = 1
 @export var inventory: Dictionary = {}
-var rigidbody: RigidBody2D
 var activeSlot: int = 0
 
 func  _ready():
-	#print(OS.has_feature('touchscreen'))
+	#print(get_scene_file_path())
+	#print(get_path())
+	#print(OS.has_feature('mobile'))
 	if OS.has_feature("mobile"):
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
 	
-	rigidbody = get_node(".")
 	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
 	%UI.itemSlots = itemSlots
@@ -37,7 +37,7 @@ func hit(amount):
 	#print('attacked')
 	if(health <= 0):
 		#self.queue_free()
-		print('dead')
+		#print('dead')
 		emit_signal("on_player_death")
 	%UI.hit(health, maxHp)
 
@@ -62,22 +62,15 @@ func _physics_process(_delta):
 	
 	if(!%UI/mobile.visible):
 		if Input.is_action_pressed("move_right"):
-			print("right")
 			input_vector.x = 1
 			direction = 1
 		elif Input.is_action_pressed("move_left"):
-			print("left")
-			
 			input_vector.x = -1
 			direction = -1
 
 		if Input.is_action_pressed("move_down"):
-			print("down")
-			
 			input_vector.y = 1
 		elif Input.is_action_pressed("move_up"):
-			print("up")
-			
 			input_vector.y = -1
 	else:
 		if(joystick.posVector):
@@ -90,7 +83,7 @@ func _physics_process(_delta):
 	# Normalize input vector for smooth diagonal movement
 
 	# Apply force based on input and direction
-	print(input_vector)
+
 	if input_vector != Vector2.ZERO:
 		
 		linear_velocity = input_vector * speed

@@ -1,13 +1,64 @@
 extends TileMap
 
-
+var canInteract = false
+var start = false
+#var buttonTween: Tween
+var canvasTween: Tween
 var elevatorDoors = Vector2.ZERO
+
+signal on_level_complete
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#print(tile_set.get_pattern(7))
 	#set_pattern(0, Vector2i(0, 0), tile_set.get_pattern(0))
 	generateLevel()
 
+func _process(delta):
+	#print(start)
+	if canInteract:
+		#if buttonTween:
+			#buttonTween.kill()
+		#buttonTween = create_tween()
+		#buttonTween.tween_property($Button, 'visibile', 1, 0.5)
+		$Button.visible = 1
+	else:
+		#if buttonTween:
+			#buttonTween.kill()
+		#buttonTween = create_tween()
+		#buttonTween.tween_property($Button, 'visibile', 0, 0.5)
+		$Button.visible = 0
+	
+	if Input.is_action_pressed('interact'):
+		#print('e pressed')
+		$Button.emit_signal('pressed')
+	if start:
+		#if canvasTween:
+			#canvasTween.kill()
+		#canvasTween = create_tween()
+		#var modulate_color : Color
+		#modulate_color.r = 255 # RGB is the color
+		#modulate_color.g = 255
+		#modulate_color.b = 255
+		#modulate_color.a = 0 # A is alpha aka transparency
+		#canvasTween.tween_property($Sprite2D, 'modulate', modulate_color, 1)
+		
+		$CanvasModulate.visible = 0
+		set_cell(0, Vector2i(8, 4), 9, Vector2i(0, 0))
+	else:
+		$CanvasModulate.visible = 1
+		set_cell(0, Vector2i(8, 4), 8, Vector2i(0, 0))
+		
+		#if canvasTween:
+			#canvasTween.kill()
+		#canvasTween = create_tween()
+		#var modulate_color : Color
+		#modulate_color.r = 255 # RGB is the color
+		#modulate_color.g = 255
+		#modulate_color.b = 255
+		#modulate_color.a = 255 # A is alpha aka transparency
+		#canvasTween.tween_property($Sprite2D, 'modulate', modulate_color, 1)
+		
+	
 
 func generateLevel():
 	var elevatorWalls = tile_set.get_pattern(6)
@@ -44,3 +95,20 @@ func generateLevel():
 	set_pattern(1, Vector2i(6, 0), elevatorFloor)
 	set_pattern(0, Vector2i(6, 0), elevatorWalls)
 	
+
+
+func _on_area_2d_body_entered(body):
+	print("body entered")
+	if !canInteract:
+		on_level_complete.emit()
+		#print(canInteract)d
+	canInteract = true
+	start = false
+
+
+func _on_area_2d_body_exited(body):
+	canInteract = false
+	
+
+func _on_button_pressed():
+	start = true

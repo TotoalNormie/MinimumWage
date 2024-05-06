@@ -3,6 +3,7 @@ extends RigidBody2D
 var speed: float = 0
 var velocity = Vector2.ZERO
 var damage: float = 0
+var dustScene = preload('res://CustomComponents/dust.tscn')
 
 func _ready():
 	pass # Replace with function body.
@@ -22,7 +23,13 @@ func _process(delta):
 		#velocity = velocity.bounce(collision.get_normal())
 		if collision.get_collider().has_method("hit"):
 			collision.get_collider().hit(damage)
-			$Dust.emmiting = true
+		var dust = dustScene.instantiate()
+		get_tree().get_root().add_child(dust)
+		dust.global_position = $DustFrom.global_position
+		dust.rotation = rotation + PI
+		
+		dust.emitting = true
+		#print(dust)
 		queue_free()
 	
 

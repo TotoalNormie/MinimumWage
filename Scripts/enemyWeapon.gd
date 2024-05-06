@@ -14,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	look_at($"../%Player".global_position)
+	#look_at($"../%Player".global_position)
 	#print(isAttacking)
 	var deg = fmod(rotation_degrees, 360)
 	if abs(deg) > 90 and abs(deg) < 270:

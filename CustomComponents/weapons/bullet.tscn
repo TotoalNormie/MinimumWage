@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://du3nlacs6we3q"]
+[gd_scene load_steps=4 format=3 uid="uid://du3nlacs6we3q"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_wwswt"]
 [ext_resource type="Texture2D" uid="uid://l6wuiiqquh5p" path="res://Sprites/weapons/glock/bullet.png" id="2_awrda"]
@@ -7,18 +7,6 @@
 radius = 5.71429
 height = 46.0
 
-[sub_resource type="Curve" id="Curve_5wpm8"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.21978), 0.105164, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_d2c2d"]
-offsets = PackedFloat32Array(0, 0.953333, 1)
-colors = PackedColorArray(1, 0.854231, 0.554961, 1, 0.674195, 0.455337, 0.07518, 1, 0.351106, 0.22106, 1.44392e-07, 1)
-metadata/_snap_enabled = true
-
-[sub_resource type="Gradient" id="Gradient_dxitl"]
-colors = PackedColorArray(0.764027, 0.420259, 0.0870615, 1, 0.709098, 0.593467, 0, 1)
-
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 2
@@ -26,7 +14,7 @@ script = ExtResource("1_wwswt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-4.76837e-07, 3)
+position = Vector2(0, 3)
 scale = Vector2(3, 3)
 texture = ExtResource("2_awrda")
 
@@ -38,24 +26,8 @@ one_way_collision = true
 one_way_collision_margin = 20.6
 debug_color = Color(0.611765, 0.443137, 0.8, 0.419608)
 
-[node name="Dust" type="CPUParticles2D" parent="."]
-position = Vector2(15, 0)
-emitting = false
-amount = 20
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.85
-spread = 90.0
-gravity = Vector2(-500, 0)
-initial_velocity_min = 29.9
-initial_velocity_max = 60.2
-angle_min = -159.9
-angle_max = 130.9
-scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_5wpm8")
-color_ramp = SubResource("Gradient_d2c2d")
-color_initial_ramp = SubResource("Gradient_dxitl")
-anim_speed_max = 0.5
+[node name="DustFrom" type="Node2D" parent="."]
+position = Vector2(12, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -11,7 +11,8 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.977528, 0.0659341), 0.0, 0.0, 
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_36qer"]
-colors = PackedColorArray(0.794981, 0.695604, 0.162863, 1, 0.923537, 0.41492, 0.195667, 1)
+offsets = PackedFloat32Array(0, 0.466667, 1)
+colors = PackedColorArray(0.748255, 0.703747, 0.419308, 1, 0.469441, 0.4067, 0.237769, 1, 0.425161, 0.315853, 0.211455, 1)
 
 [node name="weapon" type="Area2D"]
 collision_mask = 3

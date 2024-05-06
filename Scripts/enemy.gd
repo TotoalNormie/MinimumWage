@@ -4,32 +4,33 @@ extends CharacterBody2D
 @export var speed = 100
 @export var damage = 1
 @export var attackRange = 100
-@onready var player = %Player
+@onready var player = $"../%Player"
 @onready var navAgent := $NavigationAgent2D
 
-var canAttack = true
 
+var canAttack = true
+var spawnPoint: Vector2i
+var goToPoint: Vector2i
 
 const type = 'enemy'
 
 func _ready():
 	$Label.text = str(health)
-	makePath()
 	
 func _physics_process(delta: float) -> void:
 	var dir = to_local(navAgent.get_next_path_position()).normalized()
-	#var dir = Vector2(0, -4).normalized()
+
 	#print(rad_to_deg(dir.angle()))
 	velocity = speed * dir
-	if global_position.distance_to(%Player.global_position) <= attackRange:
+	if global_position.distance_to(player.global_position) <= attackRange:
 		velocity = Vector2.ZERO
 		if canAttack: 
 			$Weapon.attack(damage)
 			canAttack = false
 			$AttackTime.start()
 			
-	#else:
-		#$AttackTime.stop()
+	else:
+		$AttackTime.stop()
 	
 	if $Weapon.isAttacking or $Weapon.isCharging:
 		velocity = Vector2.ZERO
@@ -47,9 +48,20 @@ func _physics_process(delta: float) -> void:
 	#print(canAttack)
 	move_and_slide()
 
-	
+func start(_spawnPoint, _goToPoint):
+	spawnPoint = _spawnPoint
+	goToPoint = _goToPoint
+	#print(goToPoint)
+	global_position = spawnPoint
+	makePath()
+
+
 func makePath() -> void:
-	navAgent.target_position = player.global_position
+	#navAgent.target_position = player.global_position
+	navAgent.target_position = goToPoint
+	
+	
+	pass
 
 
 func hit(amount):
