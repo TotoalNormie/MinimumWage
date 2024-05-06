@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://do8jacgvqreqn" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rv6vf"]
+vertices = PackedVector2Array(1652, 376, 2213, 1315, 633, 1590, 49, 88)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(34, 75, 1659, 367, 2230, 1323, 627, 1602)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 

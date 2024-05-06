@@ -45,7 +45,7 @@ func hit(amount):
 		#self.queue_free()
 		#print('dead')
 		emit_signal("on_player_death")
-	%UI.hit(health, maxHp)
+	%UI.hit(health, maxHealth)
 
 
 func _physics_process(_delta):
@@ -114,13 +114,13 @@ func _physics_process(_delta):
 		if Input.is_action_pressed("move_right"):
 			input_vector.x = 1
 			direction = 1
-		elif Input.is_action_pressed("move_left"):
+		if Input.is_action_pressed("move_left"):
 			input_vector.x = -1
 			direction = -1
 
 		if Input.is_action_pressed("move_down"):
 			input_vector.y = 1
-		elif Input.is_action_pressed("move_up"):
+		if Input.is_action_pressed("move_up"):
 			input_vector.y = -1
 	else:
 		if(joystick.posVector):

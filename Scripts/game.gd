@@ -3,6 +3,7 @@ extends Node2D
 var startCords = Vector2i(8, 2)
 var enemyScene = preload("res://CustomComponents/Characters/enemy.tscn")
 @export var level = 1
+var roomEmptyCells: Array
 
 func _ready():
 	var localStartyCords = %OfficeTileMap.map_to_local(startCords)
@@ -27,7 +28,7 @@ func _on_elevator_tile_map_on_level_complete():
 	nextLevel()
 
 
-func _on_office_tile_map_level_generated(roomEmptyCells, levelPosition):
+func _on_office_tile_map_level_generated(_roomEmptyCells, levelPosition):
 	#print(roomEmptyCells)
 	#pass
 	
@@ -38,8 +39,12 @@ func _on_office_tile_map_level_generated(roomEmptyCells, levelPosition):
 	var new_polygon_indices = PackedInt32Array([2, 0, 1, 3])
 	new_navigation_mesh.add_polygon(new_polygon_indices)
 	$NavigationRegion2D.navigation_polygon = new_navigation_mesh
-	#$NavigationRegion2D.bake_navigation_polygon(false)
+	$NavigationRegion2D.bake_navigation_polygon()
 	
+	roomEmptyCells = _roomEmptyCells
+
+
+func _on_navigation_region_2d_bake_finished():
 	for emptyCellsIndex in roomEmptyCells:
 		var emptyCells = emptyCellsIndex.duplicate()
 		var rng = RandomNumberGenerator.new()
