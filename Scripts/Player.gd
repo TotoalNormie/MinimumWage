@@ -14,6 +14,7 @@ var direction : int = 1
 @export var inventory: Dictionary = {}
 var rigidbody: RigidBody2D
 var activeSlot: int = 0
+var money: int = 0
 
 func  _ready():
 	#if OS.has_feature("touchscreen"):

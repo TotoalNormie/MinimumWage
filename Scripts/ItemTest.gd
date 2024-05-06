@@ -14,9 +14,11 @@ var player: Node
 var data: Dictionary = {}
 var currentItemScene: String
 var loadedItem
+var itemCount: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	itemCount = 0
 	currentItemScene = self.get_parent().scene_file_path
 	loadedItem = load(currentItemScene)
 	sprite = get_node("Sprite2D")
@@ -73,34 +75,23 @@ func _on_area_2d_body_exited(body):
 
 
 func _input(event):
+	#print(getCount())
 	if event.is_action_pressed("interact") and touching and type == "ITEM":
 		if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots && player.getItems() < 4:
 			player.addToInventory(id, data)
-			# debug
-			print(currentItemScene)
 			loadedItem = loadedItem.instantiate()
 			loadedItem.name = self.get_parent().name
-			#print("Added item name: " + self.get_parent().name)
+			# doesn't work
 			loadedItem.position = player.position + Vector2(5, 5)
-			# should add the weapon as a child to player
 			player.add_child(loadedItem)
-			print(player.get_children())
-			# removes item from the ground but still stays in memory to be able to call use() function
-			print("Self: ", self)
-			print("Parent: ", self.get_parent())
+			#setCount(1)
+			#print(getCount())
 			get_parent().remove_child(self)
-			# same but test
-			#player.get_parent().remove_child(self)
-			# when we want to remove item from inventory then use code below
-			#self.queue_free()
-		elif player.getItemAmount(id) != 0:
-			player.setItemAmount(id, player.getItemAmount(id)+1, self.get_parent())
-			#self.queue_free()
-	#if event.is_action_pressed("shoot"):
-		#print("Self: ", self)
-		#print("Parent: ", self.get_parent())
-		#loadedItem = loadedItem.instantiate()
-		#loadedItem.name = self.get_parent().name
-		#self.get_parent().add_child(loadedItem)
-		#print(self.id)
-		#player.removeFromInventory(id)
+	if event.is_action_pressed("shoot"):
+		if get_parent().get_parent().name == "Player":
+			#print(get_parent().get_parent())
+			self.get_parent().get_parent().money += 20
+			get_parent().remove_child(self)
+			# fix line below
+			#self.get_parent().get_parent().removeFromInventory(id)
+
