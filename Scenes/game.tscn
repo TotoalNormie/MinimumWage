@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://do8jacgvqreqn" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rv6vf"]
-outlines = Array[PackedVector2Array]([PackedVector2Array(34, 75, 1659, 367, 2230, 1323, 627, 1602)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(23, 155, 8013, 348, 7090, 5658, -138, 5466)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 15.5
 
 [node name="game" type="Node2D"]
+position = Vector2(-10, 20)
 script = ExtResource("1_kjgl1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -18,13 +20,15 @@ navigation_layers = 3
 
 [node name="OfficeTileMap" parent="NavigationRegion2D" instance=ExtResource("4_vo0qb")]
 unique_name_in_owner = true
+scale = Vector2(1, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_ff72a")]
 unique_name_in_owner = true
-speed = 700.0
+speed = 200.0
 
 [node name="ElevatorTileMap" parent="." instance=ExtResource("5_awoaj")]
 
 [connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]
+[connection signal="navigation_polygon_changed" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_navigation_polygon_changed"]
 [connection signal="level_generated" from="NavigationRegion2D/OfficeTileMap" to="." method="_on_office_tile_map_level_generated"]
 [connection signal="on_level_complete" from="ElevatorTileMap" to="." method="_on_elevator_tile_map_on_level_complete"]

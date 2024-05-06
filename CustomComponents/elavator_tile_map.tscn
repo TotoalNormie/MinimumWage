@@ -22,7 +22,6 @@ noise = SubResource("FastNoiseLite_ikgp6")
 
 [node name="ElevatorTileMap" type="TileMap"]
 texture_filter = 1
-scale = Vector2(3, 3)
 tile_set = ExtResource("1_52d8k")
 rendering_quadrant_size = 32
 format = 2

@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=39 format=3 uid="uid://bilm5jhmw22g2"]
+[gd_resource type="TileSet" load_steps=42 format=3 uid="uid://bilm5jhmw22g2"]
 
 [ext_resource type="Texture2D" uid="uid://by35qnlobgnr4" path="res://Sprites/tilemaps/flower_pot.png" id="1_ymtgy"]
+[ext_resource type="Texture2D" uid="uid://b0dvg8gxwjvgs" path="res://Sprites/tilemaps/newfloorwall.png" id="2_63yys"]
 [ext_resource type="Texture2D" uid="uid://dw3qulhalx2ks" path="res://Sprites/tilemaps/floorwall.png" id="2_f5j87"]
 [ext_resource type="Texture2D" uid="uid://bbm176m408l6x" path="res://Sprites/tablebobers_1.png" id="3_vakln"]
 [ext_resource type="Texture2D" uid="uid://dif1id0qlq2v3" path="res://Sprites/tilemaps/flower_pot_1.png" id="4_l1xtb"]
@@ -48,6 +49,21 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 8, 16, 8.25, 16, 16, -16, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4cu6b"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uvt2n"]
+texture = ExtResource("2_63yys")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_4cu6b")
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_71kli"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -170,7 +186,6 @@ terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "Terrain 0"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/1 = SubResource("TileSetAtlasSource_2rgao")
 sources/2 = SubResource("TileSetAtlasSource_0abf7")
 sources/0 = SubResource("TileSetAtlasSource_qeihn")
 sources/3 = SubResource("TileSetAtlasSource_0xscb")
@@ -180,6 +195,8 @@ sources/6 = SubResource("TileSetAtlasSource_5jkyg")
 sources/7 = SubResource("TileSetAtlasSource_2iam8")
 sources/8 = SubResource("TileSetAtlasSource_7ptff")
 sources/9 = SubResource("TileSetAtlasSource_vn6yl")
+sources/11 = SubResource("TileSetAtlasSource_2rgao")
+sources/1 = SubResource("TileSetAtlasSource_uvt2n")
 pattern_0 = SubResource("TileMapPattern_su5o8")
 pattern_1 = SubResource("TileMapPattern_2kmue")
 pattern_2 = SubResource("TileMapPattern_noyrf")

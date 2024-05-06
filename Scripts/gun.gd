@@ -3,7 +3,7 @@ extends Area2D
 var bullet_scene = preload("res://CustomComponents/weapons/bullet.tscn")
 
 @export var damage: float = 0.5
-@export var speed = 1500
+@export var speed = 100
 @export var shootingDelay = 0.5
 @export_enum('gun', 'closeCombat') var weaponType = 'gun'
 var canShoot = true
@@ -69,6 +69,7 @@ func attack():
 		var bullet = bullet_scene.instantiate()
 		get_tree().get_root().add_child(bullet)
 		#add_child(bullet)
+		print( speed)
 		bullet.start($ShootFrom.global_position, rotationRand, speed, damage)
 		%MuzzleFlash.emitting = true
 		#print(self.position)

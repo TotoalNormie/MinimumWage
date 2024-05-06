@@ -32,13 +32,13 @@ func _on_office_tile_map_level_generated(_roomEmptyCells, levelPosition):
 	#print(roomEmptyCells)
 	#pass
 	
-	var new_navigation_mesh = NavigationPolygon.new()
-	var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50), Vector2(50, 0)])
-	new_navigation_mesh.vertices = levelPosition
-	print(levelPosition)
-	var new_polygon_indices = PackedInt32Array([2, 0, 1, 3])
-	new_navigation_mesh.add_polygon(new_polygon_indices)
-	$NavigationRegion2D.navigation_polygon = new_navigation_mesh
+	#var new_navigation_mesh = NavigationPolygon.new()
+	#var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50), Vector2(50, 0)])
+	#new_navigation_mesh.vertices = levelPosition
+	#print(levelPosition)
+	#var new_polygon_indices = PackedInt32Array([2, 0, 1, 3])
+	#new_navigation_mesh.add_polygon(new_polygon_indices)
+	#$NavigationRegion2D.navigation_polygon = new_navigation_mesh
 	$NavigationRegion2D.bake_navigation_polygon()
 	
 	roomEmptyCells = _roomEmptyCells
@@ -64,3 +64,7 @@ func _on_navigation_region_2d_bake_finished():
 			%OfficeTileMap.add_child(enemy)
 			enemy.start(enemyCords, enemyGoTo)
 			#print(emptyCells[0])
+
+
+#func _on_navigation_region_2d_navigation_polygon_changed():
+	#print("navigation changed")

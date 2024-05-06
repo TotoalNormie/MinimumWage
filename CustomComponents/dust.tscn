@@ -12,6 +12,7 @@ colors = PackedColorArray(1, 0.854231, 0.554961, 1, 0.674195, 0.455337, 0.07518,
 colors = PackedColorArray(0.660798, 0.541901, 0, 1, 0.881168, 0.296853, 0.00144816, 1)
 
 [node name="Dust" type="CPUParticles2D"]
+scale = Vector2(0.5, 0.5)
 emitting = false
 amount = 20
 one_shot = true
