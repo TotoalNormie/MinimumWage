@@ -14,6 +14,7 @@ const type = 'enemy'
 
 func _ready():
 	$Label.text = str(health)
+	#player = get_parent().get_node("Player")
 	makePath()
 	
 func _physics_process(delta: float) -> void:

@@ -24,6 +24,8 @@ func _ready():
 	print($"../UI/mobile")
 
 func _process(delta):
+	#if $"..".name == "Player" and $"../UI/mobile".visible:
+		#print(joystick.posVector.length())
 	if $"..".name == "Player" and %UI/mobile.visible:
 		print(joystick.posVector.length())
 		var angle
@@ -63,7 +65,9 @@ func attack():
 	if weaponType == 'gun':
 		#print('works')
 		var bullet = bullet_scene.instantiate()
-		get_tree().get_root().get_node('main/game').add_child(bullet)
+		#get_tree().get_root().get_node('main/game').add_child(bullet)
+		self.get_parent().get_parent().add_child(bullet)
+		print(self.get_parent())
 		#add_child(bullet)
 		bullet.start($ShootFrom.global_position, rotation, speed, damage)
 		#print(self.position)

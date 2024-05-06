@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7jvv7l7i16vj"]
 
-[ext_resource type="PackedScene" uid="uid://j1700bl2r8cy" path="res://CustomComponents/Item.tscn" id="1_0geof"]
+[ext_resource type="PackedScene" uid="uid://hwkjxjmxw8mk" path="res://CustomComponents/Item.tscn" id="1_0geof"]
 [ext_resource type="Script" path="res://Scripts/Items/ORS.gd" id="1_82kf1"]
 [ext_resource type="Texture2D" uid="uid://c433svfj6tjj2" path="res://Sprites/ors.png" id="2_ps4m4"]
 
@@ -8,9 +8,12 @@
 script = ExtResource("1_82kf1")
 
 [node name="Item" parent="." instance=ExtResource("1_0geof")]
-texture_filter = 1
 icon = ExtResource("2_ps4m4")
 id = "ORBITAL_CANNON"
 itemName = "Orbital Strike Cannon"
 itemColor = Color(0.654902, 0.105882, 0.305882, 0.980392)
 description = "This is just a tiny 1 use orbital cannon."
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

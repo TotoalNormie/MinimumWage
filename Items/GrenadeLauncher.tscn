@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://djqqaewvt3knq"]
+
+[ext_resource type="Script" path="res://Items/GrenadeLauncher.gd" id="1_kud02"]
+[ext_resource type="PackedScene" uid="uid://hwkjxjmxw8mk" path="res://CustomComponents/Item.tscn" id="2_mwwmr"]
+[ext_resource type="Texture2D" uid="uid://byavxxu50x8cn" path="res://Sprites/grenade_launcher.png" id="3_k1sxi"]
+
+[node name="GrenadeLauncher" type="Node2D"]
+script = ExtResource("1_kud02")
+
+[node name="Item" parent="." instance=ExtResource("2_mwwmr")]
+icon = ExtResource("3_k1sxi")
+id = "GRENADE_LAUNCHER"
+itemName = "Grenade Launcher"
+itemColor = Color(0.208396, 0.45647, 0.510188, 0.980392)
+description = "A grenade launcher."

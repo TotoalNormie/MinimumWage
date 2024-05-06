@@ -7,22 +7,28 @@ signal on_player_death
 # Define movement speed
 @export var speed: float = 400
 @export var health: int = 2
-@export var maxHp: int = 2
-@export var itemSlots: int = 4
+@export var maxHealth: int = 2
+@export var itemSlots: int = 6
 var direction : int = 1
+#@export var inventory: Array = []
 @export var inventory: Dictionary = {}
 var rigidbody: RigidBody2D
 var activeSlot: int = 0
+var money: int = 0
 
 func  _ready():
+	health = maxHealth
+	%HpBar.max_value = maxHealth
+	%HpBar.value = health
+	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
 	#print(OS.has_feature('touchscreen'))
 	if OS.has_feature("mobile"):
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
-	
 	rigidbody = get_node(".")
-	#var slot = preload("res://CustomComponents/InvSlot.tscn")
+	var slot = preload("res://CustomComponents/InvSlot.tscn")
+
 	
 	%UI.itemSlots = itemSlots
 	#for i in range(itemSlots):
@@ -34,6 +40,8 @@ func  _ready():
 
 func hit(amount):
 	health -= amount
+	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
+	%HpBar.value = health
 	#print('attacked')
 	if(health <= 0):
 		#self.queue_free()
@@ -41,10 +49,55 @@ func hit(amount):
 		emit_signal("on_player_death")
 	%UI.hit(health, maxHp)
 
+
 func _physics_process(_delta):
-	#if Input.is_action_just_released("interact"):
-		#damage(1)
+	#print($UI/mobile)
+	# uses the item in the current inventory slot
+	if Input.is_action_just_released("shoot"):
+		#removeFromInventory(inventory.keys()[activeSlot])
+		if len(inventory) > 0 && len(inventory) > activeSlot:
+			inventory[inventory.keys()[activeSlot]]["data"].use()
+			#hit(1)
+
 	# Get user input
+	var prevSlot: int
+	if Input.is_action_just_released("slot1"):
+		if activeSlot <= itemSlots-1:
+			prevSlot = activeSlot
+			activeSlot = 0
+			setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot)
+	if Input.is_action_just_released("slot2"):
+		if activeSlot <= itemSlots-1:
+			prevSlot = activeSlot
+			activeSlot = 1
+			setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot)
+	if Input.is_action_just_released("slot3"):
+		if activeSlot <= itemSlots-1:
+			prevSlot = activeSlot
+			activeSlot = 2
+			setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot)
+	if Input.is_action_just_released("slot4"):
+		if activeSlot <= itemSlots-1:
+			prevSlot = activeSlot
+			activeSlot = 3
+			setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot)
+	if Input.is_action_just_released("slot5"):
+		if activeSlot <= itemSlots-1:
+			prevSlot = activeSlot
+			activeSlot = 4
+			setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot)
+	if Input.is_action_just_released("slot6"):
+		if activeSlot < itemSlots-1:
+			prevSlot = activeSlot
+			activeSlot = 5
+			setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot)
+			
 	if Input.is_action_just_released("inv_down"):
 		if activeSlot < itemSlots-1:
 			activeSlot += 1
@@ -89,14 +142,15 @@ func _physics_process(_delta):
 		self.linear_velocity = Vector2.ZERO
 		$PlayerAnimation.stop()	
 
-	# Update direction based on input (optional for animation)
-	#if input_vector.x != 0:
-		#direction = input_vector.x
 	$PlayerAnimation.scale.x = direction * abs($PlayerAnimation.scale.x)
 
 
 func addToInventory(itemId, itemData):
 	inventory[itemId] = itemData
+	#inventory.append(itemData)
+	#for items in inventory:
+		#print(items.use())
+	#print(inventory)
 	for item in %InvDisplay.get_children():
 		var image = item.get_child(0)
 		var amount = item.get_child(1)
@@ -111,7 +165,27 @@ func getSlots():
 	
 	
 func removeFromInventory(itemId):
+	#print(inventory[itemId])
+	# check if slot has an item
+	var item = %InvDisplay.get_child(activeSlot)
+	var image = item.get_child(0)
+	var amount = item.get_child(1)
+	image.texture = null
+	amount.text = "0"
+	
+	#var player = get_node(".")
+	#var weapon = player.get_child(get_child_count()-1)
+	#player.get_parent().get_node(".").add_child(weapon)
+	#player.remove_child(weapon)
+	# fix this
+	# gets the name of weapon / maybe get weapon node and straigh up reparent
+	#print(player.get_child(get_child_count()-1))
+	# reparent from player to world
+	#print(player.get_children())
+	#var playerItem = get_node()
+	#print(playerItem)
 	inventory.erase(itemId)
+	
 	
 	
 func getItemAmount(itemId):
@@ -144,10 +218,18 @@ func getItems():
 	return count
 
 		
-func setItemAmount(itemId, amount):
+func setItemAmount(itemId, amount, object):
 	if itemId in inventory:
 		if "amount" in inventory[itemId]:
 			inventory[itemId]["amount"] = amount
+			inventory[itemId]["data"] = object
+			#print(inventory)
+			#for item in %InvDisplay.get_children():
+				#print(item.get_child(0).texture)
+				#if inventory[itemId]["icon"] = item.get_child(0)
+				#var image = item.get_child(0)
+				#var amount = item.get_child(1)
+			#print(inventory)
 		else:
 			return 0
 	else:
@@ -156,6 +238,9 @@ func setItemAmount(itemId, amount):
 		
 func changeActiveSlot(slotId):
 	#print(activeSlot)
+	var current = %InvDisplay.get_child(slotId)
+	if current.size.y != current.size.x + 10:
+		current.set_size(current.size + Vector2(0, 10))
 	%UI.changeActiveSlot(slotId)
 	
 	
