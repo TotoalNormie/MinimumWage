@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bpj4cpqmu6c1v"]
+
+[ext_resource type="Shader" path="res://styles/dim.gdshader" id="1_5ef61"]
+
+[sub_resource type="GDScript" id="GDScript_sv4h1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5ef61")
+script = SubResource("GDScript_sv4h1")

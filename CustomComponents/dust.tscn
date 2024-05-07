@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://blx025alth44n"]
+
+[sub_resource type="Curve" id="Curve_5wpm8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.21978), 0.105164, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d2c2d"]
+offsets = PackedFloat32Array(0, 0.953333, 1)
+colors = PackedColorArray(1, 0.854231, 0.554961, 1, 0.674195, 0.455337, 0.07518, 1, 0.351106, 0.22106, 1.44392e-07, 1)
+
+[sub_resource type="Gradient" id="Gradient_dxitl"]
+colors = PackedColorArray(0.660798, 0.541901, 0, 1, 0.881168, 0.296853, 0.00144816, 1)
+
+[node name="Dust" type="CPUParticles2D"]
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.85
+spread = 90.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 100.0
+initial_velocity_max = 151.0
+angle_min = -159.9
+angle_max = 130.9
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_5wpm8")
+color_ramp = SubResource("Gradient_d2c2d")
+color_initial_ramp = SubResource("Gradient_dxitl")

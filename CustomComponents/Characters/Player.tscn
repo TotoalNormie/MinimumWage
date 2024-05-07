@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brh0dmdp0g0fc"]
+[gd_scene load_steps=18 format=3 uid="uid://brh0dmdp0g0fc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_i68s3"]
 [ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/weapons/gun.tscn" id="3_6styo"]
@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://d4htets74hhuc" path="res://Sprites/bar-over.png" id="9_cp88e"]
 [ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
 [ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="10_adb7a"]
+[ext_resource type="Texture2D" uid="uid://byllisrdrv60a" path="res://styles/2d_lights_and_shadows_neutral_point_light.webp" id="14_uqo31"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ys4k5"]
+friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1miov"]
-size = Vector2(54, 96)
+size = Vector2(16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ecmb1"]
 animations = [{
@@ -44,62 +48,103 @@ animations = [{
 }]
 
 [node name="Player" type="RigidBody2D"]
-scale = Vector2(0.85, 0.85)
+modulate = Color(0.482353, 0.482353, 0.482353, 1)
 collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_ys4k5")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_i68s3")
+speed = 50.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.101961)
+texture = ExtResource("14_uqo31")
+texture_scale = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+zoom = Vector2(5, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-2, 0)
+scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_1miov")
 
 [node name="weapon" parent="." instance=ExtResource("3_6styo")]
+z_index = 10
+scale = Vector2(0.9, 1)
+speed = 500
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-scale = Vector2(3, 3)
+scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_ecmb1")
 frame_progress = 0.514365
 speed_scale = 1.5
 
-[node name="Control" type="Control" parent="."]
-z_index = 9
-layout_mode = 3
-anchors_preset = 0
-offset_left = -364.0
-offset_top = -287.0
-offset_right = -64.0
-offset_bottom = -237.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="InvDisplay" type="HBoxContainer" parent="Control"]
+[node name="UI" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
-layout_mode = 1
+z_index = 20
+z_as_relative = false
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -119.0
-offset_top = 93.0004
-offset_right = -119.0
-offset_bottom = 113.0
+offset_top = 3.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_sjdb6")
 
-[node name="HpBar" type="TextureProgressBar" parent="Control"]
+[node name="mobile" type="MarginContainer" parent="CanvasLayer/UI"]
 unique_name_in_owner = true
-texture_filter = 1
 layout_mode = 1
-offset_left = -120.0
-offset_top = 85.0
-offset_right = -70.0
-offset_bottom = 135.0
-rotation = -1.5708
-scale = Vector2(2, 2)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 150
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/mobile"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="joystick" parent="CanvasLayer/UI/mobile/HBoxContainer" instance=ExtResource("8_nleq2")]
+unique_name_in_owner = true
+
+[node name="Button" parent="CanvasLayer/UI/mobile/HBoxContainer" instance=ExtResource("9_t8vbf")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer"]
+layout_mode = 2
+
+[node name="InvDisplay" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+z_index = 20
+layout_mode = 2
+
+[node name="HpBar" type="TextureProgressBar" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+z_index = 20
+texture_filter = 1
+layout_mode = 2
 max_value = 4.0
 nine_patch_stretch = true
 texture_under = ExtResource("8_888pk")
@@ -109,7 +154,7 @@ tint_under = Color(0.4, 0.25098, 0.180392, 1)
 tint_over = Color(0.635294, 0.443137, 0.341176, 1)
 tint_progress = Color(0.705882, 0, 0, 1)
 
-[node name="HpVal" type="RichTextLabel" parent="Control/HpBar"]
+[node name="HpVal" type="RichTextLabel" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/HpBar"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -127,19 +172,3 @@ size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("10_adb7a")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-
-[node name="UI" type="Node2D" parent="."]
-z_index = 10
-script = ExtResource("8_sjdb6")
-
-[node name="mobile" type="Node2D" parent="UI"]
-visible = false
-
-[node name="joystick" parent="UI/mobile" instance=ExtResource("8_nleq2")]
-position = Vector2(-432, 190)
-
-[node name="Button" parent="UI/mobile" instance=ExtResource("9_t8vbf")]
-offset_left = 330.0
-offset_top = 76.0
-offset_right = 519.0
-offset_bottom = 264.0

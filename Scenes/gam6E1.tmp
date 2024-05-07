@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://4oeahh6fs03j"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
+[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="2_ff72a"]
+[ext_resource type="PackedScene" uid="uid://d0kjr4q663teo" path="res://CustomComponents/office_tile_map.tscn" id="4_vo0qb"]
+[ext_resource type="PackedScene" uid="uid://do8jacgvqreqn" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rv6vf"]
+vertices = PackedVector2Array(1652, 376, 2213, 1315, 633, 1590, 49, 88)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(34, 75, 1659, 367, 2230, 1323, 627, 1602)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_kjgl1")
+level = null
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_rv6vf")
+navigation_layers = 3
+
+[node name="OfficeTileMap" parent="NavigationRegion2D" instance=ExtResource("4_vo0qb")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." instance=ExtResource("2_ff72a")]
+unique_name_in_owner = true
+speed = 700.0
+
+[node name="ElevatorTileMap" parent="." instance=ExtResource("5_awoaj")]
+
+[connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]
+[connection signal="level_generated" from="NavigationRegion2D/OfficeTileMap" to="." method="_on_office_tile_map_level_generated"]
+[connection signal="on_level_complete" from="ElevatorTileMap" to="." method="_on_elevator_tile_map_on_level_complete"]

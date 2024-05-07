@@ -65,6 +65,7 @@ _data = {
 
 [node name="StartScreen" type="Control"]
 process_mode = 3
+z_index = 70
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,7 +104,7 @@ theme_override_constants/separation = 30
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
-text = "THE game"
+text = "Minimum Wage"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]

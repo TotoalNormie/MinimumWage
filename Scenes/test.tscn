@@ -1,18 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvoca7gygcwmk"]
+[gd_scene load_steps=11 format=3 uid="uid://bvoca7gygcwmk"]
 
 [ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="1_wr6cs"]
 [ext_resource type="AudioStream" uid="uid://qlo5gswmxrne" path="res://Audio/static.wav" id="2_1oa3c"]
 [ext_resource type="AudioStream" uid="uid://u0fjpddgggwx" path="res://Audio/powerup.wav" id="3_671ul"]
 [ext_resource type="PackedScene" uid="uid://dyv8b3eb4qd5q" path="res://CustomComponents/PowerUp.tscn" id="4_4iula"]
-[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="4_8jysj"]
-[ext_resource type="Texture2D" uid="uid://bxu7cfi0lb04k" path="res://Sprites/crate.png" id="6_r0blu"]
-[ext_resource type="PackedScene" path="res://CustomComponents/Item.tscn" id="7_jj0wj"]
-[ext_resource type="Texture2D" uid="uid://btgjq83640gqs" path="res://Sprites/icon24.png" id="8_qbrir"]
+[ext_resource type="Texture2D" uid="uid://bxkhptnn2d0nf" path="res://Sprites/crate.png" id="6_r0blu"]
+[ext_resource type="PackedScene" path="res://Items/GrenadeLauncher.tscn" id="8_x8nom"]
+[ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="9_7owei"]
 [ext_resource type="PackedScene" uid="uid://c7jvv7l7i16vj" path="res://Items/OrbitalStrikeLaserCannon.tscn" id="9_hwhlq"]
-[ext_resource type="Texture2D" uid="uid://dcyxnrcs8xumg" path="res://Sprites/icon12.png" id="9_mhndq"]
-[ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="10_1wh4p"]
-[ext_resource type="PackedScene" uid="uid://j1700bl2r8cy" path="res://CustomComponents/Item.tscn" id="10_av460"]
 [ext_resource type="Texture2D" uid="uid://d03shh8y6gjmb" path="res://Sprites/icon11.png" id="10_fg7px"]
+[ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="11_lo5lh"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,14 +25,6 @@ editor_description = "Dazas skanas var nedarboties ar so komponenti."
 position = Vector2(219, 99.0001)
 scale = Vector2(0.944, 0.961927)
 sound = ExtResource("2_1oa3c")
-
-[node name="Player" parent="." instance=ExtResource("4_8jysj")]
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(79, 296)
-hp = 10
-maxHp = 10
-itemSlots = 6
 
 [node name="PowerUp" parent="." instance=ExtResource("4_4iula")]
 texture_filter = 1
@@ -61,35 +50,15 @@ icon = ExtResource("10_fg7px")
 powerUpId = "POTION_POWERUP"
 AreaCollider = NodePath("../PowerUp/Area2D/AreaCollider")
 
-[node name="Item" parent="." instance=ExtResource("10_av460")]
-position = Vector2(-183, 206)
-icon = ExtResource("10_fg7px")
-itemColor = Color(0.117647, 0.592157, 0.74902, 1)
-description = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-
-[node name="Item2" parent="." node_paths=PackedStringArray("AreaCollider") instance=ExtResource("10_av460")]
-position = Vector2(-181, 276)
-id = "EXAMPLE_SCROLL"
-itemColor = Color(0.117647, 0.592157, 0.74902, 1)
-AreaCollider = NodePath("../Item/Area2D/AreaCollider")
-description = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-
-[node name="Item3" parent="." node_paths=PackedStringArray("AreaCollider") instance=ExtResource("10_av460")]
-position = Vector2(-183, 344)
-icon = ExtResource("9_mhndq")
-id = "EXAMPLE_JAR"
-itemColor = Color(0.117647, 0.592157, 0.74902, 1)
-AreaCollider = NodePath("../Item/Area2D/AreaCollider")
-description = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-
-[node name="Item4" parent="." node_paths=PackedStringArray("AreaCollider") instance=ExtResource("10_av460")]
-position = Vector2(-183, 411)
-icon = ExtResource("10_1wh4p")
-id = "EXAMPLE_POTION"
-itemName = "Example Potion"
-itemColor = Color(0.117647, 0.592157, 0.74902, 1)
-AreaCollider = NodePath("../Item/Area2D/AreaCollider")
-description = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-
 [node name="OrbitalStrikeCannon" parent="." instance=ExtResource("9_hwhlq")]
 position = Vector2(-182, 137)
+
+[node name="GrenadeLauncher" parent="." instance=ExtResource("8_x8nom")]
+position = Vector2(-80, 27)
+
+[node name="Player" parent="." instance=ExtResource("11_lo5lh")]
+unique_name_in_owner = true
+maxHealth = 10
+
+[node name="Enemy" parent="." instance=ExtResource("9_7owei")]
+position = Vector2(479, 140)

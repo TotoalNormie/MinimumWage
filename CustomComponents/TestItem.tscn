@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbcgs1by84ulh"]
+
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="1_5osgj"]
+[ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="3_ce88a"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="4_34m5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe56v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xc4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6gm4"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.901961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="Item" type="RigidBody2D" node_paths=PackedStringArray("AreaCollider")]
+texture_filter = 1
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_5osgj")
+itemColor = Color(0.47972, 0.463147, 0.930242, 0.980392)
+AreaCollider = NodePath("Area2D/AreaCollider")
+description = "This is an example item."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_ce88a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pe56v")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AreaCollider" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1xc4n")
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+texture_filter = 1
+clip_contents = false
+custom_minimum_size = Vector2(180, 60)
+offset_left = 41.0
+offset_top = -104.0
+offset_right = 261.0
+offset_bottom = -44.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_fonts/normal_font = ExtResource("4_34m5a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d6gm4")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+text_direction = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

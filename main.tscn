@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" path="res://StartLayer.gd" id="2_gym45"]
 [ext_resource type="PackedScene" uid="uid://uh4xphbmf21s" path="res://Scenes/game.tscn" id="2_jehrs"]
+
 [ext_resource type="PackedScene" uid="uid://c6kw13mymrtbi" path="res://Scenes/Screens/StartScreen.tscn" id="2_qvmr2"]
 [ext_resource type="PackedScene" uid="uid://ckbr0h77ranrp" path="res://Scenes/Screens/PauseScreen.tscn" id="6_oi5p2"]
 
 [node name="main" type="Node2D"]
 
+[node name="game" parent="." instance=ExtResource("2_jehrs")]
+
 [node name="PauseLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Pause" parent="PauseLayer" instance=ExtResource("6_oi5p2")]
 z_as_relative = false

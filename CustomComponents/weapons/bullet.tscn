@@ -4,27 +4,30 @@
 [ext_resource type="Texture2D" uid="uid://l6wuiiqquh5p" path="res://Sprites/weapons/glock/bullet.png" id="2_awrda"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h6x3i"]
-radius = 5.71429
-height = 46.0
+radius = 1.90476
+height = 15.2381
 
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_wwswt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-4.76837e-07, 3)
-scale = Vector2(3, 3)
+position = Vector2(0, 1)
 texture = ExtResource("2_awrda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, -1.42109e-14)
 rotation = -1.5708
 scale = Vector2(0.525, 0.525)
 shape = SubResource("CapsuleShape2D_h6x3i")
 one_way_collision = true
 one_way_collision_margin = 20.6
 debug_color = Color(0.611765, 0.443137, 0.8, 0.419608)
+
+[node name="DustFrom" type="Node2D" parent="."]
+position = Vector2(4, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
