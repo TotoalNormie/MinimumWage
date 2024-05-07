@@ -3,13 +3,14 @@ extends Area2D
 var bullet_scene = preload("res://CustomComponents/weapons/bullet.tscn")
 
 @export var damage: float = 0.5
-@export var speed = 1500
+@export var speed = 100
 @export var shootingDelay = 0.5
 @export_enum('gun', 'closeCombat') var weaponType = 'gun'
 var canShoot = true
+var tween: Tween
 
 @onready var sprite = $shape/Sprite2D
-@onready var joystick = $"../UI/mobile/joystick"
+@onready var joystick = $"../CanvasLayer/UI/mobile/HBoxContainer/joystick"
 var joystickAngle = 0
 
 @export_global_file('*.png','*.webp') var sprite_texture_path: String = 'res://Sprites/weapons/glock/New_Piskel.png'
@@ -21,13 +22,11 @@ func _ready():
 		var texture = load(sprite_texture_path)
 		if texture != null:
 			$shape/Sprite2D.texture = texture
-	print($"../UI/mobile")
+
 
 func _process(delta):
-	#if $"..".name == "Player" and $"../UI/mobile".visible:
+	if $"..".name == "Player" and OS.has_feature("mobile"):
 		#print(joystick.posVector.length())
-	if $"..".name == "Player" and %UI/mobile.visible:
-		print(joystick.posVector.length())
 		var angle
 		# Calculate the angle based on the joystick's position vector
 		if joystick.posVector.length() < 0.1 :
@@ -48,9 +47,9 @@ func _process(delta):
 	# Adjust sprite orientation
 	var deg = fmod(rotation_degrees, 360)
 	if abs(deg) > 90 and abs(deg) < 270:
-		sprite.scale.y = abs(sprite.scale.y) * -1
+		scale.y = abs(scale.y) * -1
 	else:
-		sprite.scale.y = abs(sprite.scale.y)
+		scale.y = abs(scale.y)
 	if OS.has_feature('mobile'):
 		if Input.is_action_pressed('shoot_mobile'):
 			attack()
@@ -64,17 +63,29 @@ func _process(delta):
 func attack():
 	if weaponType == 'gun':
 		#print('works')
+		var rand = RandomNumberGenerator.new()
+		var randNum = rand.randf_range(-10, 10)
+		var rotationRand = deg_to_rad(rotation_degrees + randNum)
 		var bullet = bullet_scene.instantiate()
-		#get_tree().get_root().get_node('main/game').add_child(bullet)
-		self.get_parent().get_parent().add_child(bullet)
-		print(self.get_parent())
+		get_tree().get_root().add_child(bullet)
 		#add_child(bullet)
-		bullet.start($ShootFrom.global_position, rotation, speed, damage)
+		#print( speed)
+		bullet.start($ShootFrom.global_position, rotationRand, speed, damage)
+		%MuzzleFlash.emitting = true
 		#print(self.position)
 		canShoot = false
+		recoil()
 	else:
 		pass
 	$Timer.start(shootingDelay)
-	
+
+func recoil():
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property($shape, "rotation_degrees",  -50, shootingDelay * 0.1)	
+	tween.tween_interval(shootingDelay * 0.2)
+	tween.tween_property($shape, "rotation_degrees",  0, shootingDelay * 0.7)
+
 func _on_ShootingDelayTimeout():
 	canShoot = true

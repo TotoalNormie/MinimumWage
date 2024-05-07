@@ -12,7 +12,6 @@ signal on_player_death
 var direction : int = 1
 #@export var inventory: Array = []
 @export var inventory: Dictionary = {}
-var rigidbody: RigidBody2D
 var activeSlot: int = 0
 var money: int = 0
 
@@ -26,9 +25,8 @@ func  _ready():
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
-	rigidbody = get_node(".")
-	var slot = preload("res://CustomComponents/InvSlot.tscn")
-
+	
+	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
 	%UI.itemSlots = itemSlots
 	#for i in range(itemSlots):
@@ -45,9 +43,9 @@ func hit(amount):
 	#print('attacked')
 	if(health <= 0):
 		#self.queue_free()
-		print('dead')
+		#print('dead')
 		emit_signal("on_player_death")
-	%UI.hit(health, maxHp)
+	%UI.hit(health, maxHealth)
 
 
 func _physics_process(_delta):
@@ -111,17 +109,18 @@ func _physics_process(_delta):
 			
 	var input_vector = Vector2.ZERO
 	# Get user input
+	
 	if(!%UI/mobile.visible):
 		if Input.is_action_pressed("move_right"):
 			input_vector.x = 1
 			direction = 1
-		elif Input.is_action_pressed("move_left"):
+		if Input.is_action_pressed("move_left"):
 			input_vector.x = -1
 			direction = -1
 
 		if Input.is_action_pressed("move_down"):
 			input_vector.y = 1
-		elif Input.is_action_pressed("move_up"):
+		if Input.is_action_pressed("move_up"):
 			input_vector.y = -1
 	else:
 		if(joystick.posVector):
@@ -129,18 +128,20 @@ func _physics_process(_delta):
 		else: 
 			input_vector = Vector2(0,0)
 		
-		input_vector = input_vector.normalized()
+	input_vector = input_vector.normalized()
 
 	# Normalize input vector for smooth diagonal movement
 
 	# Apply force based on input and direction
+
 	if input_vector != Vector2.ZERO:
-		self.linear_velocity = input_vector * speed
+		
+		linear_velocity = input_vector * speed
 		$PlayerAnimation.play()
 		#self.apply_central_impulse(input_vector * speed)
 	else:
-		self.linear_velocity = Vector2.ZERO
-		$PlayerAnimation.stop()	
+		linear_velocity = Vector2.ZERO
+		$PlayerAnimation.stop()
 
 	$PlayerAnimation.scale.x = direction * abs($PlayerAnimation.scale.x)
 
@@ -247,8 +248,3 @@ func changeActiveSlot(slotId):
 func setInactiveSlot(slotId):
 	#print(activeSlot)
 	%UI.setInactiveSlot(slotId)
-
-
-
-#func _on_body_entered(body):
-	#print(body)

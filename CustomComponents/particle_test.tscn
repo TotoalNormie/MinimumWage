@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqfqhw5f6eb4y"]
+
+[ext_resource type="Script" path="res://CPUParticles2D.gd" id="1_sg56i"]
+
+[sub_resource type="Curve" id="Curve_i35lg"]
+_data = [Vector2(0.0337079, 1), 0.0, 0.0, 0, 0, Vector2(0.983146, 0.32967), -0.465725, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_wg64n"]
+_data = [Vector2(0.0449438, 1), 0.0, 0.0, 0, 0, Vector2(0.735955, 0.615385), -0.448928, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0dptp"]
+offsets = PackedFloat32Array(0, 0.573333, 1)
+colors = PackedColorArray(0.811169, 0.199247, 0.109373, 1, 0.728112, 0.475686, 0.0977415, 1, 0.623529, 0.360784, 0.152941, 0.313726)
+
+[node name="ParticleTest" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Explosion" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Explosion"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_i35lg")
+script = ExtResource("1_sg56i")
+
+[node name="Fire" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Fire"]
+emitting = false
+amount = 1000
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 12.05
+gravity = Vector2(0, -600)
+radial_accel_min = -60.0
+radial_accel_max = -30.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_wg64n")
+color_ramp = SubResource("Gradient_0dptp")
+
+[node name="Rain" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Rain"]
+position = Vector2(11, -120)
+emitting = false
+amount = 300
+lifetime = 1.4
+emission_shape = 3
+emission_rect_extents = Vector2(300, 0)
+gravity = Vector2(-300, 980)
+scale_amount_max = 1.5
+color = Color(0.239216, 0.498039, 0.952941, 1)
