@@ -25,3 +25,7 @@ func _on_menu_button_pressed():
 
 func _process(_delta):
 	testEsc()
+
+
+func _on_start_layer_replacing_by(node):
+	pass # Replace with function body.
