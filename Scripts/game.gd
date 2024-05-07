@@ -32,6 +32,11 @@ func _on_office_tile_map_level_generated(_roomEmptyCells, levelPosition):
 	#print(roomEmptyCells)
 	#pass
 	
+	for child in %OfficeTileMap.get_children():
+		#if child.name == "Enemy":
+		child.queue_free()
+		
+	
 	#var new_navigation_mesh = NavigationPolygon.new()
 	#var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50), Vector2(50, 0)])
 	#new_navigation_mesh.vertices = levelPosition

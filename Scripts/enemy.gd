@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var health: float = 4
 @export var speed = 0
 @export var damage = 1
-@export var attackRange = 16
+@export var attackRange = 32
 @onready var player = $"../%Player"
 @onready var navAgent := $NavigationAgent2D
 
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.stop()
 	else:
 		$AnimatedSprite2D.play()
-	if abs(rad_to_deg(dir.angle())) > 90 and abs(rad_to_deg(dir.angle())) < 270:
+	if abs(rad_to_deg(dir.angle())) > 95 and abs(rad_to_deg(dir.angle())) < 275:
 		$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * 1
 	else:
 		$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * -1
@@ -84,8 +84,8 @@ func generateRaycast() -> void:
 		rays.append(ray)
 
 func makePath() -> void:
-	#navAgent.target_position = player.global_position
-	navAgent.target_position = goToPoint
+	navAgent.target_position = player.global_position
+	#navAgent.target_position = goToPoint
 	
 	
 	pass

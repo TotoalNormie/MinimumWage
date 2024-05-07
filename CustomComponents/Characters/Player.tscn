@@ -65,7 +65,7 @@ texture_scale = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
-zoom = Vector2(2, 2)
+zoom = Vector2(5, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)
@@ -75,7 +75,7 @@ shape = SubResource("RectangleShape2D_1miov")
 [node name="weapon" parent="." instance=ExtResource("3_6styo")]
 z_index = 10
 scale = Vector2(0.9, 1)
-speed = 800
+speed = 500
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 2

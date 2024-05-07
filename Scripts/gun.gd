@@ -69,7 +69,7 @@ func attack():
 		var bullet = bullet_scene.instantiate()
 		get_tree().get_root().add_child(bullet)
 		#add_child(bullet)
-		print( speed)
+		#print( speed)
 		bullet.start($ShootFrom.global_position, rotationRand, speed, damage)
 		%MuzzleFlash.emitting = true
 		#print(self.position)

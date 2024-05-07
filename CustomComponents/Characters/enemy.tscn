@@ -67,9 +67,7 @@ path_desired_distance = 30.0
 target_desired_distance = 16.0
 path_max_distance = 70.0
 navigation_layers = 3
-debug_enabled = true
 debug_use_custom = true
-debug_path_custom_color = Color(1, 0.254902, 1, 1)
 debug_path_custom_point_size = 5.4
 
 [node name="Timer" type="Timer" parent="."]
@@ -80,6 +78,7 @@ autostart = true
 wait_time = 2.5
 
 [node name="Weapon" type="Node2D" parent="."]
+z_index = 9
 script = ExtResource("3_3c7vx")
 
 [node name="Area2D" type="Area2D" parent="Weapon"]
