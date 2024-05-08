@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://u0fjpddgggwx" path="res://Audio/powerup.wav" id="3_671ul"]
 [ext_resource type="PackedScene" uid="uid://dyv8b3eb4qd5q" path="res://CustomComponents/PowerUp.tscn" id="4_4iula"]
 [ext_resource type="Texture2D" uid="uid://bxkhptnn2d0nf" path="res://Sprites/crate.png" id="6_r0blu"]
-[ext_resource type="PackedScene" path="res://Items/GrenadeLauncher.tscn" id="8_x8nom"]
+[ext_resource type="PackedScene" uid="uid://djqqaewvt3knq" path="res://Items/GrenadeLauncher.tscn" id="8_x8nom"]
 [ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="9_7owei"]
 [ext_resource type="PackedScene" uid="uid://c7jvv7l7i16vj" path="res://Items/OrbitalStrikeLaserCannon.tscn" id="9_hwhlq"]
 [ext_resource type="Texture2D" uid="uid://d03shh8y6gjmb" path="res://Sprites/icon11.png" id="10_fg7px"]

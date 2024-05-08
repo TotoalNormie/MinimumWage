@@ -42,5 +42,6 @@ func changeActiveSlot(slotId):
 func setInactiveSlot(slotId):
 	#print(activeSlot)
 	var current = %InvDisplay.get_child(slotId)
-	current.set_size(current.size - Vector2(0, 10))
+	if current:
+		current.set_size(current.size - Vector2(0, 10))
 	
