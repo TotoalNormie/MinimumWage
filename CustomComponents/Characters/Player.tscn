@@ -129,8 +129,10 @@ size_flags_horizontal = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 49.0
+offset_bottom = 41.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer"]
 layout_mode = 2
@@ -144,6 +146,7 @@ layout_mode = 2
 unique_name_in_owner = true
 z_index = 20
 texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 max_value = 4.0
 nine_patch_stretch = true
@@ -161,13 +164,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 33.5002
-offset_top = -5.97292e-05
-offset_right = 33.5002
-offset_bottom = -25.0001
+offset_top = 15.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5708
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("10_adb7a")
 theme_override_font_sizes/normal_font_size = 14

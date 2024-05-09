@@ -97,7 +97,7 @@ func _physics_process(_delta):
 			changeActiveSlot(activeSlot)
 			
 	if Input.is_action_just_released("inv_down"):
-		if activeSlot < itemSlots-1:
+		if activeSlot < itemSlots-2:
 			activeSlot += 1
 			setInactiveSlot(activeSlot-1)
 			changeActiveSlot(activeSlot)
@@ -240,10 +240,11 @@ func setItemAmount(itemId, amount, object):
 func changeActiveSlot(slotId):
 	#print(activeSlot)
 	var current = %InvDisplay.get_child(slotId)
-	if current.size.y != current.size.x + 10:
-		current.set_size(current.size + Vector2(0, 10))
-	%UI.changeActiveSlot(slotId)
-	
+	if current:
+		if current.size.y != current.size.x + 10:
+			current.set_size(current.size + Vector2(0, 10))
+		%UI.changeActiveSlot(slotId)
+		
 	
 func setInactiveSlot(slotId):
 	#print(activeSlot)

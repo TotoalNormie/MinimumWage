@@ -9,6 +9,7 @@ script = ExtResource("1_kud02")
 
 [node name="Item" parent="." instance=ExtResource("2_mwwmr")]
 icon = ExtResource("3_k1sxi")
+itemSize = 0.2
 id = "GRENADE_LAUNCHER"
 itemName = "Grenade Launcher"
 itemColor = Color(0.208396, 0.45647, 0.510188, 0.980392)

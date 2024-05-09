@@ -9,6 +9,7 @@ script = ExtResource("1_82kf1")
 
 [node name="Item" parent="." instance=ExtResource("1_0geof")]
 icon = ExtResource("2_ps4m4")
+itemSize = 0.2
 id = "ORBITAL_CANNON"
 itemName = "Orbital Strike Cannon"
 itemColor = Color(0.654902, 0.105882, 0.305882, 0.980392)
