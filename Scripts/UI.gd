@@ -12,7 +12,7 @@ func _ready():
 		%InvDisplay.visible = true
 		%HpBar.visible = true
 	var slot = preload("res://CustomComponents/InvSlot.tscn")
-	for i in range(itemSlots):
+	for i in range(itemSlots+1):
 		var slotUi = slot.instantiate()
 		slotUi.name = "Slot {int}".format({"int": i})
 		slotUi.set_size(Vector2(50, 50))
@@ -34,7 +34,7 @@ func hit(health, maxHp):
 	%HpVal.text = "[center]" + str(ceil((100/maxHp) * health)) + "%[/center]"
 
 func changeActiveSlot(slotId):
-	#print(activeSlot)
+	print(activeSlot)
 	var current = %InvDisplay.get_child(slotId)
 	current.set_size(current.size + Vector2(0, 10))
 	

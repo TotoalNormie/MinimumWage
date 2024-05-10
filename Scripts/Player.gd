@@ -51,7 +51,7 @@ func hit(amount):
 func _physics_process(_delta):
 	#print($UI/mobile)
 	# uses the item in the current inventory slot
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		#removeFromInventory(inventory.keys()[activeSlot])
 		if len(inventory) > 0 && len(inventory) > activeSlot:
 			inventory[inventory.keys()[activeSlot]]["data"].use()
@@ -90,7 +90,7 @@ func _physics_process(_delta):
 			setInactiveSlot(prevSlot)
 			changeActiveSlot(activeSlot)
 	if Input.is_action_just_released("slot6"):
-		if activeSlot < itemSlots-1:
+		if activeSlot < itemSlots - 1:
 			prevSlot = activeSlot
 			activeSlot = 5
 			setInactiveSlot(prevSlot)
@@ -98,14 +98,14 @@ func _physics_process(_delta):
 			
 	if Input.is_action_just_released("inv_down"):
 		if activeSlot < itemSlots-1:
+			setInactiveSlot(activeSlot)
 			activeSlot += 1
-			setInactiveSlot(activeSlot-1)
 			changeActiveSlot(activeSlot)
 	if Input.is_action_just_released("inv_up"):
 		if activeSlot > 0:
-			activeSlot -= 1
 			changeActiveSlot(activeSlot)
-			setInactiveSlot(activeSlot+1)
+			activeSlot -= 1
+			setInactiveSlot(activeSlot)
 			
 	var input_vector = Vector2.ZERO
 	# Get user input
@@ -240,6 +240,7 @@ func setItemAmount(itemId, amount, object):
 func changeActiveSlot(slotId):
 	#print(activeSlot)
 	var current = %InvDisplay.get_child(slotId)
+	if !current: return 0
 	if current.size.y != current.size.x + 10:
 		current.set_size(current.size + Vector2(0, 10))
 	%UI.changeActiveSlot(slotId)

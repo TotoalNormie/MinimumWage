@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://k20fk0vqir3s"]
+[gd_scene load_steps=11 format=3 uid="uid://k20fk0vqir3s"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_u6wxt"]
 [ext_resource type="Texture2D" uid="uid://b2cw8ss8psrr5" path="res://Sprites/enemy/guard/GINGER.png" id="2_uhao4"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dsn0muajs33ar" path="res://Sprites/enemy/guard/GINGER_2.png" id="4_7mjv2"]
 [ext_resource type="Texture2D" uid="uid://0phl3g1e4e82" path="res://Sprites/enemy/guard/GINGER_3.png" id="5_r7gmj"]
 [ext_resource type="Texture2D" uid="uid://cwwm4eraiolmq" path="res://Sprites/weapons/bat/BAT.png" id="7_vqir8"]
-[ext_resource type="Texture2D" uid="uid://cyo461785bwvu" path="res://styles/Untitled11_20240509221828.png" id="8_oms67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnntm"]
 size = Vector2(15, 29.571)
@@ -43,7 +42,10 @@ collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_u6wxt")
-speed = 50
+health = null
+speed = 200
+damage = null
+attackRange = null
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-2, -18)
@@ -67,21 +69,15 @@ sprite_frames = SubResource("SpriteFrames_6yjui")
 speed_scale = 3.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 8.0
-path_max_distance = 500.0
+path_desired_distance = 30.0
+target_desired_distance = 16.0
+path_max_distance = 70.0
 navigation_layers = 3
-avoidance_enabled = true
-radius = 32.0
-max_neighbors = 5
-time_horizon_agents = 4.0
-time_horizon_obstacles = 1.0
-max_speed = 50.0
-avoidance_layers = 3
-avoidance_mask = 3
-debug_path_custom_color = Color(0.760784, 0.756863, 0, 1)
+debug_use_custom = true
+debug_path_custom_point_size = 5.4
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 autostart = true
 
 [node name="AttackTime" type="Timer" parent="."]
@@ -112,17 +108,12 @@ wait_time = 0.7
 [node name="isAttacking" type="Timer" parent="Weapon"]
 wait_time = 7.0
 
-[node name="Rays" type="Node2D" parent="Weapon"]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 14.29
+avoidance_layers = 3
 
-[node name="PointLight2D" type="PointLight2D" parent="Weapon"]
-visible = false
-position = Vector2(89, 1)
-rotation = 3.14159
-shadow_enabled = true
-texture = ExtResource("8_oms67")
-texture_scale = 0.2
+[node name="Rays" type="Node2D" parent="."]
 
-[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]
 [connection signal="body_entered" from="Weapon/Area2D" to="Weapon" method="_on_area_2d_body_entered"]

@@ -2,6 +2,7 @@ extends TileMap
 
 var canInteract = false
 var start = false
+var outside = false
 #var buttonTween: Tween
 var canvasTween: Tween
 var elevatorDoors = Vector2.ZERO
@@ -12,6 +13,30 @@ func _ready():
 	#print(tile_set.get_pattern(7))
 	#set_pattern(0, Vector2i(0, 0), tile_set.get_pattern(0))
 	generateLevel()
+	changeState()
+
+func changeState():
+	
+	if outside:
+		set_cell(0, Vector2i(8, 4), 8, Vector2i(0, 0))		
+	elif start:
+		#if canvasTween:
+			#canvasTween.kill()
+		#canvasTween = create_tween()
+		#var modulate_color : Color
+		#modulate_color.r = 255 # RGB is the color
+		#modulate_color.g = 255
+		#modulate_color.b = 255
+		#modulate_color.a = 0 # A is alpha aka transparency
+		#canvasTween.tween_property($Sprite2D, 'modulate', modulate_color, 1)
+		
+		#$CanvasModulate2.visible = 1
+		$CanvasModulate.color = Color(1, 1, 1, 255)
+		set_cell(0, Vector2i(8, 4), 9, Vector2i(0, 0))
+	else:
+		#$CanvasModulate2.visible = 
+		$CanvasModulate.color = Color(0, 0, 0, 255)
+		set_cell(0, Vector2i(8, 4), 8, Vector2i(0, 0))
 
 func _process(delta):
 	#print(start)
@@ -31,23 +56,7 @@ func _process(delta):
 	if Input.is_action_pressed('interact'):
 		#print('e pressed')
 		$Button.emit_signal('pressed')
-	if start:
-		#if canvasTween:
-			#canvasTween.kill()
-		#canvasTween = create_tween()
-		#var modulate_color : Color
-		#modulate_color.r = 255 # RGB is the color
-		#modulate_color.g = 255
-		#modulate_color.b = 255
-		#modulate_color.a = 0 # A is alpha aka transparency
-		#canvasTween.tween_property($Sprite2D, 'modulate', modulate_color, 1)
-		
-		$CanvasModulate.visible = 0
-		set_cell(0, Vector2i(8, 4), 9, Vector2i(0, 0))
-	else:
-		$CanvasModulate.visible = 1
-		set_cell(0, Vector2i(8, 4), 8, Vector2i(0, 0))
-		
+	
 		#if canvasTween:
 			#canvasTween.kill()
 		#canvasTween = create_tween()
@@ -63,6 +72,7 @@ func _process(delta):
 func generateLevel():
 	var elevatorWalls = tile_set.get_pattern(6)
 	var elevatorFloor = tile_set.get_pattern(7)
+	
 	#var floor = tile_set.get_pattern(8)
 	#var middle = tile_set.get_pattern(3)
 	#var elevatorOffset = 5
@@ -104,11 +114,20 @@ func _on_area_2d_body_entered(body):
 		#print(canInteract)d
 	canInteract = true
 	start = false
+	outside = false
+	
 
 
 func _on_area_2d_body_exited(body):
 	canInteract = false
+	changeState()	
 	
 
 func _on_button_pressed():
 	start = true
+	changeState()
+
+
+func _on_elavator_whole_body_exited(body):
+	outside = true
+	changeState()	

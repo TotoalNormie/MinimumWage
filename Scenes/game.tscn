@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://4oeahh6fs03j"]
+[gd_scene load_steps=10 format=3 uid="uid://4oeahh6fs03j"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="2_ff72a"]
 [ext_resource type="PackedScene" uid="uid://d0kjr4q663teo" path="res://CustomComponents/office_tile_map.tscn" id="4_vo0qb"]
 [ext_resource type="PackedScene" uid="uid://do8jacgvqreqn" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
+[ext_resource type="Texture2D" uid="uid://dcw3h7lyc6t17" path="res://Sprites/sus.png" id="5_hxgrv"]
 
 [sub_resource type="Gradient" id="Gradient_dyct6"]
 colors = PackedColorArray(1.81694e-06, 0.426875, 2.88785e-07, 1, 0.110444, 0.249584, 0.108495, 1)
@@ -11,11 +12,11 @@ colors = PackedColorArray(1.81694e-06, 0.426875, 2.88785e-07, 1, 0.110444, 0.249
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lymv3"]
 noise_type = 0
 seed = 100
-frequency = 0.5152
+frequency = 0.32
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f5w3c"]
-width = 500
-height = 500
+width = 1000
+height = 1000
 color_ramp = SubResource("Gradient_dyct6")
 noise = SubResource("FastNoiseLite_lymv3")
 
@@ -31,8 +32,8 @@ script = ExtResource("1_kjgl1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
 texture_filter = 1
-position = Vector2(1262, 1001)
-scale = Vector2(7.977, 6.068)
+position = Vector2(1028, 790)
+scale = Vector2(2.41, 2)
 texture = SubResource("NoiseTexture2D_f5w3c")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -45,10 +46,17 @@ scale = Vector2(1, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_ff72a")]
 unique_name_in_owner = true
-position = Vector2(-2195, -1142)
+position = Vector2(278, 80)
 speed = 100.0
 
 [node name="ElevatorTileMap" parent="." instance=ExtResource("5_awoaj")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.454902)
+position = Vector2(-152.5, 609.25)
+scale = Vector2(0.385135, 0.118687)
+texture = ExtResource("5_hxgrv")
 
 [connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]
 [connection signal="navigation_polygon_changed" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_navigation_polygon_changed"]
