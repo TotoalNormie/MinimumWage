@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://0aasqash5egl"]
+
+[ext_resource type="Script" path="res://CustomComponents/powerup/health_poweru.gd" id="1_adjm8"]
+[ext_resource type="PackedScene" uid="uid://dyv8b3eb4qd5q" path="res://CustomComponents/PowerUp.tscn" id="1_pa8mm"]
+
+[node name="Health" type="Node2D"]
+script = ExtResource("1_adjm8")
+
+[node name="RigidBody2D" parent="." instance=ExtResource("1_pa8mm")]
+unique_name_in_owner = true
+id = "HEALTH"
+description = "This is an health powerup. It heals you."
+powerUpId = "HEALTH_POWERUP"
+powerUpName = "Health Powerup"
