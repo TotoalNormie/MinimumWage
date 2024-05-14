@@ -51,6 +51,8 @@ func hit(amount):
 func _physics_process(_delta):
 	#print($UI/mobile)
 	# uses the item in the current inventory slot
+	%HpBar.value = health
+	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
 	if Input.is_action_just_released("shoot"):
 		#removeFromInventory(inventory.keys()[activeSlot])
 		if len(inventory) > 0 && len(inventory) > activeSlot:
@@ -241,7 +243,7 @@ func changeActiveSlot(slotId):
 	#print(activeSlot)
 	var current = %InvDisplay.get_child(slotId)
 	if current:
-		if current.size.y != current.size.x + 10:
+		if current.size.y < current.size.x + 10:
 			current.set_size(current.size + Vector2(0, 10))
 		%UI.changeActiveSlot(slotId)
 		

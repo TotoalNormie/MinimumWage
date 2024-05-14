@@ -12,6 +12,8 @@ var sprite: Sprite2D
 var data: Dictionary = {}
 var touching: bool = false
 var player: Node
+var loadedItem
+var currentItemScene
 
 
 
@@ -21,6 +23,7 @@ func _ready():
 	data["amount"] = 1
 	data["icon"] = icon
 	data["type"] = type
+	data["data"] = self.get_parent()
 	$Tooltip.visible = false
 	size *= 27
 	sprite = get_node("Sprite2D")
@@ -40,6 +43,8 @@ func _ready():
 	# Set scale using a Vector2 object
 	sprite.scale = final_scale
 	$Tooltip.text = "[center]" + powerUpName + "\n" + description + "[/center]"
+	#currentItemScene = self.get_parent().scene_file_path
+	#loadedItem = load(currentItemScene)
 
 
 func _on_area_2d_mouse_entered():
@@ -69,9 +74,13 @@ func _input(event):
 		#if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots:
 		if player.getItemAmount(id) == 0 && player.getPowerUp() < 2 && player.getSlots() < player.itemSlots:
 			player.addToInventory(id, data)
-			self.queue_free()
-		elif player.getItemAmount(id) != 0:
-			player.setItemAmount(id, player.getItemAmount(id)+1)
-			self.queue_free()
+			#print(id)
+			#print(player.inventory[id]["data"].get_children())
+						
+			#self.queue_free()
+			get_parent().remove_child(self)
+		#elif player.getItemAmount(id) != 0:
+			#player.setItemAmount(id, player.getItemAmount(id)+1)
+			#self.queue_free()
 
 

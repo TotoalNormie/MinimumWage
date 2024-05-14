@@ -87,7 +87,7 @@ func _input(event):
 			#setCount(1)
 			#print(getCount())
 			get_parent().remove_child(self)
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("interact"):
 		if get_parent().get_parent().name == "Player":
 			#print(get_parent().get_parent())
 			self.get_parent().get_parent().money += 20
