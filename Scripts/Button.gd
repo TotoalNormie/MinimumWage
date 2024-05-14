@@ -1,15 +1,19 @@
 extends Button
 
 
-# Called when the node enters the scene tree for the first timedwa.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+	print("pressing")
+	
 
 func _on_button_down():
 	Input.action_press("shoot_mobile")
+	print("pressing")
+
+
+func _on_button_up():
+	Input.action_release("shoot_mobile")
+	
+
+
+func _on_mouse_entered():
+	print("hovering")

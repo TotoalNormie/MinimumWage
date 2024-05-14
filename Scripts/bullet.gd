@@ -9,12 +9,13 @@ func _ready():
 	pass
 
 func start(_position, _direction, _speed, _damage):
+	print(_direction)
 	rotation = _direction
 	global_position = _position
-	#print(position)
+	##print(position)
 	speed = _speed
 	damage = _damage
-	#print("Start bullet.gd: ", damage)
+	##print("Start bullet.gd: ", damage)
 	velocity = Vector2(speed, 0).rotated(_direction)
 
 # Called every frame. 'delta' is the elapstime since the previous frame.
@@ -26,10 +27,10 @@ func _process(delta) -> void:
 			#print("Process bullet.gd: ", damage)
 			collision.get_collider().hit(damage)
 		var dust = dustScene.instantiate()
-		get_tree().get_root().add_child(dust)
-		dust.global_position = $DustFrom.global_position
-		dust.rotation = rotation + PI
-		
-		dust.emitting = true
+		#get_tree().get_root().add_child(dust)
+		#dust.global_position = $DustFrom.global_position
+		#dust.rotation = rotation + PI
+		#
+		#dust.emitting = true
 		#print(dust)
 		queue_free()

@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var health: float = 4
 @export var speed = 0
 @export var damage = 1
-@export var attackRange = 32
+@export var attackRange = 40
 @onready var player = $"../%Player"
 @onready var navAgent := $NavigationAgent2D
 
@@ -19,6 +19,7 @@ var canAttack = true
 var spawnPoint: Vector2
 var goToPoint: Vector2
 var rotationSpeed := 3.0
+var isLookingAround = false
 
 const type = 'enemy'
 
@@ -29,27 +30,27 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	var nextPosition = navAgent.get_next_path_position()
 	var dir = to_local(nextPosition).normalized()
-	doesSeePlayer = false
 	for ray in $Weapon/Rays.get_children():
-		#if ray.is_colliding(): 
-			#print(ray.get_collider().name)
 		if ray.is_colliding() and ray.get_collider().name == "Player":
-			doesSeePlayer = true
+			startSeesPlayerTimer()
 			break
-
-	#$Weapon.look_at(navAgent.get_next_path_position())
+	$Exclamation.visible = false
 	rotateToTarget(dir, delta)
-	
 	var intendedVelocity = speed * dir
+	if doesSeePlayer:
+		intendedVelocity = speed * 1.6 * dir
+		$Exclamation.visible = true
+		
 	navAgent.set_velocity(intendedVelocity)
-	#velocity = Vector2.ZERO
-	#print(navAgent.get_next_path_position(), " ", navAgent.get_next_path_position() )
-	#print(canAttack)
+
+func lookAround():
+	isLookingAround = true
+	$LookAround.start()
+	
 
 func start(_spawnPoint, _goToPoint):
 	spawnPoint = _spawnPoint
 	goToPoint = _goToPoint
-	#print(goToPoint)
 	global_position = spawnPoint
 	makePath()
 
@@ -71,6 +72,7 @@ func makePath() -> void:
 		else:
 			navAgent.target_position = goToPoint
 			target = 'goToPoint'
+		lookAround()
 	else:
 		if target == 'goToPoint':
 			target = 'goToPoint'
@@ -84,8 +86,6 @@ func makePath() -> void:
 	elif target == 'player':
 		target = 'spawnPoint'
 		navAgent.target_position = spawnPoint
-	#print(navAgent.is_navigation_finished())
-	#print(target, " ", navAgent.is_navigation_finished())
 
 
 
@@ -95,10 +95,16 @@ func rotateToTarget(target, delta):
 
 func hit(amount):
 	health -= amount
+	startSeesPlayerTimer()
+	
 	$Node2D/Label.text = str(health)
 	
 	if(health <= 0):
 		self.queue_free()
+
+func startSeesPlayerTimer():
+	doesSeePlayer = true
+	$seesPlayer.start()
 
 func _on_timer_timeout():
 	makePath()
@@ -110,19 +116,16 @@ func _on_attack_time_timeout():
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
-	if global_position.distance_to(player.global_position) <= attackRange:
+	if global_position.distance_to(player.global_position) <= attackRange and doesSeePlayer:
 		velocity = Vector2.ZERO
 		if canAttack: 
 			$Weapon.attack(damage)
 			canAttack = false
 			$AttackTime.start()
 			
-	else:
-		$AttackTime.stop()
 	
-	if $Weapon.isAttacking or $Weapon.isCharging or !navAgent.is_target_reachable():
+	if $Weapon.isAttacking or $Weapon.isCharging or !navAgent.is_target_reachable() or isLookingAround:
 		velocity = Vector2.ZERO
-	#print(velocity)
 
 	if velocity == Vector2.ZERO:
 		$AnimatedSprite2D.stop()
@@ -132,5 +135,12 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 		$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * 1
 	else:
 		$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * -1
-	#print(velocity)
 	move_and_slide()
+
+
+func _on_sees_player_timeout():
+	doesSeePlayer = false
+
+
+func _on_look_around_timeout():
+	isLookingAround = false

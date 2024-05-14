@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hwkjxjmxw8mk"]
+[gd_scene load_steps=8 format=3 uid="uid://6k8tb3xj2gs5"]
 
 [ext_resource type="Script" path="res://Scripts/ItemTest.gd" id="1_a2n64"]
 [ext_resource type="Texture2D" uid="uid://v00lgsky5upv" path="res://Sprites/icon1.png" id="2_ej8vi"]
@@ -44,6 +44,7 @@ shape = SubResource("RectangleShape2D_pe56v")
 shape = SubResource("RectangleShape2D_1xc4n")
 
 [node name="Tooltip" type="RichTextLabel" parent="."]
+z_index = 15
 texture_filter = 1
 clip_contents = false
 custom_minimum_size = Vector2(180, 60)
@@ -61,7 +62,16 @@ scroll_active = false
 shortcut_keys_enabled = false
 text_direction = 1
 
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -18.0
+offset_top = -16.0
+offset_right = 18.0
+offset_bottom = 18.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvh87s83kf0de"]
+
+[ext_resource type="PackedScene" uid="uid://6k8tb3xj2gs5" path="res://CustomComponents/Item.tscn" id="1_mwfxg"]
+[ext_resource type="Texture2D" uid="uid://bkoix11ci8sep" path="res://images/Untitled12_20240510085554.png" id="2_ts0l0"]
+
+[node name="ElevatorCard" type="Node2D"]
+modulate = Color(0.466667, 0.466667, 0.466667, 1)
+
+[node name="Item" parent="." instance=ExtResource("1_mwfxg")]
+collision_layer = 0
+icon = ExtResource("2_ts0l0")
+id = "ELEVATOR_CARD"
+itemName = "Elevator card"
+itemColor = Color(0.054902, 0.188235, 0.231373, 0.980392)
+description = "Use this card to advance to the next level."

@@ -2,7 +2,7 @@ extends RigidBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var joystick = %UI/mobile/joystick
+@onready var joystick = %joystick
 signal on_player_death
 # Define movement speed
 @export var speed: float = 400
@@ -22,9 +22,11 @@ func  _ready():
 	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
 	#print(OS.has_feature('touchscreen'))
 	if OS.has_feature("mobile"):
+	#if true:
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
+	print(%joystick)
 	
 	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
@@ -53,9 +55,10 @@ func _physics_process(_delta):
 	# uses the item in the current inventory slot
 	if Input.is_action_just_pressed("shoot"):
 		#removeFromInventory(inventory.keys()[activeSlot])
-		if len(inventory) > 0 && len(inventory) > activeSlot:
-			inventory[inventory.keys()[activeSlot]]["data"].use()
+		#if len(inventory) > 0 && len(inventory) > activeSlot:
+			#indventory[inventory.keys()[activeSlot]]["data"].use()
 			#hit(1)
+		pass
 
 	# Get user input
 	var prevSlot: int
@@ -121,13 +124,13 @@ func _physics_process(_delta):
 			input_vector.y = 1
 		if Input.is_action_pressed("move_up"):
 			input_vector.y = -1
+		input_vector = input_vector.normalized()
 	else:
 		if(joystick.posVector):
 			input_vector = joystick.posVector
 		else: 
 			input_vector = Vector2(0,0)
 		
-	input_vector = input_vector.normalized()
 
 	# Normalize input vector for smooth diagonal movement
 
@@ -141,8 +144,18 @@ func _physics_process(_delta):
 	else:
 		linear_velocity = Vector2.ZERO
 		$PlayerAnimation.stop()
-
-	$PlayerAnimation.scale.x = direction * abs($PlayerAnimation.scale.x)
+	if(!%UI/mobile.visible):	
+		$PlayerAnimation.scale.x = direction * abs($PlayerAnimation.scale.x)
+	else:
+		var deg = fmod(rad_to_deg(position.angle_to(input_vector)), 360)
+		var playerDirection
+		if abs(deg) > 90 and abs(deg) < 270:
+			playerDirection = -1
+		else:
+			playerDirection = 1
+		print(deg)
+		$PlayerAnimation.scale.x = playerDirection * abs($PlayerAnimation.scale.x)
+		
 
 
 func addToInventory(itemId, itemData):
@@ -158,7 +171,7 @@ func addToInventory(itemId, itemData):
 			image.texture = inventory[itemId]["icon"]
 			amount.text = str(inventory[itemId]["amount"])
 			break
-		
+	print(inventory)
 	
 func getSlots():
 	return len(inventory)
