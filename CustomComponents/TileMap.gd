@@ -3,15 +3,8 @@ extends TileMap
 
 var elevatorDoors = Vector2.ZERO
 signal level_generated(roomEmptyCells: Array, levelPosition: Array)
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	#print(tile_set.get_pattern(7))
-	#set_pattern(0, Vector2i(0, 0), tile_set.get_pattern(0))
-	#generateLevel()
-	pass
 
-
-func generateLevel(level = 1):
+func generateLevel(level = 1, levelOffset = 2, levelRepeatAfter = 3):
 	var elevatorWalls = tile_set.get_pattern(6)
 	var elevatorFloor = tile_set.get_pattern(7)
 	var floor = tile_set.get_pattern(8)
@@ -20,60 +13,61 @@ func generateLevel(level = 1):
 	var roomLength = 16
 	var middlePoint = roomLength / 2
 	var roomEmptyCells: Array
-	var levelPosition: PackedVector2Array
-	var leveLength = 2 #in rooms
-	var levelHeight= 2 #in rooms
+	var levelPosition: Dictionary
+	var levelCalc = 1 if level <= levelOffset else int(ceil((level - levelOffset) / float(levelRepeatAfter)))
+	var roomBlockWith = ceil(levelCalc / 3.0)
+	var levelLength #in rooms
+	var levelHeight #in rooms
+	print(levelCalc, " ", type_string(typeof(levelCalc)))
+	var levelState = levelCalc % 3
 	
+	if level <= levelOffset:
+		levelLength = 1
+		levelHeight = 1
+	elif levelState == 1:
+		levelLength = roomBlockWith * 2
+		levelHeight = roomBlockWith
+	elif levelState == 2:
+		levelLength = roomBlockWith
+		levelHeight = roomBlockWith * 2
+	else:
+		levelLength = roomBlockWith * 2
+		levelHeight = roomBlockWith * 2
+	
+	#print(levelLength, " ", levelHeight, " idth: ", roomBlockWith)
 	
 	clear()
-	#print(Vector2i(0, 2) % 2)
+
 	
 	for row in levelHeight:
-		for col in leveLength:
-			var roomId
+		for col in levelLength:
 			var rng = RandomNumberGenerator.new()
-			if row == 1 and col == 1:
-				roomId = 3
-			else:
-				roomId = rng.randi_range(0, 4)
-				if roomId == 3: 
-					roomId += 1
+			var roomId = rng.randi_range(0, 5)
 			
 			var RoomCords = Vector2i(roomLength * col, roomLength * row + elevatorOffset)
 			var RoomCordsLast = Vector2i(RoomCords.x + roomLength, RoomCords.y + roomLength)
-				
-				
-				
-			#print(row, col, Vector2i(roomLength * col, roomLength * row + elevatorOffset))\
+			
 			set_pattern(0, RoomCords, tile_set.get_pattern(roomId))
 			set_pattern(1, RoomCords, floor)
 			if row == 0 and col != 0:
 				set_cell(0, Vector2i(RoomCords.x + middlePoint, RoomCords.y), 1, Vector2i(1, 0))
-			elif row == levelHeight - 1:
+			if row == levelHeight - 1:
 				set_cell(0, Vector2i(RoomCords.x + middlePoint, RoomCords.y + roomLength), 1, Vector2i(1, 0))
 			
 			var emptyCells = getEmptyCells(RoomCords, RoomCordsLast)
 			roomEmptyCells.append(emptyCells)
+			#print("col: ", col, " row: ", row)
 			if row == 0 and col == 0:
-				levelPosition.append(getGlobalPosition(RoomCords))
-				set_cell(0, RoomCords, 7, Vector2i(0, 0))
-				print(RoomCords)
-			elif row == 0 and col == leveLength - 1:
-				levelPosition.append(getGlobalPosition(Vector2i(RoomCordsLast.x, RoomCords.y)))
-				set_cell(0, Vector2i(RoomCordsLast.x, RoomCords.y), 7, Vector2i(0, 0))
-				print(Vector2i(RoomCordsLast.x, RoomCords.y))
-				
-			elif row == leveLength - 1 and col == 0:
-				levelPosition.append(getGlobalPosition(Vector2i(RoomCords.x, RoomCordsLast.y)))
-				set_cell(0, Vector2i(RoomCords.x, RoomCordsLast.y), 7, Vector2i(0, 0))
-				print(Vector2i(RoomCords.x, RoomCordsLast.y))
-				
-			elif row == leveLength - 1 and col == leveLength - 1:
-				levelPosition.append(getGlobalPosition(RoomCordsLast))
-				set_cell(0, RoomCordsLast, 7, Vector2i(0, 0))
-				print(RoomCordsLast)
+				levelPosition["topLeft"] = getGlobalPosition(RoomCords)
+			if row == 0 and col == levelLength - 1:
+				levelPosition["topRight"] = getGlobalPosition(Vector2i(RoomCordsLast.x, RoomCords.y))
+			if row == levelHeight - 1 and col == 0:
+				levelPosition["bottomLeft"] = getGlobalPosition(Vector2i(RoomCords.x, RoomCordsLast.y))
+			if row == levelHeight - 1 and col == levelLength - 1:
+				levelPosition["bottomRight"] = getGlobalPosition(RoomCordsLast)
+		#print("------------------------------------")
 		set_cell(0, Vector2i(0, roomLength * row + middlePoint + elevatorOffset), 1, Vector2i(1, 0))
-		set_cell(0, Vector2i(roomLength * leveLength, roomLength * row + middlePoint + elevatorOffset), 1, Vector2i(1, 0))
+		set_cell(0, Vector2i(roomLength * levelLength, roomLength * row + middlePoint + elevatorOffset), 1, Vector2i(1, 0))
 
 	#set_pattern(1, Vector2i(6, 0), elevatorFloor)
 	#set_pattern(0, Vector2i(6, 0), elevatorWalls)
@@ -84,14 +78,6 @@ func getGlobalPosition(cords: Vector2i) -> Vector2:
 
 func getEmptyCells(cordsTop: Vector2i, cordsBottom: Vector2i) -> PackedVector2Array:
 	var emptyCells: PackedVector2Array
-	#for y in range(cordsTop.y, cordsBottom.y):
-		#for x in range(cordsTop.x, cordsBottom.x):
-			#if !get_cell_tile_data(0, Vector2i(x, y)):
-				#var globalCellPosition = map_to_local(Vector2(x, y))
-				#var halfTile = tile_set.tile_size / 2
-				#var center = Vector2(globalCellPosition.x + halfTile.x, globalCellPosition.y + halfTile.y)
-				#print(center)
-				#empatyCells.append(globalCellPosition)
 	var cordsTopOffset = Vector2i(cordsTop.x + 1, cordsTop.y + 1)
 	var cordsBottomOffset = Vector2i(cordsBottom.x - 1, cordsBottom.y - 1)
 	var third = floor((cordsBottomOffset.y - cordsTopOffset.y) / 3)

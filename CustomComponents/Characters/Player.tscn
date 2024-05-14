@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [node name="Player" type="RigidBody2D"]
-modulate = Color(0.482353, 0.482353, 0.482353, 1)
+modulate = Color(0.364706, 0.364706, 0.364706, 1)
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_ys4k5")
 gravity_scale = 0.0
@@ -57,18 +57,17 @@ script = ExtResource("1_i68s3")
 speed = 50.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 1.2
+energy = 2.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.101961)
+shadow_filter_smooth = 14.0
 texture = ExtResource("14_uqo31")
 texture_scale = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
 scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_1miov")
 
@@ -86,6 +85,7 @@ frame_progress = 0.514365
 speed_scale = 1.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -95,10 +95,11 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 3.0
-offset_bottom = 3.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_sjdb6")
 
 [node name="mobile" type="MarginContainer" parent="CanvasLayer/UI"]
@@ -108,22 +109,30 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -29.0
+offset_top = -345.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 150
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 150
+theme_override_constants/margin_right = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/mobile"]
-layout_direction = 3
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 4
+mouse_filter = 2
 
 [node name="joystick" parent="CanvasLayer/UI/mobile/HBoxContainer" instance=ExtResource("8_nleq2")]
 unique_name_in_owner = true
+scale = Vector2(0.7, 0.7)
 
-[node name="Button" parent="CanvasLayer/UI/mobile/HBoxContainer" instance=ExtResource("9_t8vbf")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/mobile"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+alignment = 2
+
+[node name="Button" parent="CanvasLayer/UI/mobile/HBoxContainer2" instance=ExtResource("9_t8vbf")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 8
 
@@ -135,7 +144,10 @@ offset_right = 49.0
 offset_bottom = 41.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer"]
+layout_direction = 3
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 
 [node name="InvDisplay" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -146,9 +158,10 @@ layout_mode = 2
 unique_name_in_owner = true
 z_index = 20
 texture_filter = 1
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 max_value = 4.0
+fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("8_888pk")
 texture_over = ExtResource("9_cp88e")
@@ -157,18 +170,22 @@ tint_under = Color(0.4, 0.25098, 0.180392, 1)
 tint_over = Color(0.635294, 0.443137, 0.341176, 1)
 tint_progress = Color(0.705882, 0, 0, 1)
 
-[node name="HpVal" type="RichTextLabel" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/HpBar"]
-unique_name_in_owner = true
-texture_filter = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/HpBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 15.0
-offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
+alignment = 1
+
+[node name="HpVal" type="RichTextLabel" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/HpBar/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("10_adb7a")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 2

@@ -1,35 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3jnln73onrd4"]
+[gd_scene load_steps=5 format=3 uid="uid://d3jnln73onrd4"]
 
-[ext_resource type="Texture2D" uid="uid://djvuotb2b40pc" path="res://Sprites/Untitled-1.png" id="1_o25f7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ljt"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 999
-corner_radius_top_right = 999
-corner_radius_bottom_right = 999
-corner_radius_bottom_left = 999
-expand_margin_left = 70.0
-expand_margin_top = 70.0
-expand_margin_right = 70.0
-expand_margin_bottom = 70.0
+[ext_resource type="StyleBox" uid="uid://dbv74kjkjcmg3" path="res://styles/buttonPressed.tres" id="1_0ou2u"]
+[ext_resource type="Texture2D" uid="uid://fdaxu10jt6un" path="res://Sprites/output-onlinepngtools.png" id="1_1ydeb"]
+[ext_resource type="Script" path="res://Scripts/Button.gd" id="1_3shnj"]
+[ext_resource type="StyleBox" uid="uid://mj5kpcsex5tt" path="res://styles/button.tres" id="1_n5sih"]
 
 [node name="Button" type="Button"]
 z_index = 20
+custom_minimum_size = Vector2(300, 300)
 offset_left = -3.0
 offset_top = -3.0
-offset_right = 3.0
-offset_bottom = 3.0
+offset_right = 147.0
+offset_bottom = 147.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/outline_size = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_x4ljt")
+theme_override_styles/normal = ExtResource("1_n5sih")
+theme_override_styles/hover = ExtResource("1_n5sih")
+theme_override_styles/pressed = ExtResource("1_0ou2u")
+theme_override_styles/focus = ExtResource("1_n5sih")
+action_mode = 0
+icon = ExtResource("1_1ydeb")
+icon_alignment = 1
+script = ExtResource("1_3shnj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(3, 3)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_o25f7")
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

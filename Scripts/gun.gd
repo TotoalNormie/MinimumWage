@@ -4,13 +4,13 @@ var bullet_scene = preload("res://CustomComponents/weapons/bullet.tscn")
 
 @export var damage: float = 0.5
 @export var speed = 100
-@export var shootingDelay = 0.5
+@export var shootingDelay = 0.7
 @export_enum('gun', 'closeCombat') var weaponType = 'gun'
 var canShoot = true
 var tween: Tween
 
 @onready var sprite = $shape/Sprite2D
-@onready var joystick = $"../CanvasLayer/UI/mobile/HBoxContainer/joystick"
+@onready var joystick = $"../%joystick"
 var joystickAngle = 0
 
 @export_global_file('*.png','*.webp') var sprite_texture_path: String = 'res://Sprites/weapons/glock/New_Piskel.png'
@@ -51,7 +51,7 @@ func _process(delta):
 	else:
 		scale.y = abs(scale.y)
 	if OS.has_feature('mobile'):
-		if Input.is_action_pressed('shoot_mobile'):
+		if Input.is_action_pressed('shoot_mobile') and canShoot:
 			attack()
 	else:
 		if Input.is_action_pressed("shoot") and canShoot:
@@ -62,22 +62,25 @@ func _process(delta):
 
 func attack():
 	if weaponType == 'gun':
-		#print('works')
+		print('works')
 		var rand = RandomNumberGenerator.new()
 		var randNum = rand.randf_range(-10, 10)
 		var rotationRand = deg_to_rad(rotation_degrees + randNum)
 		var bullet = bullet_scene.instantiate()
+
 		get_tree().get_root().add_child(bullet)
-		#add_child(bullet)
-		#print( speed)
+		##add_child(bullet)
+		##print( speed)
 		bullet.start($ShootFrom.global_position, rotationRand, speed, damage)
-		%MuzzleFlash.emitting = true
-		#print(self.position)
+		#%MuzzleFlash.emitting = true
+		##print(self.position)
 		canShoot = false
 		recoil()
 	else:
 		pass
 	$Timer.start(shootingDelay)
+	$AudioStreamPlayer2D.play()
+	print($AudioStreamPlayer2D)
 
 func recoil():
 	if tween:
@@ -86,6 +89,8 @@ func recoil():
 	tween.tween_property($shape, "rotation_degrees",  -50, shootingDelay * 0.1)	
 	tween.tween_interval(shootingDelay * 0.2)
 	tween.tween_property($shape, "rotation_degrees",  0, shootingDelay * 0.7)
+	
 
 func _on_ShootingDelayTimeout():
 	canShoot = true
+

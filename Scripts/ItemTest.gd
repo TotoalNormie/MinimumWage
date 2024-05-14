@@ -95,3 +95,12 @@ func _input(event):
 			# fix line below
 			#self.get_parent().get_parent().removeFromInventory(id)
 
+
+
+func _on_button_button_down():
+	Input.action_press('interact')
+
+
+func _on_button_button_up():
+	Input.action_release('interact')
+	

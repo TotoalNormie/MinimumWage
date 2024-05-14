@@ -1,26 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://do8jacgvqreqn"]
+[gd_scene load_steps=8 format=3 uid="uid://do8jacgvqreqn"]
 
 [ext_resource type="TileSet" uid="uid://bilm5jhmw22g2" path="res://styles/OfficeTileSet.tres" id="1_52d8k"]
 [ext_resource type="Script" path="res://CustomComponents/elavator_tile_map.gd" id="2_2i4f3"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="3_dvmpo"]
+[ext_resource type="Texture2D" uid="uid://byllisrdrv60a" path="res://styles/2d_lights_and_shadows_neutral_point_light.webp" id="4_4eir6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hw85"]
+size = Vector2(157, 147.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erncu"]
-size = Vector2(90.6667, 67.3334)
+size = Vector2(90.6667, 66.3334)
 
-[sub_resource type="Gradient" id="Gradient_4qvml"]
-offsets = PackedFloat32Array(0, 0.538961, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.00414812, 0.024742, 0.045867, 1, 0.0383972, 0.0383972, 0.0383971, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ikgp6"]
-seed = 9
-frequency = 0.011
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yvpx4"]
-width = 1920
-height = 1080
-color_ramp = SubResource("Gradient_4qvml")
-noise = SubResource("FastNoiseLite_ikgp6")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mio8k"]
+size = Vector2(159.5, 50)
 
 [node name="ElevatorTileMap" type="TileMap"]
+process_priority = 3
 texture_filter = 1
 tile_set = ExtResource("1_52d8k")
 rendering_quadrant_size = 32
@@ -35,33 +30,73 @@ layer_1/tile_data = PackedInt32Array(6, 65543, 0, 65542, 65543, 0, 131078, 65543
 script = ExtResource("2_2i4f3")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
+
+[node name="ElavatorWhole" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElavatorWhole"]
+position = Vector2(272.5, 84.25)
+shape = SubResource("RectangleShape2D_0hw85")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(272.667, 69.3333)
+position = Vector2(272.667, 68.8333)
 shape = SubResource("RectangleShape2D_erncu")
 
-[node name="Button" type="Button" parent="."]
+[node name="CanOpen" type="Area2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanOpen"]
+position = Vector2(271, 183)
+shape = SubResource("RectangleShape2D_mio8k")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(271.25, 80.25)
+scale = Vector2(0.921965, 0.646316)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("4_4eir6")
+
+[node name="Button2" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="ButtonOpen" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
 z_index = 15
 texture_filter = 2
-offset_left = 235.667
-offset_top = 111.0
-offset_right = 606.667
-offset_bottom = 188.0
+offset_left = 213.0
+offset_top = 190.0
+offset_right = 823.0
+offset_bottom = 267.0
 scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("3_dvmpo")
+theme_override_font_sizes/font_size = 50
+text = "Press E to complete level"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+z_index = 15
+texture_filter = 2
+offset_left = 229.0
+offset_top = 110.0
+offset_right = 657.0
+offset_bottom = 187.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("3_dvmpo")
 theme_override_font_sizes/font_size = 50
 text = "Press E to start"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-z_index = -2
-position = Vector2(268.75, 75.0833)
-scale = Vector2(0.62908, 0.614043)
-texture = SubResource("NoiseTexture2D_yvpx4")
-
+[connection signal="body_entered" from="ElavatorWhole" to="." method="_on_elavator_whole_body_entered"]
+[connection signal="body_exited" from="ElavatorWhole" to="." method="_on_elavator_whole_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="CanOpen" to="." method="_on_can_open_body_entered"]
+[connection signal="body_exited" from="CanOpen" to="." method="_on_can_open_body_exited"]
+[connection signal="pressed" from="CanvasLayer/ButtonOpen" to="." method="_on_button_open_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
