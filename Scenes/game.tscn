@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://4oeahh6fs03j"]
+[gd_scene load_steps=9 format=3 uid="uid://uh4xphbmf21s"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="2_ff72a"]
-[ext_resource type="PackedScene" uid="uid://d0kjr4q663teo" path="res://CustomComponents/office_tile_map.tscn" id="4_vo0qb"]
-[ext_resource type="PackedScene" uid="uid://do8jacgvqreqn" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
+[ext_resource type="PackedScene" path="res://CustomComponents/office_tile_map.tscn" id="4_vo0qb"]
+[ext_resource type="PackedScene" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
 
 [sub_resource type="Gradient" id="Gradient_dyct6"]
 colors = PackedColorArray(1.81694e-06, 0.426875, 2.88785e-07, 1, 0.110444, 0.249584, 0.108495, 1)

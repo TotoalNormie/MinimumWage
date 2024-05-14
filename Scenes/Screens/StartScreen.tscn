@@ -28,6 +28,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:process_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
 
 [sub_resource type="Animation" id="Animation_u2yog"]
 resource_name = "start"
@@ -65,7 +77,6 @@ _data = {
 
 [node name="StartScreen" type="Control"]
 process_mode = 3
-z_index = 70
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
