@@ -5,6 +5,7 @@ var enemyScene = preload("res://CustomComponents/Characters/enemy.tscn")
 var cardScene = preload("res://CustomComponents/elevator_card.tscn")
 var level = 0
 var roomEmptyCells: Array
+signal on_player_death
 
 func _ready():
 	var localStartyCords = %OfficeTileMap.map_to_local(startCords)
@@ -95,3 +96,7 @@ func _on_navigation_region_2d_bake_finished():
 			card.scale.x = 0.3
 			card.scale.y = 0.3
 			emptyCells.remove_at(cardIndex)
+
+
+func _on_player_on_player_death():
+	on_player_death.emit()
