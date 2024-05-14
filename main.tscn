@@ -3,9 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://4oeahh6fs03j" path="res://Scenes/game.tscn" id="2_jehrs"]
 [ext_resource type="PackedScene" uid="uid://ckbr0h77ranrp" path="res://Scenes/Screens/PauseScreen.tscn" id="6_oi5p2"]
 
+[sub_resource type="GDScript" id="GDScript_x2ilk"]
+script/source = "extends CanvasLayer
+"
+
 [node name="main" type="Node2D"]
 
-[node name="game" parent="." instance=ExtResource("2_jehrs")]
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" parent="GameOverLayer" instance=ExtResource("1_2wvfn")]
+
+[node name="StartLayer" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_x2ilk")
+
+[node name="StartScreen" parent="StartLayer" instance=ExtResource("2_qvmr2")]
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 
