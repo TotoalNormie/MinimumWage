@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Minimum Wage"
-run/main_scene="res://Scenes/Store/THEstore.tscn"
+run/main_scene="res://Scenes/Screens/StartScreen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/show_image=false
 <<<<<<<Updatedupstreamrun/main_scene="res://Store/THEstore.tscn"
 
 [autoload]
@@ -21,13 +23,16 @@ Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg", "res://addons/godot-firebase/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [input]
 
@@ -127,6 +132,5 @@ slot6={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+driver/threads/thread_model=2
 textures/vram_compression/import_etc2_astc=true

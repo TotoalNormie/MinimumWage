@@ -1,14 +1,18 @@
 extends Control
 
-func _ready():
-	$AnimationPlayer.play("RESET")
+@onready var ui = get_tree().get_root().get_node('main/game/Player/CanvasLayer/UI')
+#func _ready():
+	#$AnimationPlayer.play("RESET")
 
 func resume():
 	get_tree().paused = false
+	ui.visible = true
 	$AnimationPlayer.play_backwards("pause")
 
 func pause():
 	get_tree().paused = true
+	ui.visible = false
+	
 	$AnimationPlayer.play("pause")
 
 func testEsc():
@@ -21,7 +25,8 @@ func _on_resume_button_pressed():
 	resume()
 
 func _on_menu_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Screens/StartScreen.tscn")
+	get_tree().paused = true
+	$AnimationPlayer.play("start")
 
 func _process(_delta):
 	testEsc()

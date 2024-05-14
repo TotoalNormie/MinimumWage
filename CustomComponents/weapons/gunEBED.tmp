@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2eh0r7umsfin"]
+
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_3tdpw"]
+[ext_resource type="Texture2D" uid="uid://bbhlg5rpnhn23" path="res://Sprites/weapons/glock/New_Piskel.png" id="2_aptvq"]
+[ext_resource type="AudioStream" uid="uid://dwd2ictlawlxq" path="res://Audio/laserShoot.wav" id="3_5gcd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo3xh"]
+size = Vector2(21, 6.04168)
+
+[sub_resource type="Curve" id="Curve_ufkik"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.977528, 0.0659341), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_36qer"]
+offsets = PackedFloat32Array(0, 0.466667, 1)
+colors = PackedColorArray(0.748255, 0.703747, 0.419308, 1, 0.469441, 0.4067, 0.237769, 1, 0.425161, 0.315853, 0.211455, 1)
+
+[node name="weapon" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_3tdpw")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="."]
+z_index = 3
+position = Vector2(10.5, 0)
+shape = SubResource("RectangleShape2D_jo3xh")
+
+[node name="Sprite2D" type="Sprite2D" parent="shape"]
+texture_filter = 1
+position = Vector2(9.5, 2)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_aptvq")
+
+[node name="ShootFrom" type="Node2D" parent="."]
+position = Vector2(25, 0)
+
+[node name="MuzzleFlash" type="CPUParticles2D" parent="ShootFrom"]
+unique_name_in_owner = true
+position = Vector2(0, 3.95266e-08)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 20
+lifetime = 0.35
+one_shot = true
+explosiveness = 0.8
+fract_delta = false
+local_coords = true
+spread = 70.0
+gravity = Vector2(100, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+angle_min = -50.0
+angle_max = -50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_ufkik")
+color_initial_ramp = SubResource("Gradient_36qer")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5gcd6")
