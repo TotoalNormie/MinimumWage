@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://uh4xphbmf21s"]
+[gd_scene load_steps=13 format=3 uid="uid://uh4xphbmf21s"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="2_ff72a"]
-[ext_resource type="PackedScene" path="res://CustomComponents/office_tile_map.tscn" id="4_vo0qb"]
-[ext_resource type="PackedScene" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
+[ext_resource type="PackedScene" uid="uid://d0kjr4q663teo" path="res://CustomComponents/office_tile_map.tscn" id="4_vo0qb"]
+[ext_resource type="PackedScene" uid="uid://do8jacgvqreqn" path="res://CustomComponents/elavator_tile_map.tscn" id="5_awoaj"]
 [ext_resource type="Texture2D" uid="uid://dcw3h7lyc6t17" path="res://Sprites/sus.png" id="5_hxgrv"]
 [ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="6_j12af"]
 [ext_resource type="AudioStream" uid="uid://dr4yde588lb7v" path="res://Audio/y2mate.com - Lets Rock  Titan Speaker Man OST.mp3" id="7_aov46"]
+[ext_resource type="PackedScene" uid="uid://cvh87s83kf0de" path="res://CustomComponents/elevator_card.tscn" id="8_moo8g"]
 
 [sub_resource type="Gradient" id="Gradient_dyct6"]
 colors = PackedColorArray(1.81694e-06, 0.426875, 2.88785e-07, 1, 0.110444, 0.249584, 0.108495, 1)
@@ -50,9 +51,9 @@ position = Vector2(266, 78)
 speed = 100.0
 
 [node name="ElevatorTileMap" parent="." instance=ExtResource("5_awoaj")]
+collision_animatable = true
 
 [node name="Borgus" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.454902)
 position = Vector2(-152.5, 609.25)
 scale = Vector2(0.385135, 0.118687)
@@ -86,6 +87,9 @@ uppercase = true
 stream = ExtResource("7_aov46")
 volume_db = -20.0
 autoplay = true
+
+[node name="ElevatorCard" parent="." instance=ExtResource("8_moo8g")]
+position = Vector2(-54, 25)
 
 [connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]
 [connection signal="navigation_polygon_changed" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_navigation_polygon_changed"]

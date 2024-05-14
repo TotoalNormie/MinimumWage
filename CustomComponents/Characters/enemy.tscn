@@ -75,7 +75,7 @@ radius = 32.0
 max_neighbors = 5
 time_horizon_agents = 3.0
 time_horizon_obstacles = 1.0
-max_speed = 200.0
+max_speed = 80.0
 avoidance_layers = 3
 avoidance_mask = 3
 debug_path_custom_color = Color(0.760784, 0.756863, 0, 1)
@@ -116,7 +116,7 @@ wait_time = 7.0
 [node name="Rays" type="Node2D" parent="Weapon"]
 
 [node name="seesPlayer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 
 [node name="Exclamation" type="Sprite2D" parent="."]

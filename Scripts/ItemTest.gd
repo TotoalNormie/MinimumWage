@@ -74,9 +74,10 @@ func _on_area_2d_body_exited(body):
 	player = null
 
 
-func _input(event):
+func _process(delta):
 	#print(getCount())
-	if event.is_action_pressed("interact") and touching and type == "ITEM":
+	print()
+	if Input.is_action_pressed("interact") and touching and type == "ITEM":
 		if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots && player.getItems() < 4:
 			player.addToInventory(id, data)
 			loadedItem = loadedItem.instantiate()
@@ -87,17 +88,18 @@ func _input(event):
 			#setCount(1)
 			#print(getCount())
 			get_parent().remove_child(self)
-	if event.is_action_pressed("shoot"):
-		if get_parent().get_parent().name == "Player":
-			#print(get_parent().get_parent())
-			self.get_parent().get_parent().money += 20
-			get_parent().remove_child(self)
-			# fix line below
-			#self.get_parent().get_parent().removeFromInventory(id)
+	#if Input.is_action_pressed("shoot"):
+		#if get_parent().get_parent().name == "Player":
+			##print(get_parent().get_parent())
+			#self.get_parent().get_parent().money += 20
+			#get_parent().remove_child(self)
+			## fix line below
+			##self.get_parent().get_parent().removeFromInventory(id)
 
 
 
 func _on_button_button_down():
+	print("button works")
 	Input.action_press('interact')
 
 

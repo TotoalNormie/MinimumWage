@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://brh0dmdp0g0fc"]
+[gd_scene load_steps=20 format=3 uid="uid://brh0dmdp0g0fc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_i68s3"]
 [ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/weapons/gun.tscn" id="3_6styo"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
 [ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="10_adb7a"]
 [ext_resource type="Texture2D" uid="uid://byllisrdrv60a" path="res://styles/2d_lights_and_shadows_neutral_point_light.webp" id="14_uqo31"]
+[ext_resource type="StyleBox" uid="uid://mj5kpcsex5tt" path="res://styles/button.tres" id="15_0kt0q"]
+[ext_resource type="StyleBox" uid="uid://dbv74kjkjcmg3" path="res://styles/buttonPressed.tres" id="16_j02qa"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ys4k5"]
 friction = 0.5
@@ -61,8 +63,9 @@ energy = 2.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.101961)
 shadow_filter_smooth = 14.0
+shadow_item_cull_mask = 3
 texture = ExtResource("14_uqo31")
-texture_scale = 10.0
+texture_scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
@@ -113,11 +116,12 @@ offset_top = -345.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-theme_override_constants/margin_left = 150
+theme_override_constants/margin_left = 175
 theme_override_constants/margin_right = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/mobile"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_filter = 2
 
@@ -127,6 +131,7 @@ scale = Vector2(0.7, 0.7)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/mobile"]
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 4
 mouse_filter = 2
 alignment = 2
@@ -135,6 +140,21 @@ alignment = 2
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/UI/mobile"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_right = 150
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/mobile/MarginContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("15_0kt0q")
+theme_override_styles/hover = ExtResource("15_0kt0q")
+theme_override_styles/pressed = ExtResource("16_j02qa")
+theme_override_styles/focus = ExtResource("15_0kt0q")
+text = "Interact"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -189,3 +209,6 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 scroll_active = false
 autowrap_mode = 2
+
+[connection signal="button_down" from="CanvasLayer/UI/mobile/MarginContainer2/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CanvasLayer/UI/mobile/MarginContainer2/Button" to="." method="_on_button_button_up"]

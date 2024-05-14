@@ -26,7 +26,6 @@ func  _ready():
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
-	print(%joystick)
 	
 	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
@@ -124,7 +123,6 @@ func _physics_process(_delta):
 			input_vector.y = 1
 		if Input.is_action_pressed("move_up"):
 			input_vector.y = -1
-		input_vector = input_vector.normalized()
 	else:
 		if(joystick.posVector):
 			input_vector = joystick.posVector
@@ -132,6 +130,7 @@ func _physics_process(_delta):
 			input_vector = Vector2(0,0)
 		
 
+	input_vector = input_vector.normalized()
 	# Normalize input vector for smooth diagonal movement
 
 	# Apply force based on input and direction
@@ -261,3 +260,13 @@ func changeActiveSlot(slotId):
 func setInactiveSlot(slotId):
 	#print(activeSlot)
 	%UI.setInactiveSlot(slotId)
+
+
+func _on_button_button_down():
+	Input.action_press('interact')
+
+
+
+func _on_button_button_up():
+	Input.action_release('interact')
+	
