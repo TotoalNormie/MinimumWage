@@ -2,6 +2,7 @@ extends Node2D
 
 @export var healAmount: int = 1
 var powerupId
+@onready var player = $RigidBody2D.player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,13 +14,13 @@ func _process(delta):
 	pass
 	
 func use():
-	# gets player
-	var player = self.get_parent().get_node("Player")
+	# gets playe
 	# check if current hp + healed < maxhp
+
 	if player.health + healAmount <= player.maxHealth:
 		# heal
 		player.health += healAmount
 		# remove from inv
 		player.removeFromInventory(powerupId)
-		#print("Healed ", healAmount)
+		print("Healed ", healAmount)
 	

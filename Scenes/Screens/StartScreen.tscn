@@ -142,7 +142,7 @@ text = "Exit Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_m67yr")
-volume_db = -23.937
+volume_db = -18.159
 autoplay = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

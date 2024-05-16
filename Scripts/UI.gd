@@ -23,13 +23,12 @@ func hit(health, maxHp):
 	%HpVal.text = "[center]" + str(ceil((100/maxHp) * health)) + "%[/center]"
 
 func changeActiveSlot(slotId):
-	#print(activeSlot)
 	var current = %InvDisplay.get_child(slotId)
 	current.set_size(current.size + Vector2(0, 10))
 	
 	
 func setInactiveSlot(slotId):
-	#print(activeSlot)
+
 	var current = %InvDisplay.get_child(slotId)
 	if current:
 		current.set_size(current.size - Vector2(0, 10))
