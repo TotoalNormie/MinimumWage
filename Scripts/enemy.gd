@@ -11,6 +11,10 @@ var angleConeOfVision := deg_to_rad(90.0)
 var maxViewDistance := 150
 var angleBetweenRays := deg_to_rad(5.0)
 
+var items = [
+	preload("res://CustomComponents/powerup/health.tscn")
+]
+
 var target: String
 var navigaionTarget
 var doesSeePlayer = false
@@ -100,7 +104,15 @@ func hit(amount):
 	$Node2D/Label.text = str(health)
 	
 	if(health <= 0):
-		self.queue_free()
+		var rnd = RandomNumberGenerator.new()
+		var doesDrop = rnd.randf() > 0
+		if doesDrop:
+			var item = items.pick_random().instantiate()
+			item.scale = Vector2(0.4, 0.4)
+			item.global_position = global_position
+			item.player = get_parent().get_node("%Player")
+			get_parent().add_child(item)
+		queue_free()
 
 func startSeesPlayerTimer():
 	doesSeePlayer = true

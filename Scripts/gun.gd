@@ -26,7 +26,6 @@ func _ready():
 
 func _process(delta):
 	if $"..".name == "Player" and OS.has_feature("mobile"):
-		#print(joystick.posVector.length())
 		var angle
 		# Calculate the angle based on the joystick's position vector
 		if joystick.posVector.length() < 0.1 :
@@ -35,7 +34,6 @@ func _process(delta):
 			angle = atan2(joystick.posVector.y, joystick.posVector.x)
 			joystickAngle = angle
 		
-		#print(angle)
 		# Convert radians to degrees
 		rotation = angle
 		# Rotate the gun sprite
@@ -62,7 +60,6 @@ func _process(delta):
 
 func attack():
 	if weaponType == 'gun':
-		print('works')
 		var rand = RandomNumberGenerator.new()
 		var randNum = rand.randf_range(-10, 10)
 		var rotationRand = deg_to_rad(rotation_degrees + randNum)
@@ -70,17 +67,14 @@ func attack():
 
 		get_tree().get_root().add_child(bullet)
 		##add_child(bullet)
-		##print( speed)
 		bullet.start($ShootFrom.global_position, rotationRand, speed, damage)
 		#%MuzzleFlash.emitting = true
-		##print(self.position)
 		canShoot = false
 		recoil()
 	else:
 		pass
 	$Timer.start(shootingDelay)
 	$AudioStreamPlayer2D.play()
-	print($AudioStreamPlayer2D)
 
 func recoil():
 	if tween:

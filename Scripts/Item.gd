@@ -76,7 +76,16 @@ func _on_area_2d_body_exited(body):
 	$Tooltip.visible = false
 	touching = false
 	player = null
-
+func _process(delta):
+	if Input.is_action_pressed("interact") and touching and type == "ITEM":
+		if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots && player.getItems() < 4:
+			player.addToInventory(id, data)
+			loadedItem = loadedItem.instantiate()
+			loadedItem.name = self.get_parent().name
+			# doesn't work
+			loadedItem.position = player.position + Vector2(5, 5)
+			player.add_child(loadedItem)
+			#setCount(1)
 
 func _input(event):
 	if event.is_action_pressed("interact") and touching and type == "ITEM":

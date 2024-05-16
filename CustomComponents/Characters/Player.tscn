@@ -68,7 +68,7 @@ texture = ExtResource("14_uqo31")
 texture_scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.9, 0.9)
@@ -162,6 +162,9 @@ offset_left = 5.0
 offset_top = 1.0
 offset_right = 49.0
 offset_bottom = 41.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 49
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer"]
 layout_direction = 3
@@ -173,6 +176,7 @@ size_flags_vertical = 8
 unique_name_in_owner = true
 z_index = 20
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="HpBar" type="TextureProgressBar" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

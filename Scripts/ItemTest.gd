@@ -48,16 +48,19 @@ func _ready():
 	var col_final_scale = Vector2(col_scale, col_scale)  # Apply the same scale to both X and Y
 	# Set scale using a Vector2 object
 	sprite.scale = col_final_scale
+	player = $"../%Player"
 	
 	$Tooltip.text = "[center]" + itemName + "\n" + description + "[/center]"
 	
 
 # this function picks up item
 func _on_area_2d_body_entered(body):
+	print("entered")
 	if body.name == "Player":
 		$Tooltip.visible = true
 		touching = true
 		player = body
+		print("touching")
 
 
 func _on_area_2d_mouse_entered():
@@ -75,8 +78,6 @@ func _on_area_2d_body_exited(body):
 
 
 func _process(delta):
-	#print(getCount())
-	print()
 	if Input.is_action_pressed("interact") and touching and type == "ITEM":
 		if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots && player.getItems() < 4:
 			player.addToInventory(id, data)
@@ -86,23 +87,11 @@ func _process(delta):
 			loadedItem.position = player.position + Vector2(5, 5)
 			player.add_child(loadedItem)
 			#setCount(1)
-			#print(getCount())
-			get_parent().remove_child(self)
+
+			queue_free()
 	#if Input.is_action_pressed("shoot"):
 		#if get_parent().get_parent().name == "Player":
-			##print(get_parent().get_parent())
 			#self.get_parent().get_parent().money += 20
 			#get_parent().remove_child(self)
 			## fix line below
 			##self.get_parent().get_parent().removeFromInventory(id)
-
-
-
-func _on_button_button_down():
-	print("button works")
-	Input.action_press('interact')
-
-
-func _on_button_button_up():
-	Input.action_release('interact')
-	
