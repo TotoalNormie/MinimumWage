@@ -2,12 +2,14 @@
 
 [ext_resource type="StyleBox" uid="uid://dbv74kjkjcmg3" path="res://styles/buttonPressed.tres" id="1_0ou2u"]
 [ext_resource type="Texture2D" uid="uid://fdaxu10jt6un" path="res://Sprites/output-onlinepngtools.png" id="1_1ydeb"]
-[ext_resource type="Script" path="res://Scripts/Button.gd" id="1_3shnj"]
 [ext_resource type="StyleBox" uid="uid://mj5kpcsex5tt" path="res://styles/button.tres" id="1_n5sih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dm6bt"]
+radius = 90.0
 
 [node name="Button" type="Button"]
 z_index = 20
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(150, 150)
 offset_left = -3.0
 offset_top = -3.0
 offset_right = 147.0
@@ -22,8 +24,8 @@ theme_override_styles/focus = ExtResource("1_n5sih")
 action_mode = 0
 icon = ExtResource("1_1ydeb")
 icon_alignment = 1
-script = ExtResource("1_3shnj")
 
-[connection signal="button_down" from="." to="." method="_on_button_down"]
-[connection signal="button_up" from="." to="." method="_on_button_up"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(75, 75)
+shape = SubResource("CircleShape2D_dm6bt")
+action = "shoot_mobile"

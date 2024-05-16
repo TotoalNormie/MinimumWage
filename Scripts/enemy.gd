@@ -105,7 +105,7 @@ func hit(amount):
 	
 	if(health <= 0):
 		var rnd = RandomNumberGenerator.new()
-		var doesDrop = rnd.randf() > 0
+		var doesDrop = rnd.randf() > 0.5
 		if doesDrop:
 			var item = items.pick_random().instantiate()
 			item.scale = Vector2(0.4, 0.4)

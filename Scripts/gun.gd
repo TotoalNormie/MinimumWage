@@ -48,12 +48,11 @@ func _process(delta):
 		scale.y = abs(scale.y) * -1
 	else:
 		scale.y = abs(scale.y)
-	if OS.has_feature('mobile'):
-		if Input.is_action_pressed('shoot_mobile') and canShoot:
-			attack()
-	else:
-		if Input.is_action_pressed("shoot") and canShoot:
-			attack()
+	if Input.is_action_pressed('shoot_mobile') and canShoot:
+		attack()
+	elif Input.is_action_pressed("shoot") and canShoot and !OS.has_feature("mobile"):
+		attack()
+		#pass
 		
 
 

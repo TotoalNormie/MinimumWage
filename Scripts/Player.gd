@@ -97,7 +97,15 @@ func _process(delta):
 			changeActiveSlot(activeSlot)
 			activeSlot -= 1
 			setInactiveSlot(activeSlot)
-			
+	
+	if Input.is_action_just_pressed("interact") and !inventory.keys().is_empty():
+		var invKeys = inventory.keys()
+		if activeSlot >= invKeys.size() - 1:
+			return
+		var item = inventory[invKeys[activeSlot]].data
+		if item.has_method("use"):
+			item.use()
+		print(item)
 
 func _physics_process(_delta):
 	# uses the item in the current inventory slot

@@ -70,6 +70,7 @@ func _on_area_2d_body_exited(body):
 	
 func _process(delta):
 	if Input.is_action_just_pressed("interact"):
+		print(player.inventory.keys().has(powerUpName))
 		if touching and type == "POWERUP":
 			#print(player.getPowerUp())
 			#if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots:
@@ -79,11 +80,12 @@ func _process(delta):
 				#print(player.inventory[id]["data"].get_children())
 							
 				#self.queue_free()
-				get_parent().remove_child(self)
+				queue_free()
 			#elif player.getItemAmount(id) != 0:
 				#player.setItemAmount(id, player.getItemAmount(id)+1)
 				#self.queue_free()
-		elif player.inventory.keys().has(powerUpName) and get_parent().has_method("use"):
-			get_parent().use()
+		#elif player.inventory.keys().has(powerUpName) and get_parent().has_method("use"):
+			#
+			#get_parent().use()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brh0dmdp0g0fc"]
+[gd_scene load_steps=21 format=3 uid="uid://brh0dmdp0g0fc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_i68s3"]
 [ext_resource type="PackedScene" uid="uid://c2eh0r7umsfin" path="res://CustomComponents/weapons/gun.tscn" id="3_6styo"]
@@ -48,6 +48,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugjlg"]
+radius = 56.67
 
 [node name="Player" type="RigidBody2D"]
 modulate = Color(0.364706, 0.364706, 0.364706, 1)
@@ -137,7 +140,6 @@ mouse_filter = 2
 alignment = 2
 
 [node name="Button" parent="CanvasLayer/UI/mobile/HBoxContainer2" instance=ExtResource("9_t8vbf")]
-custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 8
 
@@ -155,6 +157,11 @@ theme_override_styles/hover = ExtResource("15_0kt0q")
 theme_override_styles/pressed = ExtResource("16_j02qa")
 theme_override_styles/focus = ExtResource("15_0kt0q")
 text = "Interact"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/UI/mobile/MarginContainer2/Button"]
+position = Vector2(50, 50)
+shape = SubResource("CircleShape2D_ugjlg")
+action = "interact"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -213,6 +220,3 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 scroll_active = false
 autowrap_mode = 2
-
-[connection signal="button_down" from="CanvasLayer/UI/mobile/MarginContainer2/Button" to="." method="_on_button_button_down"]
-[connection signal="button_up" from="CanvasLayer/UI/mobile/MarginContainer2/Button" to="." method="_on_button_button_up"]

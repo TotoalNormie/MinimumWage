@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://uh4xphbmf21s"]
+[gd_scene load_steps=13 format=3 uid="uid://uh4xphbmf21s"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="2_ff72a"]
@@ -8,7 +8,6 @@
 [ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="6_j12af"]
 [ext_resource type="AudioStream" uid="uid://dr4yde588lb7v" path="res://Audio/y2mate.com - Lets Rock  Titan Speaker Man OST.mp3" id="7_aov46"]
 [ext_resource type="PackedScene" uid="uid://cvh87s83kf0de" path="res://CustomComponents/elevator_card.tscn" id="8_moo8g"]
-[ext_resource type="PackedScene" uid="uid://0aasqash5egl" path="res://CustomComponents/powerup/health.tscn" id="9_4dd2i"]
 
 [sub_resource type="Gradient" id="Gradient_dyct6"]
 colors = PackedColorArray(1.81694e-06, 0.426875, 2.88785e-07, 1, 0.110444, 0.249584, 0.108495, 1)
@@ -85,15 +84,11 @@ uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_aov46")
-volume_db = -20.0
+volume_db = -10.124
 autoplay = true
 
 [node name="ElevatorCard" parent="." instance=ExtResource("8_moo8g")]
 position = Vector2(-54, 25)
-
-[node name="Health" parent="." instance=ExtResource("9_4dd2i")]
-position = Vector2(271, 180)
-scale = Vector2(0.4, 0.4)
 
 [connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]
 [connection signal="navigation_polygon_changed" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_navigation_polygon_changed"]

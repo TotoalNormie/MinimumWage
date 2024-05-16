@@ -130,6 +130,10 @@ slot6={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 driver/threads/thread_model=2

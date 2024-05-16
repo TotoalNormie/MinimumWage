@@ -38,7 +38,7 @@ func _on_elevator_tile_map_on_level_complete():
 func _on_office_tile_map_level_generated(_roomEmptyCells, levelPosition):
 	
 	for child in %OfficeTileMap.get_children():
-		if child.type == "enemy":
+		if "type" in child and child.type == "enemy":
 			child.queue_free()
 		
 	var new_navigation_mesh = NavigationPolygon.new()
