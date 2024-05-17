@@ -15,7 +15,10 @@ func pause():
 	$AnimationPlayer.play("pause")
 
 func _on_game_pause_button():
-	pause()
+	if get_tree().paused:
+		resume()
+	else:
+		pause()
 
 func _pause_shit():
 	if Input.is_action_just_pressed("Pause") and !get_tree().paused:
@@ -28,14 +31,14 @@ func _on_resume_button_pressed():
 
 func _on_menu_button_pressed():
 	get_tree().paused = true
-	$AnimationPlayer.play("start")
+	get_tree().change_scene_to_file("res://Scenes/Screens/StartScreen.tscn")
 
 func _process(_delta):
 	_pause_shit()
-	_on_game_pause_button()
+	#_on_game_pause_button()
 
-
-func _on_start_layer_replacing_by(node):
-	pass # Replace with function body.
+#
+#func _on_start_layer_replacing_by(node):
+	#pass # Replace with function body.
 
 
