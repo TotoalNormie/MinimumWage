@@ -1,4 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://uh4xphbmf21s"]
+[gd_scene load_steps=17 format=3 uid="uid://uh4xphbmf21s"]
+
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_kjgl1"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="2_ff72a"]
@@ -28,6 +29,16 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(23, 155, 2757, 228, 247
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 15.5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lfhhm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rggle"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_48pr4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k8ofc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g0g3s"]
+
 [node name="game" type="Node2D"]
 script = ExtResource("1_kjgl1")
 
@@ -47,7 +58,7 @@ scale = Vector2(1, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_ff72a")]
 unique_name_in_owner = true
-position = Vector2(266, 78)
+position = Vector2(249, 102)
 speed = 100.0
 
 [node name="ElevatorTileMap" parent="." instance=ExtResource("5_awoaj")]
@@ -60,6 +71,23 @@ texture = ExtResource("5_hxgrv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 1178.0
+offset_top = 13.0
+offset_right = 1265.0
+offset_bottom = 93.0
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/MarginContainer2"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lfhhm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rggle")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_48pr4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k8ofc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g0g3s")
+text = "🅱️"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 z_index = 20
@@ -95,3 +123,4 @@ position = Vector2(-54, 25)
 [connection signal="level_generated" from="NavigationRegion2D/OfficeTileMap" to="." method="_on_office_tile_map_level_generated"]
 [connection signal="on_player_death" from="Player" to="." method="_on_player_on_player_death"]
 [connection signal="on_level_complete" from="ElevatorTileMap" to="." method="_on_elevator_tile_map_on_level_complete"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/PauseButton" to="." method="_on_pause_button_pressed"]

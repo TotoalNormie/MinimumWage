@@ -12,10 +12,12 @@ func resume():
 func pause():
 	get_tree().paused = true
 	ui.visible = false
-	
 	$AnimationPlayer.play("pause")
 
-func testEsc():
+func _on_game_pause_button():
+	pause()
+
+func _pause_shit():
 	if Input.is_action_just_pressed("Pause") and !get_tree().paused:
 		pause()
 	elif Input.is_action_just_pressed("Pause") and get_tree().paused:
@@ -29,8 +31,11 @@ func _on_menu_button_pressed():
 	$AnimationPlayer.play("start")
 
 func _process(_delta):
-	testEsc()
+	_pause_shit()
+	_on_game_pause_button()
 
 
 func _on_start_layer_replacing_by(node):
 	pass # Replace with function body.
+
+
