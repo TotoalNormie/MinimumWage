@@ -30,8 +30,9 @@ func  _ready():
 	
 	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
-	%UI.itemSlots = itemSlots
+	#%UI.itemSlots = itemSlots
 	#for i in range(%UI.itemSlots):
+		#$UI.get_child(i).size -= Vector2(0, 10) 
 		#var slotUi = slot.instantiate()
 		#slotUi.name = "Slot {int}".format({"int": i})
 		#slotUi.set_size(Vector2(50, 50))
@@ -40,7 +41,7 @@ func  _ready():
 		#print(test)
 		#test.set_size(Vector2(80, 80))
 		#%InvDisplay.get_child(i).size = Vector2(80, 80)
-	changeActiveSlot(itemSlots-1)
+	#changeActiveSlot(itemSlots-1, itemSlots-2)
 
 func hit(amount):
 	health -= amount
@@ -73,49 +74,47 @@ func _physics_process(_delta):
 		if activeSlot <= itemSlots-1:
 			prevSlot = activeSlot
 			activeSlot = 0
-			setInactiveSlot(prevSlot)
-			changeActiveSlot(activeSlot)
+			#setInactiveSlot()
+			changeActiveSlot(activeSlot, prevSlot)
 	if Input.is_action_just_released("slot2"):
 		if activeSlot <= itemSlots-1:
 			prevSlot = activeSlot
 			activeSlot = 1
-			setInactiveSlot(prevSlot)
-			changeActiveSlot(activeSlot)
+			#setInactiveSlot()
+			changeActiveSlot(activeSlot, prevSlot)
 	if Input.is_action_just_released("slot3"):
 		if activeSlot <= itemSlots-1:
 			prevSlot = activeSlot
 			activeSlot = 2
-			setInactiveSlot(prevSlot)
-			changeActiveSlot(activeSlot)
+			#setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot, prevSlot)
 	if Input.is_action_just_released("slot4"):
 		if activeSlot <= itemSlots-1:
 			prevSlot = activeSlot
 			activeSlot = 3
-			setInactiveSlot(prevSlot)
-			changeActiveSlot(activeSlot)
+			#setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot, prevSlot)
 	if Input.is_action_just_released("slot5"):
 		if activeSlot <= itemSlots-1:
 			prevSlot = activeSlot
 			activeSlot = 4
-			setInactiveSlot(prevSlot)
-			changeActiveSlot(activeSlot)
-	#if Input.is_action_just_released("slot6"):
-		#if activeSlot < itemSlots - 1:
-			#prevSlot = activeSlot
-			#activeSlot = 5
 			#setInactiveSlot(prevSlot)
-			#changeActiveSlot(activeSlot)
+			changeActiveSlot(activeSlot, prevSlot)
+	if Input.is_action_just_released("slot6"):
+		if activeSlot < itemSlots - 1:
+			prevSlot = activeSlot
+			activeSlot = 5
+			#setInactiveSlot(prevSlot)
+			changeActiveSlot(activeSlot, prevSlot)
 			
-	if Input.is_action_just_released("inv_up"):
-		if activeSlot < itemSlots-2:
-			activeSlot += 1
-			changeActiveSlot(activeSlot)
-			setInactiveSlot(activeSlot-1)
-	if Input.is_action_just_released("inv_down"):
-		if activeSlot > 0:
-			changeActiveSlot(activeSlot-1)
-			activeSlot -= 1
-			setInactiveSlot(activeSlot+1)
+	#if Input.is_action_just_released("inv_up"):
+		#if activeSlot < itemSlots-2:
+			#activeSlot += 1
+			#changeActiveSlot(activeSlot, activeSlot-2)
+	#if Input.is_action_just_released("inv_down"):
+		#if activeSlot > 0:
+			#changeActiveSlot(activeSlot-1, activeSlot)
+
 
 			
 	var input_vector = Vector2.ZERO
@@ -258,15 +257,18 @@ func setItemAmount(itemId, amount, object):
 		return 0
 		
 		
-func changeActiveSlot(slotId):
+func changeActiveSlot(slotId, prevSlot):
 	#print(activeSlot)
+	#slotId += 1
 	var current = %InvDisplay.get_child(slotId)
+	#%UI.changeActiveSlot(slotId, prevSlot)
 	if current:
 		#print("y: ", current.size.y, " x: ", current.size.x)
-		if current.size.y < current.size.x + 10:
+		if current.size.y < current.size.x + 11:
 			#current.set_size(current.size + Vector2(0, 10))
-			%UI.changeActiveSlot(slotId)
-		
+			%UI.changeActiveSlot(slotId, prevSlot)
+		else:
+			print("wrong size", current.size)		
 	
 func setInactiveSlot(slotId):
 	#print(activeSlot)
