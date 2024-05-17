@@ -5,8 +5,9 @@ var enemyScene = preload("res://CustomComponents/Characters/enemy.tscn")
 var cardScene = preload("res://CustomComponents/elevator_card.tscn")
 var level = 0
 var roomEmptyCells: Array
-signal on_player_death
+
 signal pause_button
+signal on_player_death(level)
 
 func _ready():
 	var localStartyCords = %OfficeTileMap.map_to_local(startCords)
@@ -39,7 +40,7 @@ func _on_elevator_tile_map_on_level_complete():
 func _on_office_tile_map_level_generated(_roomEmptyCells, levelPosition):
 	
 	for child in %OfficeTileMap.get_children():
-		if child.type == "enemy":
+		if "type" in child and child.type == "enemy":
 			child.queue_free()
 		
 	var new_navigation_mesh = NavigationPolygon.new()
@@ -59,7 +60,6 @@ func _on_office_tile_map_level_generated(_roomEmptyCells, levelPosition):
 	$Grass.texture.height = grassHeight
 	
 	$Grass.position = Vector2(grassWidth - grassPadding, grassHeight - grassPadding)
-	print(grassWidth, " ", grassHeight, " ", Vector2(grassWidth - grassPadding, grassHeight - grassPadding))
 	
 	
 	roomEmptyCells = _roomEmptyCells
@@ -100,7 +100,7 @@ func _on_navigation_region_2d_bake_finished():
 
 
 func _on_player_on_player_death():
-	on_player_death.emit()
+    on_player_death.emit(level)
 
 func _on_pause_button_pressed():
 	pause_button.emit()

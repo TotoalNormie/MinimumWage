@@ -11,7 +11,9 @@ var sprite: Sprite2D
 @export var AreaCollider: CollisionShape2D
 var data: Dictionary = {}
 var touching: bool = false
-var player: Node
+@onready var player: Node = $"../../%Player"
+var loadedItem
+var currentItemScene
 
 
 
@@ -21,6 +23,7 @@ func _ready():
 	data["amount"] = 1
 	data["icon"] = icon
 	data["type"] = type
+	data["data"] = self.get_parent()
 	$Tooltip.visible = false
 	size *= 27
 	sprite = get_node("Sprite2D")
@@ -40,6 +43,8 @@ func _ready():
 	# Set scale using a Vector2 object
 	sprite.scale = final_scale
 	$Tooltip.text = "[center]" + powerUpName + "\n" + description + "[/center]"
+	#currentItemScene = self.get_parent().scene_file_path
+	#loadedItem = load(currentItemScene)
 
 
 func _on_area_2d_mouse_entered():
@@ -63,15 +68,24 @@ func _on_area_2d_body_exited(body):
 	$Tooltip.visible = false
 	
 	
-func _input(event):
-	if event.is_action_pressed("interact") and touching and type == "POWERUP":
-		#print(player.getPowerUp())
-		#if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots:
-		if player.getItemAmount(id) == 0 && player.getPowerUp() < 2 && player.getSlots() < player.itemSlots:
-			player.addToInventory(id, data)
-			self.queue_free()
-		elif player.getItemAmount(id) != 0:
-			player.setItemAmount(id, player.getItemAmount(id)+1)
-			self.queue_free()
+func _process(delta):
+	if Input.is_action_just_pressed("interact"):
+		print(player.inventory.keys().has(powerUpName))
+		if touching and type == "POWERUP":
+			#print(player.getPowerUp())
+			#if player.getItemAmount(id) == 0 && player.getSlots() < player.itemSlots:
+			if player.getItemAmount(id) == 0 && player.getPowerUp() < 2 && player.getSlots() < player.itemSlots:
+				player.addToInventory(id, data)
+				#print(id)
+				#print(player.inventory[id]["data"].get_children())
+							
+				#self.queue_free()
+				queue_free()
+			#elif player.getItemAmount(id) != 0:
+				#player.setItemAmount(id, player.getItemAmount(id)+1)
+				#self.queue_free()
+		#elif player.inventory.keys().has(powerUpName) and get_parent().has_method("use"):
+			#
+			#get_parent().use()
 
 

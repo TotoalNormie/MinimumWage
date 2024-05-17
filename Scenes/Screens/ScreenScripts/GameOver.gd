@@ -2,7 +2,7 @@ extends Control
 
 @onready var ui = get_tree().get_root().get_node('main/game/Player/CanvasLayer/UI')
 
-func _on_game_on_player_death():
+func _on_game_on_player_death(level):
 	get_tree().paused = true
 	ui.visible = false
 	$AnimationPlayer.play("gameover")

@@ -42,6 +42,7 @@ shape = SubResource("RectangleShape2D_pe56v")
 shape = SubResource("RectangleShape2D_1xc4n")
 
 [node name="Tooltip" type="RichTextLabel" parent="."]
+z_index = 10
 texture_filter = 1
 clip_contents = false
 anchors_preset = 8
