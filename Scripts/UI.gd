@@ -33,6 +33,7 @@ func hit(health, maxHp):
 	%HpBar.value = health
 	%HpVal.text = "[center]" + str(ceil((100/maxHp) * health)) + "%[/center]"
 
+
 func changeActiveSlot(slotId, prevSlot):
 	print("Clicked: ", slotId)
 	var current = %InvDisplay.get_child(slotId)

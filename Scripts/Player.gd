@@ -20,13 +20,11 @@ func  _ready():
 	%HpBar.max_value = maxHealth
 	%HpBar.value = health
 	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
-	#print(OS.has_feature('touchscreen'))
 	if OS.has_feature("mobile"):
 	#if true:
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
-	print(%joystick)
 	
 	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
@@ -47,26 +45,14 @@ func hit(amount):
 	health -= amount
 	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
 	%HpBar.value = health
-	#print('attacked')
 	if(health <= 0):
 		#self.queue_free()
-		#print('dead')
 		emit_signal("on_player_death")
 	%UI.hit(health, maxHealth)
 
-
-func _physics_process(_delta):
-	#print($UI/mobile)
-	# uses the item in the current inventory slot
-
+func _process(delta):
 	%HpBar.value = health
 	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
-	if Input.is_action_just_pressed("shoot"):
-		#removeFromInventory(inventory.keys()[activeSlot])
-		#if len(inventory) > 0 && len(inventory) > activeSlot:
-			#indventory[inventory.keys()[activeSlot]]["data"].use()
-			#hit(1)
-		pass
 
 	# Get user input
 	var prevSlot: int
@@ -116,7 +102,19 @@ func _physics_process(_delta):
 			#changeActiveSlot(activeSlot-1, activeSlot)
 
 
-			
+	
+	if Input.is_action_just_pressed("interact") and !inventory.keys().is_empty():
+		var invKeys = inventory.keys()
+		if activeSlot >= invKeys.size() - 1:
+			return
+		var item = inventory[invKeys[activeSlot]].data
+		if item.has_method("use"):
+			item.use()
+		print(item)
+
+func _physics_process(_delta):
+	# uses the item in the current inventory slot
+
 	var input_vector = Vector2.ZERO
 	# Get user input
 	
@@ -132,7 +130,6 @@ func _physics_process(_delta):
 			input_vector.y = 1
 		if Input.is_action_pressed("move_up"):
 			input_vector.y = -1
-		input_vector = input_vector.normalized()
 	else:
 		if(joystick.posVector):
 			input_vector = joystick.posVector
@@ -140,6 +137,7 @@ func _physics_process(_delta):
 			input_vector = Vector2(0,0)
 		
 
+	input_vector = input_vector.normalized()
 	# Normalize input vector for smooth diagonal movement
 
 	# Apply force based on input and direction
@@ -161,7 +159,6 @@ func _physics_process(_delta):
 			playerDirection = -1
 		else:
 			playerDirection = 1
-		print(deg)
 		$PlayerAnimation.scale.x = playerDirection * abs($PlayerAnimation.scale.x)
 		
 
@@ -169,9 +166,6 @@ func _physics_process(_delta):
 func addToInventory(itemId, itemData):
 	inventory[itemId] = itemData
 	#inventory.append(itemData)
-	#for items in inventory:
-		#print(items.use())
-	#print(inventory)
 	for item in %InvDisplay.get_children():
 		var image = item.get_child(0)
 		var amount = item.get_child(1)
@@ -179,20 +173,21 @@ func addToInventory(itemId, itemData):
 			image.texture = inventory[itemId]["icon"]
 			amount.text = str(inventory[itemId]["amount"])
 			break
-	print(inventory)
 	
 func getSlots():
 	return len(inventory)
 	
 	
 func removeFromInventory(itemId):
-	#print(inventory[itemId])
 	# check if slot has an item
-	var item = %InvDisplay.get_child(activeSlot)
-	var image = item.get_child(0)
-	var amount = item.get_child(1)
-	image.texture = null
-	amount.text = "0"
+	var inventoryIndex = inventory.keys().find(itemId)
+	if(inventoryIndex > -1):
+		var item = %InvDisplay.get_child(inventoryIndex)
+		var image = item.get_child(0)
+		var amount = item.get_child(1)
+		image.texture = null
+		amount.text = "0"
+		inventory.erase(itemId)
 	
 	#var player = get_node(".")
 	#var weapon = player.get_child(get_child_count()-1)
@@ -200,12 +195,6 @@ func removeFromInventory(itemId):
 	#player.remove_child(weapon)
 	# fix this
 	# gets the name of weapon / maybe get weapon node and straigh up reparent
-	#print(player.get_child(get_child_count()-1))
-	# reparent from player to world
-	#print(player.get_children())
-	#var playerItem = get_node()
-	#print(playerItem)
-	inventory.erase(itemId)
 	
 	
 	
@@ -244,13 +233,13 @@ func setItemAmount(itemId, amount, object):
 		if "amount" in inventory[itemId]:
 			inventory[itemId]["amount"] = amount
 			inventory[itemId]["data"] = object
-			#print(inventory)
+
 			#for item in %InvDisplay.get_children():
-				#print(item.get_child(0).texture)
+
 				#if inventory[itemId]["icon"] = item.get_child(0)
 				#var image = item.get_child(0)
 				#var amount = item.get_child(1)
-			#print(inventory)
+
 		else:
 			return 0
 	else:

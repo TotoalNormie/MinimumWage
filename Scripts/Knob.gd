@@ -3,6 +3,7 @@ extends Sprite2D
 
 
 var pressing = false
+var fingerDrag: Vector2
 
 @export var deadzone = 5
 @onready var radius = $"../CollisionShape2D".shape.radius
@@ -11,12 +12,15 @@ var pressing = false
 func _ready():
 	pass # Replace with function body.
 
-
+func _input(event):
+	if event is InputEventScreenDrag: 
+		fingerDrag = event.position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if pressing:
-		var target_position = get_global_mouse_position()
+	#print(InputEventScreenDrag.index)
+	if pressing and fingerDrag != Vector2.ZERO:
+		var target_position = fingerDrag
 		var joystick_position = joystick.global_position
 		var distance = joystick_position.distance_to(target_position)
 		
@@ -28,6 +32,8 @@ func _process(delta):
 			global_position.y = joystick_position.y + sin(angle) * maxLength
 	else:
 		global_position = lerp(global_position, joystick.global_position, delta * 20)
+		fingerDrag = joystick.global_position
+		
 
 	position = position.limit_length(radius)
 	calculateVector()
@@ -39,9 +45,9 @@ func calculateVector():
 	if(abs(global_position.y - joystick.global_position.y) >= deadzone):
 		joystick.posVector.y = (global_position. y - joystick.global_position.y) / maxLength
 
-
-func _on_button_button_down():
+func _on_button_pressed():
 	pressing = true
 
-func _on_button_button_up():
+
+func _on_button_released():
 	pressing = false

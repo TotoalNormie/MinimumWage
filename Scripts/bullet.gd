@@ -9,7 +9,6 @@ func _ready():
 	pass
 
 func start(_position, _direction, _speed, _damage):
-	print(_direction)
 	rotation = _direction
 	global_position = _position
 	##print(position)

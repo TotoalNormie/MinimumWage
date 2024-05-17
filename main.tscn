@@ -14,8 +14,8 @@ layer = 2
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause" parent="PauseLayer" instance=ExtResource("6_oi5p2")]
-z_as_relative = false
 
 [node name="game" parent="." instance=ExtResource("2_jehrs")]
 
 [connection signal="on_player_death" from="game" to="GameOverLayer/GameOver" method="_on_game_on_player_death"]
+[connection signal="pause_button" from="game" to="PauseLayer/Pause" method="_on_game_pause_button"]
