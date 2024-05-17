@@ -100,7 +100,8 @@ func _on_navigation_region_2d_bake_finished():
 
 
 func _on_player_on_player_death():
-    on_player_death.emit(level)
+	on_player_death.emit(level)
 
 func _on_pause_button_pressed():
+	print("pause pressed")
 	pause_button.emit()

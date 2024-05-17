@@ -63,12 +63,11 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 0
 follow_viewport_enabled = true
 
 [node name="ButtonOpen" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
-z_index = 15
 texture_filter = 2
 offset_left = 213.0
 offset_top = 190.0
@@ -81,7 +80,7 @@ text = "Press E to complete level"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
-z_index = 15
+z_index = 7
 texture_filter = 2
 offset_left = 229.0
 offset_top = 110.0
