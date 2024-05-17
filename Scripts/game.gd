@@ -6,6 +6,7 @@ var cardScene = preload("res://CustomComponents/elevator_card.tscn")
 var level = 0
 var roomEmptyCells: Array
 signal on_player_death
+signal pause_button
 
 func _ready():
 	var localStartyCords = %OfficeTileMap.map_to_local(startCords)
@@ -100,3 +101,6 @@ func _on_navigation_region_2d_bake_finished():
 
 func _on_player_on_player_death():
 	on_player_death.emit()
+
+func _on_pause_button_pressed():
+	pause_button.emit()
