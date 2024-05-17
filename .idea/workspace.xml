@@ -5,28 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9835bb69-8ace-4d07-b83b-dee0a7b6588b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Characters/enemy.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CustomComponents/gun.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/enemy.gd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/gun.gd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/glock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/glock.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.gd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/the_player.gd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/the_player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Characters/bird.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Characters/player.webp.import" beforeDir="false" afterPath="$PROJECT_DIR$/Characters/player.webp.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Characters/the_player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Characters/the_player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Props/table.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Props/table.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Props/table.webp.import" beforeDir="false" afterPath="$PROJECT_DIR$/Props/table.webp.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scenes/main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/main.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/bird.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprites/table.webp.import" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/table.webp.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/8-bit-coin-material-bloodstained-wiki-guide.webp.import" beforeDir="false" afterPath="$PROJECT_DIR$/images/8-bit-coin-material-bloodstained-wiki-guide.webp.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/images/pixel-art-coffee-cup-8bit-game-icon_360488-74-removebg-preview.png.import" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CustomComponents/joyBB46.tmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CustomComponents/powerup/health.tscn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CustomComponents/powerup/health_poweru.gd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/joyring.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/joyring.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/Characters/Player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/Characters/Player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/Characters/enemy.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/Characters/enemy.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/InvSlot.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/InvSlot.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/Item.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/Item.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/PowerUp.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/PowerUp.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/button.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/button.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomComponents/joystick.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/CustomComponents/joystick.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/Screens/ScreenScripts/GameOver.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Screens/ScreenScripts/GameOver.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/Screens/StartScreen.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Screens/StartScreen.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/game.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/game.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/test.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Button.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Button.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Item.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Item.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/ItemTest.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/ItemTest.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Knob.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Knob.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Player.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/PowerUp.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/PowerUp.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/UI.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/UI.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/bullet.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/bullet.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/enemy.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/enemy.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/game.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/game.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/gun.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/gun.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/gdscript_formatter/format_shortcut.tres" beforeDir="false" afterPath="$PROJECT_DIR$/addons/gdscript_formatter/format_shortcut.tres" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/the7174.tmp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,27 +47,27 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2eu9LAay7vajGxvOvaf7l3B1fRA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging THEstore",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging skajdhkashd&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,6 +77,9 @@
       <option name="presentableId" value="Default" />
       <updated>1712743538703</updated>
       <workItem from="1712743541407" duration="349000" />
+      <workItem from="1715925059458" duration="10000" />
+      <workItem from="1715925078410" duration="113000" />
+      <workItem from="1715925201299" duration="43000" />
     </task>
     <servers />
   </component>
@@ -76,6 +87,18 @@
     <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.tscn" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.godot" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
