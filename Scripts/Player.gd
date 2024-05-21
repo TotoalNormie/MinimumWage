@@ -53,6 +53,7 @@ func hit(amount):
 func _process(delta):
 	%HpBar.value = health
 	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
+	%MoneyDisplay.text = str(money) + "G"
 
 	# Get user input
 	var prevSlot: int

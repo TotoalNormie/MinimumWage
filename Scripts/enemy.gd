@@ -107,6 +107,10 @@ func hit(amount):
 		var rnd = RandomNumberGenerator.new()
 		var doesDrop = rnd.randf() > 0.5
 		if doesDrop:
+			# adds coins to player on enemy death
+			var player = self.get_parent().get_node("Player")
+			player.money += 1
+			print("Money: ", player.money)
 			var item = items.pick_random().instantiate()
 			item.scale = Vector2(0.4, 0.4)
 			item.global_position = global_position

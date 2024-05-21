@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://d3jnln73onrd4" path="res://CustomComponents/button.tscn" id="9_t8vbf"]
 [ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="10_adb7a"]
 [ext_resource type="Texture2D" uid="uid://byllisrdrv60a" path="res://styles/2d_lights_and_shadows_neutral_point_light.webp" id="14_uqo31"]
-[ext_resource type="StyleBox" uid="uid://mj5kpcsex5tt" path="res://styles/button.tres" id="15_0kt0q"]
-[ext_resource type="StyleBox" uid="uid://dbv74kjkjcmg3" path="res://styles/buttonPressed.tres" id="16_j02qa"]
+[ext_resource type="StyleBox" path="res://styles/button.tres" id="15_0kt0q"]
+[ext_resource type="StyleBox" path="res://styles/buttonPressed.tres" id="16_j02qa"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ys4k5"]
 friction = 0.5
@@ -167,8 +167,8 @@ action = "interact"
 layout_mode = 1
 offset_left = 5.0
 offset_top = 1.0
-offset_right = 49.0
-offset_bottom = 41.0
+offset_right = 305.0
+offset_bottom = 106.0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 49
@@ -176,16 +176,20 @@ theme_override_constants/margin_right = 49
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer"]
 layout_direction = 3
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+
+[node name="MoneyDisplay" type="RichTextLabel" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("10_adb7a")
 
 [node name="InvDisplay" type="HBoxContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 z_index = 20
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-alignment = 2
 theme_override_constants/separation = 5
+alignment = 2
 
 [node name="HpBar" type="TextureProgressBar" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://16fc3cmb7er4"]
+
+[ext_resource type="Script" path="res://Scripts/shop_slot.gd" id="1_bbt5x"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="1_dt3od"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l11q2"]
+
+[node name="ShopPanel" type="Panel"]
+custom_minimum_size = Vector2(40, 30)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bbt5x")
+
+[node name="ShopTex" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Description" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 80.0
+theme_override_fonts/normal_font = ExtResource("1_dt3od")
+theme_override_font_sizes/normal_font_size = 0
+fit_content = true
+
+[node name="Button" type="TouchScreenButton" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_l11q2")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

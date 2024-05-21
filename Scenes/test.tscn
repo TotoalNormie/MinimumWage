@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvoca7gygcwmk"]
+[gd_scene load_steps=9 format=3 uid="uid://bvoca7gygcwmk"]
 
 [ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="1_wr6cs"]
 [ext_resource type="AudioStream" uid="uid://u0fjpddgggwx" path="res://Audio/powerup.wav" id="3_671ul"]
 [ext_resource type="PackedScene" uid="uid://0aasqash5egl" path="res://CustomComponents/powerup/health.tscn" id="8_i6ewq"]
+[ext_resource type="PackedScene" uid="uid://dol1nt87oc8tx" path="res://CustomComponents/Characters/shop.tscn" id="8_v1pxf"]
 [ext_resource type="PackedScene" uid="uid://djqqaewvt3knq" path="res://Items/GrenadeLauncher.tscn" id="8_x8nom"]
 [ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="9_7owei"]
 [ext_resource type="PackedScene" uid="uid://c7jvv7l7i16vj" path="res://Items/OrbitalStrikeLaserCannon.tscn" id="9_hwhlq"]
@@ -29,6 +30,9 @@ maxHealth = 10
 
 [node name="Enemy" parent="." instance=ExtResource("9_7owei")]
 position = Vector2(73, 41)
+health = 0.5
 
 [node name="Health" parent="." instance=ExtResource("8_i6ewq")]
 position = Vector2(0, 91)
+
+[node name="Shop" parent="." instance=ExtResource("8_v1pxf")]
