@@ -19,14 +19,15 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="Item" type="RigidBody2D" node_paths=PackedStringArray("AreaCollider")]
+[node name="Item" type="RigidBody2D"]
 texture_filter = 1
 gravity_scale = 0.0
 freeze = true
 script = ExtResource("1_5osgj")
 itemColor = Color(0.47972, 0.463147, 0.930242, 0.980392)
-AreaCollider = NodePath("Area2D/AreaCollider")
 description = "This is an example item."
+AreaCollider = Object(CollisionShape2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"shape":SubResource("RectangleShape2D_1xc4n"),"disabled":false,"one_way_collision":false,"one_way_collision_margin":1.0,"script":null)
+
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
