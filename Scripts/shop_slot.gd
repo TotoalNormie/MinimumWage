@@ -3,7 +3,7 @@ extends Panel
 var player
 var root
 var shop
-@export var prices: Array = [15, 5, 3]
+@export var prices: Array = [5, 2, 1]
 var used: bool = false
 
 # Called when the node enters the scene tree for the first time.

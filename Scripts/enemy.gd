@@ -31,6 +31,7 @@ func _ready():
 	$Node2D/Label.text = str(health)
 	generateRaycast()
 	
+	
 func _physics_process(delta: float) -> void:
 	var nextPosition = navAgent.get_next_path_position()
 	var dir = to_local(nextPosition).normalized()
@@ -104,13 +105,15 @@ func hit(amount):
 	$Node2D/Label.text = str(health)
 	
 	if(health <= 0):
+		#var player = self.get_parent()
+		#print("Player: ", player)
 		var rnd = RandomNumberGenerator.new()
 		var doesDrop = rnd.randf() > 0.5
 		if doesDrop:
 			# adds coins to player on enemy death
-			var player = self.get_parent().get_node("Player")
+			var player = self.get_parent().get_parent().get_parent().get_node("Player")
 			player.money += 1
-			print("Money: ", player.money)
+			#print("Money: ", player.money)
 			var item = items.pick_random().instantiate()
 			item.scale = Vector2(0.4, 0.4)
 			item.global_position = global_position
