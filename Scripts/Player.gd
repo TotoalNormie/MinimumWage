@@ -106,9 +106,12 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("interact") and !inventory.keys().is_empty():
 		var invKeys = inventory.keys()
-		if activeSlot >= invKeys.size() - 1:
-			return
+		#print(invKeys.size() - 1)
+		#if activeSlot >= invKeys.size() - 1:
+			#print("Fitogus fucked")
+			#return
 		var item = inventory[invKeys[activeSlot]].data
+		#item.use()
 		if item.has_method("use"):
 			item.use()
 		print(item)

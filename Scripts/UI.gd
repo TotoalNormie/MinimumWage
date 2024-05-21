@@ -23,7 +23,7 @@ func _ready():
 		slotUi.add_child(button)
 		print("slot", i)
 	onlySet(0)
-	%InvDisplay.get_parent().print_tree_pretty()
+	#%InvDisplay.get_parent().print_tree_pretty()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

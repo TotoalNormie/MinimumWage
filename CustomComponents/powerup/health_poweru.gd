@@ -16,8 +16,10 @@ func _process(delta):
 func use():
 	# gets playe
 	# check if current hp + healed < maxhp
-
-	if player.health + healAmount <= player.maxHealth:
+	print("Using Health PowerupEEE")
+	if player.health + healAmount > player.maxHealth:
+		player.health = player.maxHealth
+	else:
 		# heal
 		player.health += healAmount
 		# remove from inv
