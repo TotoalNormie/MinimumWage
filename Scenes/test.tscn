@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvoca7gygcwmk"]
+[gd_scene load_steps=12 format=3 uid="uid://bvoca7gygcwmk"]
 
 [ext_resource type="PackedScene" uid="uid://mdedmgt7skv7" path="res://CustomComponents/AreaAudio.tscn" id="1_wr6cs"]
 [ext_resource type="AudioStream" uid="uid://u0fjpddgggwx" path="res://Audio/powerup.wav" id="3_671ul"]
@@ -7,7 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://djqqaewvt3knq" path="res://Items/GrenadeLauncher.tscn" id="8_x8nom"]
 [ext_resource type="PackedScene" uid="uid://k20fk0vqir3s" path="res://CustomComponents/Characters/enemy.tscn" id="9_7owei"]
 [ext_resource type="PackedScene" uid="uid://c7jvv7l7i16vj" path="res://Items/OrbitalStrikeLaserCannon.tscn" id="9_hwhlq"]
+[ext_resource type="Script" path="res://Scripts/db_manager.gd" id="9_jwjs8"]
+[ext_resource type="FontFile" uid="uid://lumnleqyj4qc" path="res://Fonts/PixelifySans.ttf" id="9_kafeb"]
 [ext_resource type="PackedScene" uid="uid://brh0dmdp0g0fc" path="res://CustomComponents/Characters/Player.tscn" id="11_lo5lh"]
+
+[sub_resource type="Theme" id="Theme_x1v4f"]
+default_font = ExtResource("9_kafeb")
 
 [node name="Node2D" type="Node2D"]
 
@@ -36,3 +41,82 @@ health = 0.5
 position = Vector2(0, 91)
 
 [node name="Shop" parent="." instance=ExtResource("8_v1pxf")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_jwjs8")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -27.0
+offset_right = 28.0
+offset_bottom = -4.0
+theme_override_fonts/font = ExtResource("9_kafeb")
+text = "Username:"
+
+[node name="Username" type="LineEdit" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5312
+offset_top = -15.5
+offset_right = 33.5312
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 1)
+theme = SubResource("Theme_x1v4f")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 37.0
+offset_right = 73.0
+offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("9_kafeb")
+text = "Password:"
+
+[node name="Password" type="LineEdit" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = 46.0
+offset_right = 34.0625
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 1)
+theme = SubResource("Theme_x1v4f")
+theme_override_fonts/font = ExtResource("9_kafeb")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 102.0
+offset_right = 95.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("9_kafeb")
+text = "Login"
+
+[connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]
