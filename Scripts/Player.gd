@@ -13,7 +13,14 @@ var direction : int = 1
 #@export var inventory: Array = []
 @export var inventory: Dictionary = {}
 var activeSlot: int = 0
-var money: int = 0
+var money: int = 30
+var score: int = 0
+var username: String
+
+# Path to your SQLite database
+const DB_PATH = "res://Database/wage.db"
+# Initialize the SQLite object
+var db = SQLite.new()
 
 func  _ready():
 	health = maxHealth
@@ -25,6 +32,10 @@ func  _ready():
 		%UI/mobile.visible = true
 	else:
 		%UI/mobile.visible = false
+	%Score.text = "Score: {str}".format({"str": score})
+	%ScoreCounter.start(0.1)
+	username = get_tree().root.get_child(0).get_child(get_child_count()).name
+	#print(get_tree().root.get_child(0).get_child(get_child_count()).name)
 	
 	#var slot = preload("res://CustomComponents/InvSlot.tscn")
 	
@@ -47,13 +58,43 @@ func hit(amount):
 	%HpBar.value = health
 	if(health <= 0):
 		#self.queue_free()
+		
+		db.path = DB_PATH
+		if db.open_db() != true:
+			print("Failed to open database")
+			return
+		#var query = "INSERT INTO users (score) VALUES (?)"
+		#var statement = db.query_with_bindings(query, [score])
+		#if !statement:
+				#print("Failed to insert")
+				#return false
+		else:
+			var result = db.select_rows("users", 'username = "'+username+'"', ["score"])
+			if !result:
+				var query = "INSERT INTO users (score) VALUES (?)"
+				var statement = db.query_with_bindings(query, [score])
+				db.close_db()
+				if !statement:
+					print("Failed to insert")
+					return false
+			else:
+				var query = "UPDATE users SET score = ? WHERE username = ?"
+				var statement = db.query_with_bindings(query, [score, username])
+				db.close_db()
+				if !statement:
+					print("Failed to insert")
+					return false
+		%ScoreCounter.stop()
+		print("Final Score: ", score)
 		emit_signal("on_player_death")
+		return true
 	%UI.hit(health, maxHealth)
 
 func _process(delta):
 	%HpBar.value = health
 	%HpVal.text = "[center]" + str(ceil((100/maxHealth) * health)) + "%[/center]"
 	%MoneyDisplay.text = str(money) + "G"
+	%Score.text = "Score: {str}".format({"str": score})
 
 	# Get user input
 	var prevSlot: int
@@ -110,6 +151,7 @@ func _process(delta):
 		#if activeSlot >= invKeys.size() - 1:
 			#print("Fitogus fucked")
 			#return
+		# TODO siten ir bug line below
 		var item = inventory[invKeys[activeSlot]].data
 		#item.use()
 		if item.has_method("use"):
@@ -271,3 +313,7 @@ func setInactiveSlot(slotId):
 		if current.size.y > current.size.x:
 			#current.set_size(current.size - Vector2(0, 10))
 			%UI.setInactiveSlot(slotId)
+
+
+func _on_score_counter_timeout():
+	score += 1

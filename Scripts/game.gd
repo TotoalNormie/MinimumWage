@@ -13,6 +13,8 @@ func _ready():
 	var localStartyCords = %OfficeTileMap.map_to_local(startCords)
 	var globalStartPos = %OfficeTileMap.to_global(localStartyCords)
 	%Player.global_position = globalStartPos
+	var sc = %Player.get_node("CanvasLayer/UI/MarginContainer/HBoxContainer/Score/ScoreCounter")
+	sc.start()
 	
 
 func _process(delta):
